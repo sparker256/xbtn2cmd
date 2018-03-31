@@ -44,7 +44,7 @@ static float g_button11_lbrt[4]; // left, bottom, right, top
 static float g_button12_lbrt[4]; // left, bottom, right, top
 
 
-char scratch_buffer[150];
+// char scratch_buffer[150];
 float col_white[] = {1.0, 1.0, 1.0};
 float col_green[] = {0.0, 1.0, 0.0};
 float col_red[] = {1.0, 0.0, 0.0};
@@ -74,7 +74,13 @@ int					xb2cvr_handle_mouse(XPLMWindowID in_window_id, int x, int y, int is_down
 static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return (((x - 10) >= bounds_lbrt[0]) && ((x - 20) < bounds_lbrt[2]) && (y < bounds_lbrt[3]) && (y >= bounds_lbrt[1])); }
 
 
-void	xb2cvr_draw(XPLMWindowID xcvr_in_window_id, void * in_refcon)
+float current_FPS = 0.0;
+float sum_FPS = 0.0;
+float average_FPS = 0.0;
+int FPS_loop = 0;
+
+
+void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 {
 
     XPLMSetGraphicsState(
@@ -92,7 +98,7 @@ void	xb2cvr_draw(XPLMWindowID xcvr_in_window_id, void * in_refcon)
     XPLMGetFontDimensions(xplmFont_Proportional, NULL, &char_height, NULL);
 
     int l, t, r, b;
-    XPLMGetWindowGeometry(xcvr_in_window_id, &l, &t, &r, &b);
+    XPLMGetWindowGeometry(xb2cvr_in_window_id, &l, &t, &r, &b);
 
 
         // Draw the main body of the checklist window.
@@ -103,8 +109,24 @@ void	xb2cvr_draw(XPLMWindowID xcvr_in_window_id, void * in_refcon)
 
         // Display whether we're in front of our our layer
         {
-            sprintf(scratch_buffer, "In front? %s", XPLMIsWindowInFront(xcvr_in_window_id) ? "Y" : "N");
+            sprintf(scratch_buffer, "In front? %s", XPLMIsWindowInFront(xb2cvr_in_window_id) ? "Y" : "N");
             XPLMDrawString(col_white, l, t - line_number * char_height, scratch_buffer, NULL, xplmFont_Proportional);
+        }
+
+        // Display Average FPS if in VR
+        {
+            if (vr_is_enabled) {
+                current_FPS = 1/(XPLMGetDataf(xb2cvr_g_FPS));
+                sum_FPS = sum_FPS + current_FPS;
+                FPS_loop = FPS_loop + 1;
+                if (FPS_loop == 15) {
+                    average_FPS = sum_FPS / 15;
+                    FPS_loop = 0;
+                    sum_FPS = 0;
+                }
+                sprintf(scratch_buffer, "FPS  %3.2f", average_FPS);
+                XPLMDrawString(col_white, l + 70, t - line_number * char_height, scratch_buffer, NULL, xplmFont_Proportional);
+            }
         }
 
 

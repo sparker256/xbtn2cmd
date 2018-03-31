@@ -19,6 +19,7 @@ extern int vr_is_enabled;
 
 extern int xb2cvr_width; // width of the widget checklist window
 
+extern char scratch_buffer[];
 
 extern string button1_label, button1_command;
 extern string button2_label, button2_command;
