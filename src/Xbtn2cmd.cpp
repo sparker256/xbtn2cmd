@@ -74,6 +74,8 @@ int xb2cvr_width = 500; // width of the widget checklist window
 
 int vr_is_enabled = 0;
 
+
+
 XPLMDataRef xb2cvr_g_FPS;
 
 int                         VersionXP, VersionSDK;
@@ -116,11 +118,9 @@ XPLMCommandRef Button11LabelCmd = NULL, Button11CommandCmd = NULL;
 XPLMCommandRef Button12LabelCmd = NULL, Button12CommandCmd = NULL;
 
 
-void Xbtn2cmdMenuHandler(void *, void *);
-int  Xbtn2cmdMenuItem;
-
-XPLMMenuID  Xbtn2cmdMenu;
-XPLMMenuID  ConfigMenuId;
+int Xbtn2cmd_menu_container_idx; // The index of our menu item in the Plugins menu
+XPLMMenuID Xbtn2cmd_menu_id; // The menu container we'll append all our menu items to
+void Xbtn2cmdmenu_handler(void *, void *);
 
 
 PLUGIN_API int XPluginStart(
@@ -128,7 +128,6 @@ PLUGIN_API int XPluginStart(
 						char *		outSig,
 						char *		outDesc)
 {
-    int ConfigSubMenuItem;
 
     XPLMDebugString("Xbtn2cmd: ver " VERSION_NUMBER  "\n");
     strcpy(outName, "Xbtn2cmd: ver " VERSION_NUMBER);
@@ -148,36 +147,25 @@ PLUGIN_API int XPluginStart(
 
     // Create our menu
 
-    Xbtn2cmdMenuItem = XPLMAppendMenuItem(
-                XPLMFindPluginsMenu(),
-                "Xbtn2cmd",
-                 NULL,
-                 1);
+    Xbtn2cmd_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "Xbtn2cmd", 0, 0);
+    Xbtn2cmd_menu_id = XPLMCreateMenu("Xbtn2cmd", XPLMFindPluginsMenu(), Xbtn2cmd_menu_container_idx, Xbtn2cmdmenu_handler, NULL);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload xbtn2cmd.ini", (void *)"Menu Item 1", 1);
+    XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload Window", (void *)"Menu Item 2", 1);
+    XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Recreate Window", (void *)"Menu Item 3", 1);
+    XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Hide Window", (void *)"Menu Item 4", 1);
+    XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Show Window", (void *)"Menu Item 5", 1);
 
-     Xbtn2cmdMenu = XPLMCreateMenu(
-                 "Xsaitekpanels",
-                 XPLMFindPluginsMenu(),
-                 Xbtn2cmdMenuItem,
-                 Xbtn2cmdMenuHandler,
-                 (void *)0);
 
-     ConfigSubMenuItem = XPLMAppendMenuItem(
-             Xbtn2cmdMenu,
-             "xbtn2cmd.ini",
-             NULL,
-             1);
+    // Changed your mind? You can destroy the submenu you created with XPLMDestroyMenu(),
+    // then remove the "Sample Menu" item from the "Plugins" menu with XPLMRemoveMenuItem().
+    //XPLMDestroyMenu(g_menu_id);
+    //XPLMRemoveMenuItem(XPLMFindPluginsMenu(), g_menu_container_idx);
 
-     ConfigMenuId = XPLMCreateMenu(
-             "xbtn2cmd.ini",
-             Xbtn2cmdMenu,
-             ConfigSubMenuItem,
-             Xbtn2cmdMenuHandler,
-             (void *)1);
 
-      XPLMClearAllMenuItems(ConfigMenuId);
-      XPLMAppendMenuItem(ConfigMenuId, "Reload xbtn2cmd.ini", (void *) "TRUE", 1);
-
-	
 	// If this dataref is for some reason not available,
 	// we won't be able to move the window to VR anyway,
 	// so go ahead an disable us!
@@ -238,8 +226,8 @@ void xb2cvr_create_gui_window() {
         params.structSize = sizeof(params);
         params.left = xb2cvr_global_desktop_bounds[0] + 50;
         params.bottom = xb2cvr_global_desktop_bounds[1] + 100;
-        params.right = xb2cvr_global_desktop_bounds[0] + 550;
-        params.top = xb2cvr_global_desktop_bounds[1] + 400;
+        params.right = xb2cvr_global_desktop_bounds[0] + 600;
+        params.top = xb2cvr_global_desktop_bounds[1] + 500;
         params.visible = 1;
         params.drawWindowFunc = xb2cvr_draw;
         params.handleMouseClickFunc = xb2cvr_handle_mouse;
@@ -274,18 +262,30 @@ void xb2cvr_create_gui_window() {
 
 // Menu handler
 
-void Xbtn2cmdMenuHandler(void * inMenuRef, void * inItemRef)
+void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 {
-
-    if((intptr_t)inMenuRef == 1){
-         if (strcmp((char *) inItemRef, "TRUE") == 0) {
-             xb2cvr_g_window = NULL;
-             xb2cvr_create_gui_window();
-             process_read_ini_file();
-
-         }
-
+    if(!strcmp((const char *)in_item_ref, "Menu Item 1"))
+    {
+        process_read_ini_file();
+    }
+    else if(!strcmp((const char *)in_item_ref, "Menu Item 2"))
+    {
+        process_read_ini_file();
+        xb2cvr_create_gui_window();
+    }
+    else if(!strcmp((const char *)in_item_ref, "Menu Item 3"))
+    {
+        process_read_ini_file();
+        xb2cvr_g_window = NULL;
+        xb2cvr_create_gui_window();
+    }
+    else if(!strcmp((const char *)in_item_ref, "Menu Item 4"))
+    {
+        XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+    }
+    else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
+    {
+        XPLMSetWindowIsVisible(xb2cvr_g_window,1);
     }
 
-    return;
 }
