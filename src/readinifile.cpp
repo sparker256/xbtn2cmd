@@ -181,67 +181,99 @@ void process_read_ini_file()
 
 
     button1_label = getOptionToString("button1_label");
-    button1_command = getOptionToString("button1_command");
+    button1_command_once = getOptionToString("button1_command_once");
+    button1_command_continue = getOptionToString("button1_command_continue");
     Button1LabelCmd = XPLMFindCommand(button1_label.c_str());
-    Button1CommandCmd = XPLMFindCommand(button1_command.c_str());
+    Button1CommandOnceCmd = XPLMFindCommand(button1_command_once.c_str());
+    Button1CommandContinueCmd = XPLMFindCommand(button1_command_continue.c_str());
+
 
     button2_label = getOptionToString("button2_label");
-    button2_command = getOptionToString("button2_command");
+    button2_command_once = getOptionToString("button2_command_once");
+    button2_command_continue = getOptionToString("button2_command_continue");
     Button2LabelCmd = XPLMFindCommand(button2_label.c_str());
-    Button2CommandCmd = XPLMFindCommand(button2_command.c_str());
+    Button2CommandOnceCmd = XPLMFindCommand(button2_command_once.c_str());
+    Button2CommandContinueCmd = XPLMFindCommand(button2_command_continue.c_str());
+
 
     button3_label = getOptionToString("button3_label");
-    button3_command = getOptionToString("button3_command");
+    button3_command_once = getOptionToString("button3_command_once");
+    button3_command_continue = getOptionToString("button3_command_continue");
     Button3LabelCmd = XPLMFindCommand(button3_label.c_str());
-    Button3CommandCmd = XPLMFindCommand(button3_command.c_str());
+    Button3CommandOnceCmd = XPLMFindCommand(button3_command_once.c_str());
+    Button3CommandContinueCmd = XPLMFindCommand(button3_command_continue.c_str());
+
 
     button4_label = getOptionToString("button4_label");
-    button4_command = getOptionToString("button4_command");
+    button4_command_once = getOptionToString("button4_command_once");
+    button4_command_continue = getOptionToString("button4_command_continue");
     Button4LabelCmd = XPLMFindCommand(button4_label.c_str());
-    Button4CommandCmd = XPLMFindCommand(button4_command.c_str());
+    Button4CommandOnceCmd = XPLMFindCommand(button4_command_once.c_str());
+    Button4CommandContinueCmd = XPLMFindCommand(button4_command_continue.c_str());
+
 
     button5_label = getOptionToString("button5_label");
-    button5_command = getOptionToString("button5_command");
+    button5_command_once = getOptionToString("button5_command_once");
+    button5_command_continue = getOptionToString("button5_command_continue");
     Button5LabelCmd = XPLMFindCommand(button5_label.c_str());
-    Button5CommandCmd = XPLMFindCommand(button5_command.c_str());
+    Button5CommandOnceCmd = XPLMFindCommand(button5_command_once.c_str());
+    Button5CommandContinueCmd = XPLMFindCommand(button5_command_continue.c_str());
 
 
     button6_label = getOptionToString("button6_label");
-    button6_command = getOptionToString("button6_command");
+    button6_command_once = getOptionToString("button6_command_once");
+    button6_command_continue = getOptionToString("button6_command_continue");
     Button6LabelCmd = XPLMFindCommand(button6_label.c_str());
-    Button6CommandCmd = XPLMFindCommand(button6_command.c_str());
+    Button6CommandOnceCmd = XPLMFindCommand(button6_command_once.c_str());
+    Button6CommandContinueCmd = XPLMFindCommand(button6_command_continue.c_str());
+
 
     button7_label = getOptionToString("button7_label");
-    button7_command = getOptionToString("button7_command");
+    button7_command_once = getOptionToString("button7_command_once");
+    button7_command_continue = getOptionToString("button7_command_continue");
     Button7LabelCmd = XPLMFindCommand(button7_label.c_str());
-    Button7CommandCmd = XPLMFindCommand(button7_command.c_str());
+    Button7CommandOnceCmd = XPLMFindCommand(button7_command_once.c_str());
+    Button7CommandContinueCmd = XPLMFindCommand(button7_command_continue.c_str());
+
 
     button8_label = getOptionToString("button8_label");
-    button8_command = getOptionToString("button8_command");
+    button8_command_once = getOptionToString("button8_command_once");
+    button8_command_continue = getOptionToString("button8_command_continue");
     Button8LabelCmd = XPLMFindCommand(button8_label.c_str());
-    Button8CommandCmd = XPLMFindCommand(button8_command.c_str());
+    Button8CommandOnceCmd = XPLMFindCommand(button8_command_once.c_str());
+    Button8CommandContinueCmd = XPLMFindCommand(button8_command_continue.c_str());
+
 
     button9_label = getOptionToString("button9_label");
-    button9_command = getOptionToString("button9_command");
+    button9_command_once = getOptionToString("button9_command_once");
+    button9_command_continue = getOptionToString("button9_command_continue");
     Button9LabelCmd = XPLMFindCommand(button9_label.c_str());
-    Button9CommandCmd = XPLMFindCommand(button9_command.c_str());
+    Button9CommandOnceCmd = XPLMFindCommand(button9_command_once.c_str());
+    Button9CommandContinueCmd = XPLMFindCommand(button9_command_continue.c_str());
+
 
     button10_label = getOptionToString("button10_label");
-    button10_command = getOptionToString("button10_command");
+    button10_command_once = getOptionToString("button10_command_once");
+    button10_command_continue = getOptionToString("button10_command_continue");
     Button10LabelCmd = XPLMFindCommand(button10_label.c_str());
-    Button10CommandCmd = XPLMFindCommand(button10_command.c_str());
-
+    Button10CommandOnceCmd = XPLMFindCommand(button10_command_once.c_str());
+    Button10CommandContinueCmd = XPLMFindCommand(button10_command_continue.c_str());
 
 
     button11_label = getOptionToString("button11_label");
-    button11_command = getOptionToString("button11_command");
+    button11_command_once = getOptionToString("button11_command_once");
+    button11_command_continue = getOptionToString("button11_command_continue");
     Button11LabelCmd = XPLMFindCommand(button11_label.c_str());
-    Button11CommandCmd = XPLMFindCommand(button11_command.c_str());
+    Button11CommandOnceCmd = XPLMFindCommand(button11_command_once.c_str());
+    Button11CommandContinueCmd = XPLMFindCommand(button11_command_continue.c_str());
+
 
     button12_label = getOptionToString("button12_label");
-    button12_command = getOptionToString("button12_command");
+    button12_command_once = getOptionToString("button12_command_once");
+    button12_command_continue = getOptionToString("button12_command_continue");
     Button12LabelCmd = XPLMFindCommand(button12_label.c_str());
-    Button12CommandCmd = XPLMFindCommand(button12_command.c_str());
+    Button12CommandOnceCmd = XPLMFindCommand(button12_command_once.c_str());
+    Button12CommandContinueCmd = XPLMFindCommand(button12_command_continue.c_str());
 
   return;
 }

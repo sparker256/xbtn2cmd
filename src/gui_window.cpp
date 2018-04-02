@@ -540,130 +540,190 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         {
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button1_lbrt)) {
-                sprintf(scratch_buffer, "Button1 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button1CommandCmd);
+                XPLMCommandOnce(Button1CommandOnceCmd);
+                if (Button1ContinueMode < 1) {
+                    XPLMCommandBegin(Button1CommandContinueCmd);
+                    Button1ContinueMode = 1;
+                }
+
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button2_lbrt))
             {
-                sprintf(scratch_buffer, "Button2 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button2CommandCmd);
+                XPLMCommandOnce(Button2CommandOnceCmd);
+                if (Button2ContinueMode < 1) {
+                    XPLMCommandBegin(Button2CommandContinueCmd);
+                    Button2ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button3_lbrt))
             {
-                sprintf(scratch_buffer, "Button3 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button3CommandCmd);
+                XPLMCommandOnce(Button3CommandOnceCmd);
+                if (Button3ContinueMode < 1) {
+                    XPLMCommandBegin(Button3CommandContinueCmd);
+                    Button3ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button4_lbrt))
             {
-                sprintf(scratch_buffer, "Button4 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button4CommandCmd);
+                XPLMCommandOnce(Button4CommandOnceCmd);
+                if (Button4ContinueMode < 1) {
+                    XPLMCommandBegin(Button4CommandContinueCmd);
+                    Button4ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button5_lbrt))
             {
-                sprintf(scratch_buffer, "Button5 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button5CommandCmd);
+                XPLMCommandOnce(Button5CommandOnceCmd);
+                if (Button5ContinueMode < 1) {
+                    XPLMCommandBegin(Button5CommandContinueCmd);
+                    Button5ContinueMode = 1;
+                }
             }
-
-
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button6_lbrt))
             {
-                sprintf(scratch_buffer, "Button6 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button6CommandCmd);
+                XPLMCommandOnce(Button6CommandOnceCmd);
+                if (Button6ContinueMode < 1) {
+                    XPLMCommandBegin(Button6CommandContinueCmd);
+                    Button6ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button7_lbrt))
             {
-                sprintf(scratch_buffer, "Button7 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button7CommandCmd);
+                XPLMCommandOnce(Button7CommandOnceCmd);
+                if (Button7ContinueMode < 1) {
+                    XPLMCommandBegin(Button7CommandContinueCmd);
+                    Button7ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button8_lbrt))
             {
-                sprintf(scratch_buffer, "Button8 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button8CommandCmd);
+                XPLMCommandOnce(Button8CommandOnceCmd);
+                if (Button8ContinueMode < 1) {
+                    XPLMCommandBegin(Button8CommandContinueCmd);
+                    Button8ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button9_lbrt))
             {
-                sprintf(scratch_buffer, "Button9 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button9CommandCmd);
+                XPLMCommandOnce(Button9CommandOnceCmd);
+                if (Button9ContinueMode < 1) {
+                    XPLMCommandBegin(Button9CommandContinueCmd);
+                    Button9ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button10_lbrt))
             {
-                sprintf(scratch_buffer, "Button10 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button10CommandCmd);
+                XPLMCommandOnce(Button10CommandOnceCmd);
+                if (Button10ContinueMode < 1) {
+                    XPLMCommandBegin(Button10CommandContinueCmd);
+                    Button10ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button11_lbrt))
             {
-                sprintf(scratch_buffer, "Button11 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button11CommandCmd);
+                XPLMCommandOnce(Button11CommandOnceCmd);
+                if (Button11ContinueMode < 1) {
+                    XPLMCommandBegin(Button11CommandContinueCmd);
+                    Button11ContinueMode = 1;
+                }
             }
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button12_lbrt))
             {
-                sprintf(scratch_buffer, "Button12 button has been clicked\n");
-                XPLMDebugString(scratch_buffer);
-                XPLMCommandOnce(Button12CommandCmd);
-            }
-
-
-
-
-
-
-            /*
-
-
-            for (int iii = 0; iii < xcvr_size; ++iii) {
-
-                if(coord_in_rect(xcvr_x, xcvr_y, g_check_box_lbrt[iii])) // user clicked the pop-in/pop-out button
-                {
-                    sprintf(scratch_buffer, "Clickbox %d clicked \n", iii);
-                    XPLMDebugString(scratch_buffer);
-                    if (checked[iii] == 0)
-                    {
-                        checked[iii] = 1;
-                    }
-                    else
-                    {
-                       checked[iii] = 0;
-                    }
+                XPLMCommandOnce(Button12CommandOnceCmd);
+                if (Button12ContinueMode < 1) {
+                    XPLMCommandBegin(Button12CommandContinueCmd);
+                    Button12ContinueMode = 1;
                 }
             }
-
-            */
 
         }
 
     }
+
+    if(xb2cvr_mouse_status == xplm_MouseUp)
+    {
+        if (Button1ContinueMode == 1) {
+            XPLMCommandEnd(Button1CommandContinueCmd);
+            Button1ContinueMode = 0;
+        }
+
+        if (Button2ContinueMode == 1) {
+            XPLMCommandEnd(Button2CommandContinueCmd);
+            Button2ContinueMode = 0;
+        }
+
+        if (Button3ContinueMode == 1) {
+            XPLMCommandEnd(Button3CommandContinueCmd);
+            Button3ContinueMode = 0;
+        }
+
+        if (Button4ContinueMode == 1) {
+            XPLMCommandEnd(Button4CommandContinueCmd);
+            Button4ContinueMode = 0;
+        }
+
+        if (Button5ContinueMode == 1) {
+            XPLMCommandEnd(Button5CommandContinueCmd);
+            Button5ContinueMode = 0;
+        }
+
+        if (Button6ContinueMode == 1) {
+            XPLMCommandEnd(Button6CommandContinueCmd);
+            Button6ContinueMode = 0;
+        }
+
+        if (Button7ContinueMode == 1) {
+            XPLMCommandEnd(Button7CommandContinueCmd);
+            Button7ContinueMode = 0;
+        }
+
+        if (Button8ContinueMode == 1) {
+            XPLMCommandEnd(Button8CommandContinueCmd);
+            Button8ContinueMode = 0;
+        }
+
+        if (Button9ContinueMode == 1) {
+            XPLMCommandEnd(Button9CommandContinueCmd);
+            Button9ContinueMode = 0;
+        }
+
+        if (Button10ContinueMode == 1) {
+            XPLMCommandEnd(Button10CommandContinueCmd);
+            Button10ContinueMode = 0;
+        }
+
+        if (Button11ContinueMode == 1) {
+            XPLMCommandEnd(Button11CommandContinueCmd);
+            Button11ContinueMode = 0;
+        }
+
+        if (Button12ContinueMode == 1) {
+            XPLMCommandEnd(Button12CommandContinueCmd);
+            Button12ContinueMode = 0;
+        }
+    }
+
     return 1;
 }

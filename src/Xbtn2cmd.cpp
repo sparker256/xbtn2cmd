@@ -13,7 +13,7 @@
 
 
 
-#define VERSION_NUMBER "1.00 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.01 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -49,7 +49,7 @@ using namespace std;
 #elif __GNUC__
     #include <GL/gl.h>
 #else
-	#include <GL/gl.h>
+	#include <gl.h>
 #endif
 
 #ifndef XPLM301
@@ -90,32 +90,40 @@ void process_read_ini_file();
 char scratch_buffer[150];
 
 
-string button1_label, button1_command;
-string button2_label, button2_command;
-string button3_label, button3_command;
-string button4_label, button4_command;
-string button5_label, button5_command;
-string button6_label, button6_command;
-string button7_label, button7_command;
-string button8_label, button8_command;
-string button9_label, button9_command;
-string button10_label, button10_command;
-string button11_label, button11_command;
-string button12_label, button12_command;
+string button1_label, button1_command_once, button1_command_continue;
+string button2_label, button2_command_once, button2_command_continue;
+string button3_label, button3_command_once, button3_command_continue;
+string button4_label, button4_command_once, button4_command_continue;
+string button5_label, button5_command_once, button5_command_continue;
+string button6_label, button6_command_once, button6_command_continue;
+string button7_label, button7_command_once, button7_command_continue;
+string button8_label, button8_command_once, button8_command_continue;
+string button9_label, button9_command_once, button9_command_continue;
+string button10_label, button10_command_once, button10_command_continue;
+string button11_label, button11_command_once, button11_command_continue;
+string button12_label, button12_command_once, button12_command_continue;
 
 
-XPLMCommandRef Button1LabelCmd = NULL, Button1CommandCmd = NULL;
-XPLMCommandRef Button2LabelCmd = NULL, Button2CommandCmd = NULL;
-XPLMCommandRef Button3LabelCmd = NULL, Button3CommandCmd = NULL;
-XPLMCommandRef Button4LabelCmd = NULL, Button4CommandCmd = NULL;
-XPLMCommandRef Button5LabelCmd = NULL, Button5CommandCmd = NULL;
-XPLMCommandRef Button6LabelCmd = NULL, Button6CommandCmd = NULL;
-XPLMCommandRef Button7LabelCmd = NULL, Button7CommandCmd = NULL;
-XPLMCommandRef Button8LabelCmd = NULL, Button8CommandCmd = NULL;
-XPLMCommandRef Button9LabelCmd = NULL, Button9CommandCmd = NULL;
-XPLMCommandRef Button10LabelCmd = NULL, Button10CommandCmd = NULL;
-XPLMCommandRef Button11LabelCmd = NULL, Button11CommandCmd = NULL;
-XPLMCommandRef Button12LabelCmd = NULL, Button12CommandCmd = NULL;
+
+XPLMCommandRef Button1LabelCmd = NULL, Button1CommandOnceCmd = NULL, Button1CommandContinueCmd = NULL;
+XPLMCommandRef Button2LabelCmd = NULL, Button2CommandOnceCmd = NULL, Button2CommandContinueCmd = NULL;
+XPLMCommandRef Button3LabelCmd = NULL, Button3CommandOnceCmd = NULL, Button3CommandContinueCmd = NULL;
+XPLMCommandRef Button4LabelCmd = NULL, Button4CommandOnceCmd = NULL, Button4CommandContinueCmd = NULL;
+XPLMCommandRef Button5LabelCmd = NULL, Button5CommandOnceCmd = NULL, Button5CommandContinueCmd = NULL;
+XPLMCommandRef Button6LabelCmd = NULL, Button6CommandOnceCmd = NULL, Button6CommandContinueCmd = NULL;
+XPLMCommandRef Button7LabelCmd = NULL, Button7CommandOnceCmd = NULL, Button7CommandContinueCmd = NULL;
+XPLMCommandRef Button8LabelCmd = NULL, Button8CommandOnceCmd = NULL, Button8CommandContinueCmd = NULL;
+XPLMCommandRef Button9LabelCmd = NULL, Button9CommandOnceCmd = NULL, Button9CommandContinueCmd = NULL;
+XPLMCommandRef Button10LabelCmd = NULL, Button10CommandOnceCmd = NULL, Button10CommandContinueCmd = NULL;
+XPLMCommandRef Button11LabelCmd = NULL, Button11CommandOnceCmd = NULL, Button11CommandContinueCmd = NULL;
+XPLMCommandRef Button12LabelCmd = NULL, Button12CommandOnceCmd = NULL, Button12CommandContinueCmd = NULL;
+
+
+int Button1ContinueMode = 0, Button2ContinueMode = 0, Button3ContinueMode = 0;
+int Button4ContinueMode = 0, Button5ContinueMode = 0, Button6ContinueMode = 0;
+int Button7ContinueMode = 0, Button8ContinueMode = 0, Button9ContinueMode = 0;
+int Button10ContinueMode = 0, Button11ContinueMode = 0, Button12ContinueMode = 0;
+
 
 
 int Xbtn2cmd_menu_container_idx; // The index of our menu item in the Plugins menu
@@ -248,7 +256,7 @@ void xb2cvr_create_gui_window() {
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
         g_in_vr = vr_is_enabled;
 
-        XPLMSetWindowResizingLimits(xb2cvr_g_window, 200, 200, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
+        XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 400, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
 
         XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd VR Window"); }
 
