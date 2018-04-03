@@ -13,7 +13,7 @@
 
 
 
-#define VERSION_NUMBER "1.01 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.02 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -157,15 +157,15 @@ PLUGIN_API int XPluginStart(
 
     Xbtn2cmd_menu_container_idx = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "Xbtn2cmd", 0, 0);
     Xbtn2cmd_menu_id = XPLMCreateMenu("Xbtn2cmd", XPLMFindPluginsMenu(), Xbtn2cmd_menu_container_idx, Xbtn2cmdmenu_handler, NULL);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload xbtn2cmd.ini", (void *)"Menu Item 1", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Toggle Window", (void *)"Menu Item 1", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload Window", (void *)"Menu Item 2", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload xbtn2cmd.ini", (void *)"Menu Item 2", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Recreate Window", (void *)"Menu Item 3", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload Window", (void *)"Menu Item 3", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Hide Window", (void *)"Menu Item 4", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Recreate Window", (void *)"Menu Item 4", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Show Window", (void *)"Menu Item 5", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Hide Window", (void *)"Menu Item 5", 1);
 
 
     // Changed your mind? You can destroy the submenu you created with XPLMDestroyMenu(),
@@ -204,12 +204,14 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         {
             xb2cvr_create_gui_window();
             process_read_ini_file();
+            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
 
         if(inMsg == XPLM_MSG_WILL_WRITE_PREFS)
         {
             xb2cvr_create_gui_window();
             process_read_ini_file();
+            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
     }
 
@@ -274,26 +276,31 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 {
     if(!strcmp((const char *)in_item_ref, "Menu Item 1"))
     {
-        process_read_ini_file();
+        if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
+            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+        }
+        else {
+            XPLMSetWindowIsVisible(xb2cvr_g_window,1);
+        }
     }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 2"))
     {
         process_read_ini_file();
-        xb2cvr_create_gui_window();
     }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 3"))
+    {
+        process_read_ini_file();
+        xb2cvr_create_gui_window();
+    }
+    else if(!strcmp((const char *)in_item_ref, "Menu Item 4"))
     {
         process_read_ini_file();
         xb2cvr_g_window = NULL;
         xb2cvr_create_gui_window();
     }
-    else if(!strcmp((const char *)in_item_ref, "Menu Item 4"))
-    {
-        XPLMSetWindowIsVisible(xb2cvr_g_window,0);
-    }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
     {
-        XPLMSetWindowIsVisible(xb2cvr_g_window,1);
+        XPLMSetWindowIsVisible(xb2cvr_g_window,0);
     }
 
 }
