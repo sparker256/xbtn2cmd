@@ -40,41 +40,12 @@ TARGETDIR=release
 
 # create output directory structure
 # rm -rf $TARGETDIR
-# mkdir -p $TARGETDIR
-# mkdir -p $TARGETDIR/Checker
-# mkdir -p $TARGETDIR/Xchecklist/64
 mkdir -p $TARGETDIR/Xbtn2cmd/mac_x64
 
-# build hybrid OSX checker
-# make -f Makefile_mac_checker clean
-# make -f Makefile_mac_simon clean
-# make -f Makefile_mac_xchecklist clean
-# make -f Makefile_xchecklist_mac_x64 clean
-# OS=MACOSX CC=o64-clang++ SDK=$OSXSDK TARGET=$TARGETDIR/Checker/mac_checker make -f Makefile_mac_checker
-
-# build hybrid OSX simon version
-# make -f Makefile_mac_checker clean
-# make -f Makefile_mac_simon clean
-# make -f Makefile_mac_xchecklist clean
-# make -f Makefile_xchecklist_mac_x64 clean 
-# OS=MACOSX CC=o64-clang++ SDK=$OSXSDK TARGET=$TARGETDIR/Xchecklist/simon_mac make -f Makefile_mac_simon
-
-# build hybrid OSX xchecklist version
-# make -f Makefile_mac_checker clean
-# make -f Makefile_mac_simon clean
-# make -f Makefile_mac_xchecklist clean
-# make -f Makefile_Xbtn2cmd_mac_x64 clean
-# OS=MACOSX CC=o64-clang++ SDK=$OSXSDK TARGET=$TARGETDIR/Xchecklist/mac.xpl make -f Makefile_mac_xchecklist
 
 # build hybrid OSX xchecklist mac_x64 version
-# make -f Makefile_mac_checker clean
-# make -f Makefile_mac_simon clean
-# make -f Makefile_mac_xchecklist clean
 make -f Makefile_xbtn2cmd_1020_mac_x64 clean 
 OS=MACOSX CC=o64-clang++ SDK=$OSXSDK TARGET=$TARGETDIR/Xbtn2cmd/mac_x64/Xbtn2cmd.xpl make -f Makefile_xbtn2cmd_1020_mac_x64
 
 # clean up
-# make -f Makefile_mac_checker clean
-# make -f Makefile_mac_simon clean
-# make -f Makefile_mac_xchecklist clean
 make -f Makefile_xbtn2cmd_1020_mac_x64 clean

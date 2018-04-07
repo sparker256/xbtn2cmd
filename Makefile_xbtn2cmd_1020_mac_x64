@@ -46,11 +46,5 @@ readinifile.o: src/readinifile.cpp
 	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o readinifile.o src/readinifile.cpp
 
 
-
-
-
-# %.o: %.c TeensyControls.h Makefile
-#	$(CC) $(CFLAGS) -c $<
-
 clean:
 	rm -f *.o Xbtn2cmd.xpl

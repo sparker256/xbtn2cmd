@@ -52,7 +52,9 @@ float col_fuchsia[] = {1.0, 0.0, 1.0};
 float col_blue[] = {0.0, 0.0, 1.0};
 float col_black[] = {0.0, 0.0, 0.0};
 
-float green[] = {0.0, 1.0, 0.0, 1.0};
+float green[] = {0.282, 0.45, 0.25, 1.0};
+float light_green[] = {0.43, 0.58, 0.309, 1.0};
+
 float white[] = {1.0, 1.0, 1.0, 1.0};
 
 char * copilot_on = "+";
@@ -82,6 +84,8 @@ float current_FPS = 0.0;
 float sum_FPS = 0.0;
 float average_FPS = 0.0;
 int FPS_loop = 0;
+
+int mouse_down[12] = {};
 
 
 void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
@@ -148,7 +152,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button1_lbrt[1] = g_button1_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[0]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button1_lbrt[0], g_button1_lbrt[3]);
@@ -175,7 +184,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button2_lbrt[1] = g_button2_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[1]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button2_lbrt[0], g_button2_lbrt[3]);
@@ -202,7 +216,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button3_lbrt[1] = g_button3_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[2]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button3_lbrt[0], g_button3_lbrt[3]);
@@ -231,7 +251,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button4_lbrt[1] = g_button4_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[3]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button4_lbrt[0], g_button4_lbrt[3]);
@@ -258,7 +283,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button5_lbrt[1] = g_button5_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[4]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button5_lbrt[0], g_button5_lbrt[3]);
@@ -286,7 +316,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button6_lbrt[1] = g_button6_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[5]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button6_lbrt[0], g_button6_lbrt[3]);
@@ -314,7 +349,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button7_lbrt[1] = g_button7_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[6]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button7_lbrt[0], g_button7_lbrt[3]);
@@ -341,7 +381,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button8_lbrt[1] = g_button8_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[7]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button8_lbrt[0], g_button8_lbrt[3]);
@@ -368,7 +413,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button9_lbrt[1] = g_button9_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[8]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button9_lbrt[0], g_button9_lbrt[3]);
@@ -396,7 +446,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button10_lbrt[1] = g_button10_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[9]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button10_lbrt[0], g_button10_lbrt[3]);
@@ -423,7 +478,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button11_lbrt[1] = g_button11_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[10]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button11_lbrt[0], g_button11_lbrt[3]);
@@ -451,7 +511,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button12_lbrt[1] = g_button12_lbrt[3] - (3.00f * char_height); // a bit taller than the button text
 
         // Draw the box around our rudimentary button
-        glColor4fv(green);
+        if (mouse_down[11]) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
         glBegin(GL_POLYGON);
         {
             glVertex2i(g_button12_lbrt[0], g_button12_lbrt[3]);
@@ -540,6 +605,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         {
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button1_lbrt)) {
+                mouse_down[0] = 1;
                 XPLMCommandOnce(Button1CommandOnceCmd);
                 if (Button1ContinueMode < 1) {
                     XPLMCommandBegin(Button1CommandContinueCmd);
@@ -551,6 +617,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button2_lbrt))
             {
+                mouse_down[1] = 1;
                 XPLMCommandOnce(Button2CommandOnceCmd);
                 if (Button2ContinueMode < 1) {
                     XPLMCommandBegin(Button2CommandContinueCmd);
@@ -561,6 +628,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button3_lbrt))
             {
+                mouse_down[2] = 1;
                 XPLMCommandOnce(Button3CommandOnceCmd);
                 if (Button3ContinueMode < 1) {
                     XPLMCommandBegin(Button3CommandContinueCmd);
@@ -571,6 +639,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button4_lbrt))
             {
+                mouse_down[3] = 1;
                 XPLMCommandOnce(Button4CommandOnceCmd);
                 if (Button4ContinueMode < 1) {
                     XPLMCommandBegin(Button4CommandContinueCmd);
@@ -581,6 +650,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button5_lbrt))
             {
+                mouse_down[4] = 1;
                 XPLMCommandOnce(Button5CommandOnceCmd);
                 if (Button5ContinueMode < 1) {
                     XPLMCommandBegin(Button5CommandContinueCmd);
@@ -591,6 +661,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button6_lbrt))
             {
+                mouse_down[5] = 1;
                 XPLMCommandOnce(Button6CommandOnceCmd);
                 if (Button6ContinueMode < 1) {
                     XPLMCommandBegin(Button6CommandContinueCmd);
@@ -601,6 +672,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button7_lbrt))
             {
+                mouse_down[6] = 1;
                 XPLMCommandOnce(Button7CommandOnceCmd);
                 if (Button7ContinueMode < 1) {
                     XPLMCommandBegin(Button7CommandContinueCmd);
@@ -611,6 +683,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button8_lbrt))
             {
+                mouse_down[7] = 1;
                 XPLMCommandOnce(Button8CommandOnceCmd);
                 if (Button8ContinueMode < 1) {
                     XPLMCommandBegin(Button8CommandContinueCmd);
@@ -621,6 +694,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button9_lbrt))
             {
+                mouse_down[8] = 1;
                 XPLMCommandOnce(Button9CommandOnceCmd);
                 if (Button9ContinueMode < 1) {
                     XPLMCommandBegin(Button9CommandContinueCmd);
@@ -631,6 +705,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button10_lbrt))
             {
+                mouse_down[9] = 1;
                 XPLMCommandOnce(Button10CommandOnceCmd);
                 if (Button10ContinueMode < 1) {
                     XPLMCommandBegin(Button10CommandContinueCmd);
@@ -641,6 +716,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button11_lbrt))
             {
+                mouse_down[10] = 1;
                 XPLMCommandOnce(Button11CommandOnceCmd);
                 if (Button11ContinueMode < 1) {
                     XPLMCommandBegin(Button11CommandContinueCmd);
@@ -651,6 +727,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button12_lbrt))
             {
+                mouse_down[11] = 1;
                 XPLMCommandOnce(Button12CommandOnceCmd);
                 if (Button12ContinueMode < 1) {
                     XPLMCommandBegin(Button12CommandContinueCmd);
@@ -664,6 +741,12 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
     if(xb2cvr_mouse_status == xplm_MouseUp)
     {
+
+        mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+        mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+        mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+        mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+
         if (Button1ContinueMode == 1) {
             XPLMCommandEnd(Button1CommandContinueCmd);
             Button1ContinueMode = 0;
