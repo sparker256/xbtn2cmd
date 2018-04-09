@@ -63,7 +63,7 @@ char * checkmark_on = " X ";
 
 int checked [25];
 
-int line_number = 2;
+int line_number = 0;
 
 int left, top, right, bottom;
 
@@ -79,11 +79,6 @@ int					xb2cvr_handle_mouse(XPLMWindowID in_window_id, int x, int y, int is_down
 // bounds_lbrt  0 left,  1 bottom,  2 right,  3 top
 static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return (((x - 10) >= bounds_lbrt[0]) && ((x - 20) < bounds_lbrt[2]) && (y < bounds_lbrt[3]) && (y >= bounds_lbrt[1])); }
 
-
-float current_FPS = 0.0;
-float sum_FPS = 0.0;
-float average_FPS = 0.0;
-int FPS_loop = 0;
 
 int mouse_down[12] = {};
 
@@ -111,37 +106,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the main body of the checklist window.
 
-
         line_number = 1;
-
-
-        // Display whether we're in front of our our layer
-        {
-            sprintf(scratch_buffer, "In front? %s", XPLMIsWindowInFront(xb2cvr_in_window_id) ? "Y" : "N");
-            XPLMDrawString(col_white, l, t - line_number * char_height, scratch_buffer, NULL, xplmFont_Proportional);
-        }
-
-        // Display Average FPS if in VR
-        {
-            if (vr_is_enabled) {
-                current_FPS = 1/(XPLMGetDataf(xb2cvr_g_FPS));
-                sum_FPS = sum_FPS + current_FPS;
-                FPS_loop = FPS_loop + 1;
-                if (FPS_loop == 15) {
-                    average_FPS = sum_FPS / 15;
-                    FPS_loop = 0;
-                    sum_FPS = 0;
-                }
-                sprintf(scratch_buffer, "FPS  %3.2f", average_FPS);
-                XPLMDrawString(col_white, l + 70, t - line_number * char_height, scratch_buffer, NULL, xplmFont_Proportional);
-            }
-        }
-
 
         // Find out how big to make the buttons so they always fit on the window
 
         // Draw the Button1 button
-        line_number = line_number + 2;
+        // line_number = line_number + 2;
         const char * btn1_label = button1_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -531,64 +501,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         g_button12_lbrt[0] = g_button12_lbrt[0] + 5;
         XPLMDrawString(col_black, g_button12_lbrt[0], g_button12_lbrt[1] + 12, (char *)btn12_label, NULL, xplmFont_Proportional);
 
-
-        // Draw a bunch of informative text
-            {
-
-
-                // Set the y position for the first bunch of text we'll draw to a little below the buttons
-                int y = g_button12_lbrt[1] - 2 * char_height;
-                left = l;
-
-                // Display the total global desktop bounds
-                {
-                    int global_desktop_lbrt[4];
-                    XPLMGetScreenBoundsGlobal(&global_desktop_lbrt[0], &global_desktop_lbrt[3], &global_desktop_lbrt[2], &global_desktop_lbrt[1]);
-                    sprintf(scratch_buffer, "Global desktop bounds: (%d, %d) to (%d, %d)", global_desktop_lbrt[0], global_desktop_lbrt[1], global_desktop_lbrt[2], global_desktop_lbrt[3]);
-                    XPLMDrawString(col_white, left, y, scratch_buffer, NULL, xplmFont_Proportional);
-                    y -= 1.5 * char_height;
-                }
-
-                // Display our bounds
-                if(XPLMWindowIsPoppedOut(xb2cvr_in_window_id)) // we are in our own first-class window, rather than "floating" within X-Plane's own window
-                {
-                    int window_os_bounds[4];
-                    XPLMGetWindowGeometryOS(xb2cvr_in_window_id, &window_os_bounds[0], &window_os_bounds[3], &window_os_bounds[2], &window_os_bounds[1]);
-                    sprintf(scratch_buffer, "OS Bounds: (%d, %d) to (%d, %d)", window_os_bounds[0], window_os_bounds[1], window_os_bounds[2], window_os_bounds[3]);
-                    XPLMDrawString(col_white, left, y, scratch_buffer, NULL, xplmFont_Proportional);
-                    y -= 1.5 * char_height;
-                }
-                else
-                {
-                    int global_bounds[4];
-                    XPLMGetWindowGeometry(xb2cvr_in_window_id, &global_bounds[0], &global_bounds[3], &global_bounds[2], &global_bounds[1]);
-                    sprintf(scratch_buffer, "Window bounds: %d %d %d %d", global_bounds[0], global_bounds[1], global_bounds[2], global_bounds[3]);
-                    XPLMDrawString(col_white, left, y, scratch_buffer, NULL, xplmFont_Proportional);
-                    y -= 1.5 * char_height;
-                }
-
-
-                // Display the mouse's position info text
-                {
-                    int mouse_global_x, mouse_global_y;
-                    XPLMGetMouseLocationGlobal(&mouse_global_x, &mouse_global_y);
-                    sprintf(scratch_buffer, "Draw mouse (global): %d %d\n", mouse_global_x, mouse_global_y);
-                    XPLMDrawString(col_white, left, y, scratch_buffer, NULL, xplmFont_Proportional);
-                    y -= 1.5 * char_height;
-                }
-
-                // Display the mouse's window position info text
-                {
-                    // int mouse_window_x, mouse_window_y;
-                    // dummy_cursor_status_handler(XPLMWindowID g_window, mouse_window_x, mouse_window_y, void * in_refcon);
-                    // XPLMCursorStatus dummy_cursor_status_handler(XPLMWindowID in_window_id, mouse_window_x, mouse_window_y, void * in_refcon);
-                    // sprintf(scratch_buffer, "Draw mouse (window): %d %d\n", mouse_window_x, mouse_window_y);
-                    // XPLMDrawString(col_white, left, y, scratch_buffer, NULL, xplmFont_Proportional);
-                    // y -= 1.5 * char_height;
-                }
-
-
-            }
 }
 
 

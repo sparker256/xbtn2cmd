@@ -13,7 +13,7 @@
 
 
 
-#define VERSION_NUMBER "1.04 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.05 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -237,7 +237,7 @@ void xb2cvr_create_gui_window() {
         params.left = xb2cvr_global_desktop_bounds[0] + 50;
         params.bottom = xb2cvr_global_desktop_bounds[1] + 100;
         params.right = xb2cvr_global_desktop_bounds[0] + 600;
-        params.top = xb2cvr_global_desktop_bounds[1] + 500;
+        params.top = xb2cvr_global_desktop_bounds[1] + 250;
         params.visible = 1;
         params.drawWindowFunc = xb2cvr_draw;
         params.handleMouseClickFunc = xb2cvr_handle_mouse;
@@ -258,9 +258,9 @@ void xb2cvr_create_gui_window() {
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
         g_in_vr = vr_is_enabled;
 
-        XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 400, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
+        XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 250, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
 
-        XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd VR Window"); }
+        XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd     Buttons 2 Commands"); }
 
     else {
         XPLMDebugString("Xchecklist: xcvr_g_window not == NULL\n");
