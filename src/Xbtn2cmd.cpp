@@ -13,7 +13,7 @@
 
 
 
-#define VERSION_NUMBER "1.05 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.06 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing

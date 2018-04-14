@@ -74,6 +74,7 @@ unix:!macx {
 #    SOURCES += ../src/messages.c ../src/whisperer.c ../src/speech_mac.c
 #    HEADERS += ../src/messages.h ../src/whisperer.h
     LIBS += -ldl -Wl,--version-script -Wl,../src/exports.txt
+    LIBS += -static-libgcc -static-libstdc++ -fPIC
 }
 
 macx {
