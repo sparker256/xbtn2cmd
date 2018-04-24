@@ -54,5 +54,10 @@ extern int Button4ContinueMode, Button5ContinueMode, Button6ContinueMode;
 extern int Button7ContinueMode, Button8ContinueMode, Button9ContinueMode;
 extern int Button10ContinueMode, Button11ContinueMode, Button12ContinueMode;
 
+extern void Xbtn2hide_window();
+
+extern int mouse_down[];
+extern int mouse_down_hide;
+
 
 #endif

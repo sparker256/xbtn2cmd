@@ -11,9 +11,7 @@
 //
 // *********************************************************
 
-
-
-#define VERSION_NUMBER "1.06 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.07 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -21,7 +19,6 @@
 #include "XPLMPlugin.h"     // for XPLM_MSG_SCENERY_LOADED message
 #include "XPLMUtilities.h"
 #include "XPLMMenus.h"
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,9 +34,7 @@
 #include <vector>
 #include <wchar.h>
 
-
 using namespace std;
-
 
 #if IBM
 	#include <windows.h>
@@ -74,8 +69,6 @@ int xb2cvr_width = 500; // width of the widget checklist window
 
 int vr_is_enabled = 0;
 
-
-
 XPLMDataRef xb2cvr_g_FPS;
 
 int                         VersionXP, VersionSDK;
@@ -83,12 +76,10 @@ XPLMHostApplicationID       HostID;
 
 static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return ((x >= bounds_lbrt[0]) && (x < bounds_lbrt[2]) && (y < bounds_lbrt[3]) && (y >= bounds_lbrt[1])); }
 
-
 void xb2cvr_create_gui_window();
 void process_read_ini_file();
 
 char scratch_buffer[150];
-
 
 string button1_label, button1_command_once, button1_command_continue;
 string button2_label, button2_command_once, button2_command_continue;
@@ -103,8 +94,6 @@ string button10_label, button10_command_once, button10_command_continue;
 string button11_label, button11_command_once, button11_command_continue;
 string button12_label, button12_command_once, button12_command_continue;
 
-
-
 XPLMCommandRef Button1LabelCmd = NULL, Button1CommandOnceCmd = NULL, Button1CommandContinueCmd = NULL;
 XPLMCommandRef Button2LabelCmd = NULL, Button2CommandOnceCmd = NULL, Button2CommandContinueCmd = NULL;
 XPLMCommandRef Button3LabelCmd = NULL, Button3CommandOnceCmd = NULL, Button3CommandContinueCmd = NULL;
@@ -118,25 +107,25 @@ XPLMCommandRef Button10LabelCmd = NULL, Button10CommandOnceCmd = NULL, Button10C
 XPLMCommandRef Button11LabelCmd = NULL, Button11CommandOnceCmd = NULL, Button11CommandContinueCmd = NULL;
 XPLMCommandRef Button12LabelCmd = NULL, Button12CommandOnceCmd = NULL, Button12CommandContinueCmd = NULL;
 
-
 int Button1ContinueMode = 0, Button2ContinueMode = 0, Button3ContinueMode = 0;
 int Button4ContinueMode = 0, Button5ContinueMode = 0, Button6ContinueMode = 0;
 int Button7ContinueMode = 0, Button8ContinueMode = 0, Button9ContinueMode = 0;
 int Button10ContinueMode = 0, Button11ContinueMode = 0, Button12ContinueMode = 0;
 
-
-
 int Xbtn2cmd_menu_container_idx; // The index of our menu item in the Plugins menu
 XPLMMenuID Xbtn2cmd_menu_id; // The menu container we'll append all our menu items to
 void Xbtn2cmdmenu_handler(void *, void *);
 
+void Xbtn2hide_window();
+
+int mouse_down[12] = {};
+int mouse_down_hide = 0;
 
 PLUGIN_API int XPluginStart(
 						char *		outName,
 						char *		outSig,
 						char *		outDesc)
 {
-
     XPLMDebugString("Xbtn2cmd: ver " VERSION_NUMBER  "\n");
     strcpy(outName, "Xbtn2cmd: ver " VERSION_NUMBER);
     strcpy(outSig, "sparker.example.xbtn2cmdplugin");
@@ -167,12 +156,10 @@ PLUGIN_API int XPluginStart(
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
     XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Hide Window", (void *)"Menu Item 5", 1);
 
-
     // Changed your mind? You can destroy the submenu you created with XPLMDestroyMenu(),
     // then remove the "Sample Menu" item from the "Plugins" menu with XPLMRemoveMenuItem().
     //XPLMDestroyMenu(g_menu_id);
     //XPLMRemoveMenuItem(XPLMFindPluginsMenu(), g_menu_container_idx);
-
 
 	// If this dataref is for some reason not available,
 	// we won't be able to move the window to VR anyway,
@@ -214,7 +201,6 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
     }
-
 }
 
 
@@ -247,7 +233,7 @@ void xb2cvr_create_gui_window() {
         params.handleCursorFunc = xb2cvr_dummy_cursor_status_handler;
         params.refcon = NULL;
         params.layer = xplm_WindowLayerFloatingWindows;
-        params.decorateAsFloatingWindow = xplm_WindowDecorationRoundRectangle;
+        params.decorateAsFloatingWindow = 2;
 
         xb2cvr_g_window = XPLMCreateWindowEx(&params);
 
@@ -258,7 +244,7 @@ void xb2cvr_create_gui_window() {
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
         g_in_vr = vr_is_enabled;
 
-        XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 250, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
+        XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 270, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
 
         XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd     Buttons 2 Commands"); }
 
@@ -282,6 +268,11 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
         else {
             XPLMSetWindowIsVisible(xb2cvr_g_window,1);
         }
+        mouse_down_hide = 0;
+        mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+        mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+        mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+        mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
     }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 2"))
     {
@@ -291,16 +282,30 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     {
         process_read_ini_file();
         xb2cvr_create_gui_window();
+        mouse_down_hide = 0;
+        mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+        mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+        mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+        mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
     }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 4"))
     {
         process_read_ini_file();
         xb2cvr_g_window = NULL;
         xb2cvr_create_gui_window();
+        mouse_down_hide = 0;
+        mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+        mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+        mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+        mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
     }
     else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
     {
         XPLMSetWindowIsVisible(xb2cvr_g_window,0);
     }
+}
 
+void Xbtn2hide_window()
+{
+    XPLMSetWindowIsVisible(xb2cvr_g_window,0);
 }
