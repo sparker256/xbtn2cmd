@@ -120,7 +120,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the hide button
         // line_number = line_number + 2;
-        const char * page1_btn_label = "Page 1";
+        const char * page1_btn_label = page1_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -147,13 +147,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the text on the Button1 button.
         // 0 left, 1 bottom, 2 right, 3 top
-        g_page1_button_lbrt[0] = g_page1_button_lbrt[0] + 10;
+        g_page1_button_lbrt[0] = g_page1_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page1_button_lbrt[0], g_page1_button_lbrt[1] + 8, (char *)page1_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the hide button
         // line_number = line_number + 2;
-        const char * page2_btn_label = "Page 2";
+        const char * page2_btn_label = page2_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -180,13 +180,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the text on the Button1 button.
         // 0 left, 1 bottom, 2 right, 3 top
-        g_page2_button_lbrt[0] = g_page2_button_lbrt[0] + 10;
+        g_page2_button_lbrt[0] = g_page2_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page2_button_lbrt[0], g_page2_button_lbrt[1] + 8, (char *)page2_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the hide button
         // line_number = line_number + 2;
-        const char * page3_btn_label = "Page 3";
+        const char * page3_btn_label = page3_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -213,13 +213,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the text on the Button1 button.
         // 0 left, 1 bottom, 2 right, 3 top
-        g_page3_button_lbrt[0] = g_page3_button_lbrt[0] + 10;
+        g_page3_button_lbrt[0] = g_page3_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page3_button_lbrt[0], g_page3_button_lbrt[1] + 8, (char *)page3_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the hide button
         // line_number = line_number + 2;
-        const char * page4_btn_label = "Page 4";
+        const char * page4_btn_label = page4_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -246,7 +246,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the text on the Button1 button.
         // 0 left, 1 bottom, 2 right, 3 top
-        g_page4_button_lbrt[0] = g_page4_button_lbrt[0] + 10;
+        g_page4_button_lbrt[0] = g_page4_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page4_button_lbrt[0], g_page4_button_lbrt[1] + 8, (char *)page4_btn_label, NULL, xplmFont_Proportional);
 
 
@@ -1464,12 +1464,12 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             if (Page4_Button2ContinueMode == 1) {
                 XPLMCommandEnd(Page4_Button2CommandContinueCmd);
-                Page3_Button2ContinueMode = 0;
+                Page4_Button2ContinueMode = 0;
             }
 
             if (Page4_Button3ContinueMode == 1) {
                 XPLMCommandEnd(Page4_Button3CommandContinueCmd);
-                Page3_Button3ContinueMode = 0;
+                Page4_Button3ContinueMode = 0;
             }
 
             if (Page4_Button4ContinueMode == 1) {
@@ -1479,7 +1479,7 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
             if (Page4_Button5ContinueMode == 1) {
                 XPLMCommandEnd(Page4_Button5CommandContinueCmd);
-                Page3_Button5ContinueMode = 0;
+                Page4_Button5ContinueMode = 0;
             }
 
             if (Page4_Button6ContinueMode == 1) {

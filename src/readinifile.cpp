@@ -288,8 +288,8 @@ void process_read_ini_file()
     page2_button1_label = getOptionToString("page2_button1_label");
     page2_button1_command_once = getOptionToString("page2_button1_command_once");
     page2_button1_command_continue = getOptionToString("page2_button1_command_continue");
-    Page2_Button1LabelCmd = XPLMFindCommand(page1_button2_label.c_str());
-    Page2_Button1CommandOnceCmd = XPLMFindCommand(page1_button2_command_once.c_str());
+    Page2_Button1LabelCmd = XPLMFindCommand(page2_button1_label.c_str());
+    Page2_Button1CommandOnceCmd = XPLMFindCommand(page2_button1_command_once.c_str());
     Page2_Button1CommandContinueCmd = XPLMFindCommand(page2_button1_command_continue.c_str());
 
 
@@ -389,8 +389,8 @@ void process_read_ini_file()
     page3_button1_label = getOptionToString("page3_button1_label");
     page3_button1_command_once = getOptionToString("page3_button1_command_once");
     page3_button1_command_continue = getOptionToString("page3_button1_command_continue");
-    Page3_Button1LabelCmd = XPLMFindCommand(page3_button2_label.c_str());
-    Page3_Button1CommandOnceCmd = XPLMFindCommand(page3_button2_command_once.c_str());
+    Page3_Button1LabelCmd = XPLMFindCommand(page3_button1_label.c_str());
+    Page3_Button1CommandOnceCmd = XPLMFindCommand(page3_button1_command_once.c_str());
     Page3_Button1CommandContinueCmd = XPLMFindCommand(page3_button1_command_continue.c_str());
 
 
@@ -489,8 +489,8 @@ void process_read_ini_file()
     page4_button1_label = getOptionToString("page4_button1_label");
     page4_button1_command_once = getOptionToString("page4_button1_command_once");
     page4_button1_command_continue = getOptionToString("page4_button1_command_continue");
-    Page4_Button1LabelCmd = XPLMFindCommand(page4_button2_label.c_str());
-    Page4_Button1CommandOnceCmd = XPLMFindCommand(page4_button2_command_once.c_str());
+    Page4_Button1LabelCmd = XPLMFindCommand(page4_button1_label.c_str());
+    Page4_Button1CommandOnceCmd = XPLMFindCommand(page4_button1_command_once.c_str());
     Page4_Button1CommandContinueCmd = XPLMFindCommand(page4_button1_command_continue.c_str());
 
 
