@@ -7,11 +7,11 @@
 //     A plugin to create a window of buttons in VR
 //     that can be mapped to commands.
 //
-//     Supporting  X-Plane 11.20b3+
+//     Supporting  X-Plane 11.20r2+
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.08 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.09 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -78,6 +78,19 @@ static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return ((x >=
 
 void xb2cvr_create_gui_window();
 void process_read_ini_file();
+
+enum {TOGGLE_WINDOW_COMMAND, RELOAD_CONFIG_COMMAND, RELOAD_WINDOW_COMMAND, RECREATE_WINDOW_COMMAND};
+
+int Xbtn2cmdCommandCallback(
+                                   XPLMCommandRef       inCommand,
+                                   XPLMCommandPhase     inPhase,
+                                   void *               inRefcon);
+
+XPLMCommandRef cmdtogglewindow;
+XPLMCommandRef cmdreloadconfig;
+XPLMCommandRef cmdreloadwindow;
+XPLMCommandRef cmdrecreatewindow;
+
 
 char scratch_buffer[150];
 
@@ -327,6 +340,36 @@ PLUGIN_API int XPluginStart(
 	// If this dataref is for some reason not available,
 	// we won't be able to move the window to VR anyway,
 	// so go ahead an disable us!
+
+    cmdtogglewindow = XPLMCreateCommand("bgood/xbtn2cmd/toggle_window","Toggle Window");
+    cmdreloadconfig = XPLMCreateCommand("bgood/xbtn2cmd/reload_config","Reload xbtn2cmd.ini");
+    cmdreloadwindow = XPLMCreateCommand("bgood/xbtn2cmd/reload_window","Reload Window");
+    cmdrecreatewindow = XPLMCreateCommand("bgood/xbtn2cmd/recreate_window","Recreate Window");
+
+    XPLMRegisterCommandHandler(
+                cmdtogglewindow,
+                Xbtn2cmdCommandCallback,
+                true,
+                (void *)TOGGLE_WINDOW_COMMAND);
+
+    XPLMRegisterCommandHandler(
+                cmdreloadconfig,
+                Xbtn2cmdCommandCallback,
+                true,
+                (void *)RELOAD_CONFIG_COMMAND);
+
+    XPLMRegisterCommandHandler(
+                cmdreloadwindow,
+                Xbtn2cmdCommandCallback,
+                true,
+                (void *)RELOAD_WINDOW_COMMAND);
+
+    XPLMRegisterCommandHandler(
+                cmdrecreatewindow,
+                Xbtn2cmdCommandCallback,
+                true,
+                (void *)RECREATE_WINDOW_COMMAND);
+
 	return g_vr_dref != NULL;
 }
 
@@ -476,4 +519,56 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 void Xbtn2hide_window()
 {
     XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+}
+
+
+int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
+                      XPLMCommandPhase     inPhase,
+                      void *               inRefcon)
+{
+    (void) inCommand;
+    //(void) inPhase;
+    //(void) inRefcon;
+
+    if (inPhase == xplm_CommandBegin) {
+        switch((intptr_t)inRefcon){
+        case TOGGLE_WINDOW_COMMAND:
+            if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
+                XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            }
+            else {
+                XPLMSetWindowIsVisible(xb2cvr_g_window,1);
+            }
+            mouse_down_hide = 0;
+            mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+            mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+            mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+            mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+            break;
+        case RELOAD_CONFIG_COMMAND:
+            process_read_ini_file();
+            break;
+        case RELOAD_WINDOW_COMMAND:
+            process_read_ini_file();
+            xb2cvr_create_gui_window();
+            mouse_down_hide = 0;
+            mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+            mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+            mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+            mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+            break;
+        case RECREATE_WINDOW_COMMAND:
+            process_read_ini_file();
+            xb2cvr_g_window = NULL;
+            xb2cvr_create_gui_window();
+            mouse_down_hide = 0;
+            mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
+            mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
+            mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
+            mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+            break;
+        }
+    }
+
+    return 1;
 }
