@@ -142,7 +142,7 @@ void process_read_ini_file()
 
         }
         if (found_file == 0) {
-            XPLMDebugString("\nXbtn2cmd: Did not find xbtn2cms.ini in the current aircraft path\n");
+            XPLMDebugString("\nXbtn2cmd: Did not find xbtn2cmd.ini in the current aircraft path\n");
         }
 
         std::ifstream ifile2(iniDefaultPluginPath);

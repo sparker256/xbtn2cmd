@@ -398,6 +398,7 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             xb2cvr_create_gui_window();
             process_read_ini_file();
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
         }
 
         if(inMsg == XPLM_MSG_WILL_WRITE_PREFS)
@@ -405,6 +406,16 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             xb2cvr_create_gui_window();
             process_read_ini_file();
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
+        }
+
+        if(inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_ENTERED_VR)
+        {
+            XPLMDebugString("Xbtn2cmd: inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_ENTERED_VR\n");
+        }
+        else if(inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_EXITING_VR && XPLMWindowIsInVR(xb2cvr_g_window))
+        {
+            XPLMDebugString("Xbtn2cmd: inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_EXITING_VR && XPLMWindowIsInVR(xb2cvr_g_window\n");
         }
     }
 }
@@ -413,12 +424,11 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
 void xb2cvr_create_gui_window() {
 
     vr_is_enabled = XPLMGetDatai(g_vr_dref);
-    sprintf(scratch_buffer, "Xchecklist:In xcvr_create_gui_window() function vr_is_enabled = %d\n", vr_is_enabled);
+    sprintf(scratch_buffer, "Xbtn2cmd:In xb2cvr_create_gui_window() function vr_is_enabled = %d\n", vr_is_enabled);
     XPLMDebugString(scratch_buffer);
-    // xcDebug("Xchecklist:In xcvr_create_gui_window() function vr_is_enabled = %d\n", vr_is_enabled);
 
-    if (xb2cvr_g_window==NULL) {
-        XPLMDebugString("Xchecklist: xcvr_g_window==NULL\n");
+    if (xb2cvr_g_window == NULL) {
+        XPLMDebugString("Xbtn2cmd: xcvr_g_window == NULL\n");
         // We're not guaranteed that the main monitor's lower left is at (0, 0)...
         // we'll need to query for the global desktop bounds!
         int xb2cvr_global_desktop_bounds[4]; // left, bottom, right, top
@@ -448,19 +458,17 @@ void xb2cvr_create_gui_window() {
 
         xb2cvr_g_window = XPLMCreateWindowEx(&params);
 
-        // vr_is_enabled = XPLMGetDatai(g_vr_dref);
-        // xcDebug("Xchecklist: xcvr_create_gui_window vr_is_enabled = %d\n", vr_is_enabled);
-        sprintf(scratch_buffer, "Xchecklist: xcvr_create_gui_window vr_is_enabled = %d\n", vr_is_enabled);
+        sprintf(scratch_buffer, "Xbtn2cmd: xb2cvr_create_gui_window vr_is_enabled = %d\n", vr_is_enabled);
         XPLMDebugString(scratch_buffer);
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
         g_in_vr = vr_is_enabled;
 
         XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 270, 700, 900); // Limit resizing our window: maintain a minimum width/height of 200 boxels and a max width/height of 500
 
-        XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd     Buttons 2 Commands"); }
-
+        XPLMSetWindowTitle(xb2cvr_g_window, "Xbtn2cmd     Buttons 2 Commands");
+    }
     else {
-        XPLMDebugString("Xchecklist: xcvr_g_window not == NULL\n");
+        XPLMDebugString("Xbtn2cmd: xb2cvr_g_window NOT == NULL\n");
         XPLMSetWindowIsVisible(xb2cvr_g_window,1);
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
     }

@@ -105,6 +105,8 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
     // We draw our rudimentary button boxes based on the height of the button text
     int char_height;
     XPLMGetFontDimensions(xplmFont_Proportional, NULL, &char_height, NULL);
+    // sprintf(scratch_buffer, "Xbtn2cmd: char_height = %d\n", char_height);
+    // XPLMDebugString(scratch_buffer);
 
     int l, t, r, b;
     XPLMGetWindowGeometry(xb2cvr_in_window_id, &l, &t, &r, &b);
@@ -810,10 +812,10 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         else
         {
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_hide_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Hide button pushed");
                 mouse_down_hide = 1;
                 Xbtn2hide_window();
             }
-
 
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page1_button_lbrt)) {
