@@ -30,12 +30,16 @@ static float g_next_button_lbrt[4]; // left, bottom, right, top
 static float g_check_item_button_lbrt[4]; // left, bottom, right, top
 
 static float g_hide_button_lbrt[4]; // left, bottom, right, top
+static float g_reload_button_lbrt[4]; // left, bottom, right, top
 
 static float g_page1_button_lbrt[4]; // left, bottom, right, top
 static float g_page2_button_lbrt[4]; // left, bottom, right, top
 static float g_page3_button_lbrt[4]; // left, bottom, right, top
 static float g_page4_button_lbrt[4]; // left, bottom, right, top
-
+static float g_page5_button_lbrt[4]; // left, bottom, right, top
+static float g_page6_button_lbrt[4]; // left, bottom, right, top
+static float g_page7_button_lbrt[4]; // left, bottom, right, top
+static float g_page8_button_lbrt[4]; // left, bottom, right, top
 
 static float g_button1_lbrt[4]; // left, bottom, right, top
 static float g_button2_lbrt[4]; // left, bottom, right, top
@@ -119,8 +123,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         // Find out how big to make the buttons so they always fit on the window
 
 
-
-        // Draw the hide button
+        // Draw the page 1 button
         // line_number = line_number + 2;
         const char * page1_btn_label = page1_button_label.c_str();
 
@@ -153,7 +156,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         XPLMDrawString(col_black, g_page1_button_lbrt[0], g_page1_button_lbrt[1] + 8, (char *)page1_btn_label, NULL, xplmFont_Proportional);
 
 
-        // Draw the hide button
+        // Draw the page 2 button
         // line_number = line_number + 2;
         const char * page2_btn_label = page2_button_label.c_str();
 
@@ -186,7 +189,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         XPLMDrawString(col_black, g_page2_button_lbrt[0], g_page2_button_lbrt[1] + 8, (char *)page2_btn_label, NULL, xplmFont_Proportional);
 
 
-        // Draw the hide button
+        // Draw the page 3 button
         // line_number = line_number + 2;
         const char * page3_btn_label = page3_button_label.c_str();
 
@@ -219,7 +222,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         XPLMDrawString(col_black, g_page3_button_lbrt[0], g_page3_button_lbrt[1] + 8, (char *)page3_btn_label, NULL, xplmFont_Proportional);
 
 
-        // Draw the hide button
+        // Draw the page 4 button
         // line_number = line_number + 2;
         const char * page4_btn_label = page4_button_label.c_str();
 
@@ -254,7 +257,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the hide button
         // line_number = line_number + 2;
-        const char * hide_btn_label = "HIDE";
+        const char * hide_btn_label = "Hide";
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -286,6 +289,171 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         XPLMDrawString(col_black, g_hide_button_lbrt[0], g_hide_button_lbrt[1] + 8, (char *)hide_btn_label, NULL, xplmFont_Proportional);
 
 
+        // Draw the page 5 button
+        line_number = line_number + 6;
+        const char * page5_btn_label = page5_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page5_button_lbrt[0] = l;
+        g_page5_button_lbrt[3] = t - (line_number * char_height);
+        g_page5_button_lbrt[2] = g_page5_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page5_button_lbrt[1] = g_page5_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 5) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[3]);
+            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[3]);
+            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[1]);
+            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Button1 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page5_button_lbrt[0] = g_page5_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page5_button_lbrt[0], g_page5_button_lbrt[1] + 8, (char *)page5_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 6 button
+        // line_number = line_number + 2;
+        const char * page6_btn_label = page6_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page6_button_lbrt[0] = l + 115;
+        g_page6_button_lbrt[3] = t - (line_number * char_height);
+        g_page6_button_lbrt[2] = g_page6_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page6_button_lbrt[1] = g_page6_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 6) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[3]);
+            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[3]);
+            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[1]);
+            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Button1 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page6_button_lbrt[0] = g_page6_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page6_button_lbrt[0], g_page6_button_lbrt[1] + 8, (char *)page6_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 7 button
+        // line_number = line_number + 2;
+        const char * page7_btn_label = page7_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page7_button_lbrt[0] = l + 230;
+        g_page7_button_lbrt[3] = t - (line_number * char_height);
+        g_page7_button_lbrt[2] = g_page7_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page7_button_lbrt[1] = g_page7_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 7) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[3]);
+            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[3]);
+            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[1]);
+            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Button1 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page7_button_lbrt[0] = g_page7_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page7_button_lbrt[0], g_page7_button_lbrt[1] + 8, (char *)page7_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 8 button
+        // line_number = line_number + 2;
+        const char * page8_btn_label = page8_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page8_button_lbrt[0] = l + 345;
+        g_page8_button_lbrt[3] = t - (line_number * char_height);
+        g_page8_button_lbrt[2] = g_page8_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page8_button_lbrt[1] = g_page8_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 8) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[3]);
+            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[3]);
+            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[1]);
+            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Button1 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page8_button_lbrt[0] = g_page8_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page8_button_lbrt[0], g_page8_button_lbrt[1] + 8, (char *)page8_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the reload button
+        // line_number = line_number + 2;
+        const char * reload_btn_label = "Reload";
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_reload_button_lbrt[0] = l + 460;
+        g_reload_button_lbrt[3] = t - (line_number * char_height);
+        g_reload_button_lbrt[2] = g_reload_button_lbrt[0] + 50; // *just* wide enough to fit the button text
+        g_reload_button_lbrt[1] = g_reload_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (mouse_down_reload) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_reload_button_lbrt[0], g_reload_button_lbrt[3]);
+            glVertex2i(g_reload_button_lbrt[2], g_reload_button_lbrt[3]);
+            glVertex2i(g_reload_button_lbrt[2], g_reload_button_lbrt[1]);
+            glVertex2i(g_reload_button_lbrt[0], g_reload_button_lbrt[1]);
+        }
+        glEnd();
+
+
+        // Draw the text on the Button1 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_reload_button_lbrt[0] = g_reload_button_lbrt[0] + 10;
+        XPLMDrawString(col_black, g_reload_button_lbrt[0] - 4, g_reload_button_lbrt[1] + 8, (char *)reload_btn_label, NULL, xplmFont_Proportional);
+
 
         // Draw the Button1 button
         line_number = line_number + 6;
@@ -298,7 +466,16 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn1_label = page3_button1_label.c_str();
         } else if (page_number == 4) {
             btn1_label = page4_button1_label.c_str();
+        } else if (page_number == 5) {
+            btn1_label = page5_button1_label.c_str();
+        } else if (page_number == 6) {
+            btn1_label = page6_button1_label.c_str();
+        } else if (page_number == 7) {
+            btn1_label = page7_button1_label.c_str();
+        } else if (page_number == 8) {
+            btn1_label = page8_button1_label.c_str();
         }
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -340,6 +517,14 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn2_label = page3_button2_label.c_str();
         } else if (page_number == 4) {
             btn2_label = page4_button2_label.c_str();
+        } else if (page_number == 5) {
+            btn2_label = page5_button2_label.c_str();
+        } else if (page_number == 6) {
+            btn2_label = page6_button2_label.c_str();
+        } else if (page_number == 7) {
+            btn2_label = page7_button2_label.c_str();
+        } else if (page_number == 8) {
+            btn2_label = page8_button2_label.c_str();
         }
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -382,6 +567,14 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn3_label = page3_button3_label.c_str();
         } else if (page_number == 4) {
             btn3_label = page4_button3_label.c_str();
+        } else if (page_number == 5) {
+            btn3_label = page5_button3_label.c_str();
+        } else if (page_number == 6) {
+            btn3_label = page6_button3_label.c_str();
+        } else if (page_number == 7) {
+            btn3_label = page7_button3_label.c_str();
+        } else if (page_number == 8) {
+            btn3_label = page8_button3_label.c_str();
         }
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -426,6 +619,14 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn4_label = page3_button4_label.c_str();
         } else if (page_number == 4) {
             btn4_label = page4_button4_label.c_str();
+        } else if (page_number == 5) {
+            btn4_label = page5_button4_label.c_str();
+        } else if (page_number == 6) {
+            btn4_label = page6_button4_label.c_str();
+        } else if (page_number == 7) {
+            btn4_label = page7_button4_label.c_str();
+        } else if (page_number == 8) {
+            btn4_label = page8_button4_label.c_str();
         }
 
 
@@ -469,7 +670,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn5_label = page3_button5_label.c_str();
         } else if (page_number == 4) {
             btn5_label = page4_button5_label.c_str();
+        } else if (page_number == 5) {
+            btn5_label = page5_button5_label.c_str();
+        } else if (page_number == 6) {
+            btn5_label = page6_button5_label.c_str();
+        } else if (page_number == 7) {
+            btn5_label = page7_button5_label.c_str();
+        } else if (page_number == 8) {
+            btn5_label = page8_button5_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -512,7 +723,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn6_label = page3_button6_label.c_str();
         } else if (page_number == 4) {
             btn6_label = page4_button6_label.c_str();
+        } else if (page_number == 5) {
+            btn6_label = page5_button6_label.c_str();
+        } else if (page_number == 6) {
+            btn6_label = page6_button6_label.c_str();
+        } else if (page_number == 7) {
+            btn6_label = page7_button6_label.c_str();
+        } else if (page_number == 8) {
+            btn6_label = page8_button6_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -555,7 +776,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn7_label = page3_button7_label.c_str();
         } else if (page_number == 4) {
             btn7_label = page4_button7_label.c_str();
+        } else if (page_number == 5) {
+            btn7_label = page5_button7_label.c_str();
+        } else if (page_number == 6) {
+            btn7_label = page6_button7_label.c_str();
+        } else if (page_number == 7) {
+            btn7_label = page7_button7_label.c_str();
+        } else if (page_number == 8) {
+            btn7_label = page8_button7_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -597,7 +828,16 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn8_label = page3_button8_label.c_str();
         } else if (page_number == 4) {
             btn8_label = page4_button8_label.c_str();
+        } else if (page_number == 5) {
+            btn8_label = page5_button8_label.c_str();
+        } else if (page_number == 6) {
+            btn8_label = page6_button8_label.c_str();
+        } else if (page_number == 7) {
+            btn8_label = page7_button8_label.c_str();
+        } else if (page_number == 8) {
+            btn8_label = page8_button8_label.c_str();
         }
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -639,7 +879,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn9_label = page3_button9_label.c_str();
         } else if (page_number == 4) {
             btn9_label = page4_button9_label.c_str();
+        } else if (page_number == 5) {
+            btn9_label = page5_button9_label.c_str();
+        } else if (page_number == 6) {
+            btn9_label = page6_button9_label.c_str();
+        } else if (page_number == 7) {
+            btn9_label = page7_button9_label.c_str();
+        } else if (page_number == 8) {
+            btn9_label = page8_button9_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -682,7 +932,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn10_label = page3_button10_label.c_str();
         } else if (page_number == 4) {
             btn10_label = page4_button10_label.c_str();
+        } else if (page_number == 5) {
+            btn10_label = page5_button10_label.c_str();
+        } else if (page_number == 6) {
+            btn10_label = page6_button10_label.c_str();
+        } else if (page_number == 7) {
+            btn10_label = page7_button10_label.c_str();
+        } else if (page_number == 8) {
+            btn10_label = page8_button10_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -724,7 +984,16 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn11_label = page3_button11_label.c_str();
         } else if (page_number == 4) {
             btn11_label = page4_button11_label.c_str();
+        } else if (page_number == 5) {
+            btn11_label = page5_button11_label.c_str();
+        } else if (page_number == 6) {
+            btn11_label = page6_button11_label.c_str();
+        } else if (page_number == 7) {
+            btn11_label = page7_button11_label.c_str();
+        } else if (page_number == 8) {
+            btn11_label = page8_button11_label.c_str();
         }
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -766,7 +1035,17 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             btn12_label = page3_button12_label.c_str();
         } else if (page_number == 4) {
             btn12_label = page4_button12_label.c_str();
+        } else if (page_number == 5) {
+            btn12_label = page5_button12_label.c_str();
+        } else if (page_number == 6) {
+            btn12_label = page6_button12_label.c_str();
+        } else if (page_number == 7) {
+            btn12_label = page7_button12_label.c_str();
+        } else if (page_number == 8) {
+            btn12_label = page8_button12_label.c_str();
         }
+
+
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -839,32 +1118,90 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                 page_number = 4;
             }
 
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_reload_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Reload button pushed");
+                mouse_down_reload = 1;
+                process_read_ini_file();
+            }
+
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page5_button_lbrt)) {
+                mouse_down_page5 = 1;
+                page_number = 5;
+            }
+
+
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page6_button_lbrt)) {
+                mouse_down_page6 = 1;
+                page_number = 6;
+            }
+
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page7_button_lbrt)) {
+                mouse_down_page7 = 1;
+                page_number = 7;
+            }
+
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page8_button_lbrt)) {
+                mouse_down_page8 = 1;
+                page_number = 8;
+            }
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button1_lbrt)) {
                 mouse_down[0] = 1;
                 if (page_number == 1) {
+                    page1_mouse_down[0];
                     XPLMCommandOnce(Page1_Button1CommandOnceCmd);
                     if (Page1_Button2ContinueMode < 1) {
                         XPLMCommandBegin(Page1_Button1CommandContinueCmd);
                         Page1_Button1ContinueMode = 1;
                     }
                 } else if (page_number == 2) {
+                    page2_mouse_down[0];
                     XPLMCommandOnce(Page2_Button1CommandOnceCmd);
                     if (Page2_Button2ContinueMode < 1) {
                         XPLMCommandBegin(Page2_Button1CommandContinueCmd);
                         Page2_Button1ContinueMode = 1;
                     }
                 } else if (page_number == 3) {
+                    page3_mouse_down[0];
                     XPLMCommandOnce(Page3_Button1CommandOnceCmd);
                     if (Page3_Button1ContinueMode < 1) {
                         XPLMCommandBegin(Page3_Button1CommandContinueCmd);
                         Page3_Button1ContinueMode = 1;
                     }
                 } else if (page_number == 4) {
+                    page4_mouse_down[0];
                     XPLMCommandOnce(Page4_Button1CommandOnceCmd);
                     if (Page4_Button1ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button1CommandContinueCmd);
                         Page4_Button1ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[0];
+                    XPLMCommandOnce(Page5_Button1CommandOnceCmd);
+                    if (Page2_Button5ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button1CommandContinueCmd);
+                        Page5_Button1ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[0];
+                    XPLMCommandOnce(Page6_Button1CommandOnceCmd);
+                    if (Page6_Button1ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button1CommandContinueCmd);
+                        Page6_Button1ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[0];
+                    XPLMCommandOnce(Page7_Button1CommandOnceCmd);
+                    if (Page7_Button1ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button1CommandContinueCmd);
+                        Page7_Button1ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[0];
+                    XPLMCommandOnce(Page8_Button1CommandOnceCmd);
+                    if (Page8_Button1ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button1CommandContinueCmd);
+                        Page8_Button1ContinueMode = 1;
                     }
                 }
             }
@@ -900,6 +1237,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                     if (Page4_Button2ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button2CommandContinueCmd);
                         Page4_Button2ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[1];
+                    XPLMCommandOnce(Page5_Button2CommandOnceCmd);
+                    if (Page5_Button2ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button2CommandContinueCmd);
+                        Page5_Button2ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[1];
+                    XPLMCommandOnce(Page6_Button2CommandOnceCmd);
+                    if (Page6_Button2ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button2CommandContinueCmd);
+                        Page6_Button2ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[1];
+                    XPLMCommandOnce(Page7_Button2CommandOnceCmd);
+                    if (Page7_Button2ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button2CommandContinueCmd);
+                        Page7_Button2ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[1];
+                    XPLMCommandOnce(Page8_Button2CommandOnceCmd);
+                    if (Page8_Button2ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button2CommandContinueCmd);
+                        Page8_Button2ContinueMode = 1;
                     }
                 }
             }
@@ -939,8 +1304,35 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button3CommandContinueCmd);
                         Page4_Button3ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[2];
+                    XPLMCommandOnce(Page5_Button3CommandOnceCmd);
+                    if (Page5_Button3ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button3CommandContinueCmd);
+                        Page5_Button3ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[2];
+                    XPLMCommandOnce(Page6_Button3CommandOnceCmd);
+                    if (Page6_Button3ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button3CommandContinueCmd);
+                        Page6_Button3ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                   page7_mouse_down[2];
+                    XPLMCommandOnce(Page7_Button3CommandOnceCmd);
+                    if (Page7_Button3ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button3CommandContinueCmd);
+                        Page7_Button3ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                   page8_mouse_down[2];
+                    XPLMCommandOnce(Page8_Button3CommandOnceCmd);
+                    if (Page8_Button3ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button3CommandContinueCmd);
+                        Page8_Button3ContinueMode = 1;
+                    }
                 }
-
             }
 
 
@@ -974,6 +1366,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                     if (Page4_Button4ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button4CommandContinueCmd);
                         Page4_Button4ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[3];
+                    XPLMCommandOnce(Page5_Button4CommandOnceCmd);
+                    if (Page5_Button4ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button4CommandContinueCmd);
+                        Page5_Button4ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[3];
+                    XPLMCommandOnce(Page6_Button4CommandOnceCmd);
+                    if (Page6_Button4ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button4CommandContinueCmd);
+                        Page6_Button4ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[3];
+                    XPLMCommandOnce(Page7_Button4CommandOnceCmd);
+                    if (Page7_Button4ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button4CommandContinueCmd);
+                        Page7_Button4ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[3];
+                    XPLMCommandOnce(Page8_Button4CommandOnceCmd);
+                    if (Page8_Button4ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button4CommandContinueCmd);
+                        Page8_Button4ContinueMode = 1;
                     }
                 }
             }
@@ -1010,6 +1430,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button5CommandContinueCmd);
                         Page4_Button5ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[4];
+                    XPLMCommandOnce(Page5_Button5CommandOnceCmd);
+                    if (Page5_Button5ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button5CommandContinueCmd);
+                        Page5_Button5ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[4];
+                    XPLMCommandOnce(Page6_Button5CommandOnceCmd);
+                    if (Page6_Button5ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button5CommandContinueCmd);
+                        Page6_Button5ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[4];
+                    XPLMCommandOnce(Page7_Button5CommandOnceCmd);
+                    if (Page7_Button5ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button5CommandContinueCmd);
+                        Page7_Button5ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[4];
+                    XPLMCommandOnce(Page8_Button5CommandOnceCmd);
+                    if (Page8_Button5ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button5CommandContinueCmd);
+                        Page8_Button5ContinueMode = 1;
+                    }
                 }
             }
 
@@ -1044,6 +1492,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                     if (Page4_Button6ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button6CommandContinueCmd);
                         Page4_Button6ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[5];
+                    XPLMCommandOnce(Page5_Button6CommandOnceCmd);
+                    if (Page5_Button6ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button6CommandContinueCmd);
+                        Page5_Button6ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[5];
+                    XPLMCommandOnce(Page6_Button6CommandOnceCmd);
+                    if (Page6_Button6ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button6CommandContinueCmd);
+                        Page6_Button6ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[5];
+                    XPLMCommandOnce(Page7_Button6CommandOnceCmd);
+                    if (Page7_Button6ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button6CommandContinueCmd);
+                        Page7_Button6ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[5];
+                    XPLMCommandOnce(Page8_Button6CommandOnceCmd);
+                    if (Page8_Button6ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button6CommandContinueCmd);
+                        Page8_Button6ContinueMode = 1;
                     }
                 }
             }
@@ -1080,6 +1556,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button7CommandContinueCmd);
                         Page4_Button7ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[6];
+                    XPLMCommandOnce(Page5_Button7CommandOnceCmd);
+                    if (Page5_Button7ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button7CommandContinueCmd);
+                        Page5_Button7ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[6];
+                    XPLMCommandOnce(Page6_Button7CommandOnceCmd);
+                    if (Page6_Button7ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button7CommandContinueCmd);
+                        Page6_Button7ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[6];
+                    XPLMCommandOnce(Page7_Button7CommandOnceCmd);
+                    if (Page7_Button7ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button7CommandContinueCmd);
+                        Page7_Button7ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[6];
+                    XPLMCommandOnce(Page8_Button7CommandOnceCmd);
+                    if (Page8_Button7ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button7CommandContinueCmd);
+                        Page8_Button7ContinueMode = 1;
+                    }
                 }
             }
 
@@ -1114,6 +1618,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                     if (Page4_Button8ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button8CommandContinueCmd);
                         Page4_Button8ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[7];
+                    XPLMCommandOnce(Page5_Button8CommandOnceCmd);
+                    if (Page5_Button8ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button8CommandContinueCmd);
+                        Page5_Button8ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[7];
+                    XPLMCommandOnce(Page6_Button8CommandOnceCmd);
+                    if (Page6_Button8ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button8CommandContinueCmd);
+                        Page6_Button8ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[7];
+                    XPLMCommandOnce(Page7_Button8CommandOnceCmd);
+                    if (Page7_Button8ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button8CommandContinueCmd);
+                        Page7_Button8ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[7];
+                    XPLMCommandOnce(Page8_Button8CommandOnceCmd);
+                    if (Page8_Button8ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button8CommandContinueCmd);
+                        Page8_Button8ContinueMode = 1;
                     }
                 }
             }
@@ -1150,6 +1682,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button9CommandContinueCmd);
                         Page4_Button9ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[8];
+                    XPLMCommandOnce(Page5_Button9CommandOnceCmd);
+                    if (Page5_Button9ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button9CommandContinueCmd);
+                        Page5_Button9ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[8];
+                    XPLMCommandOnce(Page6_Button9CommandOnceCmd);
+                    if (Page6_Button9ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button9CommandContinueCmd);
+                        Page6_Button9ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[8];
+                    XPLMCommandOnce(Page7_Button9CommandOnceCmd);
+                    if (Page7_Button9ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button9CommandContinueCmd);
+                        Page7_Button9ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[8];
+                    XPLMCommandOnce(Page8_Button9CommandOnceCmd);
+                    if (Page8_Button9ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button9CommandContinueCmd);
+                        Page8_Button9ContinueMode = 1;
+                    }
                 }
             }
 
@@ -1184,6 +1744,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                     if (Page4_Button10ContinueMode < 1) {
                         XPLMCommandBegin(Page4_Button10CommandContinueCmd);
                         Page4_Button10ContinueMode = 1;
+                    }
+                } else if (page_number == 5) {
+                    page5_mouse_down[9];
+                    XPLMCommandOnce(Page5_Button10CommandOnceCmd);
+                    if (Page5_Button10ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button10CommandContinueCmd);
+                        Page5_Button10ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[9];
+                    XPLMCommandOnce(Page6_Button10CommandOnceCmd);
+                    if (Page6_Button10ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button10CommandContinueCmd);
+                        Page6_Button10ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[9];
+                    XPLMCommandOnce(Page7_Button10CommandOnceCmd);
+                    if (Page7_Button10ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button10CommandContinueCmd);
+                        Page7_Button10ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[9];
+                    XPLMCommandOnce(Page8_Button10CommandOnceCmd);
+                    if (Page8_Button10ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button10CommandContinueCmd);
+                        Page8_Button10ContinueMode = 1;
                     }
                 }
             }
@@ -1220,6 +1808,34 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button11CommandContinueCmd);
                         Page4_Button11ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[10];
+                    XPLMCommandOnce(Page5_Button11CommandOnceCmd);
+                    if (Page5_Button11ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button11CommandContinueCmd);
+                        Page5_Button11ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[10];
+                    XPLMCommandOnce(Page6_Button11CommandOnceCmd);
+                    if (Page6_Button11ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button11CommandContinueCmd);
+                        Page6_Button11ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[10];
+                    XPLMCommandOnce(Page7_Button11CommandOnceCmd);
+                    if (Page7_Button11ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button11CommandContinueCmd);
+                        Page7_Button11ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[10];
+                    XPLMCommandOnce(Page8_Button11CommandOnceCmd);
+                    if (Page8_Button11ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button11CommandContinueCmd);
+                        Page8_Button11ContinueMode = 1;
+                    }
                 }
             }
 
@@ -1255,14 +1871,43 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMCommandBegin(Page4_Button12CommandContinueCmd);
                         Page4_Button12ContinueMode = 1;
                     }
+                } else if (page_number == 5) {
+                    page5_mouse_down[10];
+                    XPLMCommandOnce(Page5_Button12CommandOnceCmd);
+                    if (Page5_Button12ContinueMode < 1) {
+                        XPLMCommandBegin(Page5_Button12CommandContinueCmd);
+                        Page5_Button12ContinueMode = 1;
+                    }
+                } else if (page_number == 6) {
+                    page6_mouse_down[11];
+                    XPLMCommandOnce(Page6_Button12CommandOnceCmd);
+                    if (Page6_Button12ContinueMode < 1) {
+                        XPLMCommandBegin(Page6_Button12CommandContinueCmd);
+                        Page6_Button12ContinueMode = 1;
+                    }
+                } else if (page_number == 7) {
+                    page7_mouse_down[12];
+                    XPLMCommandOnce(Page7_Button12CommandOnceCmd);
+                    if (Page7_Button12ContinueMode < 1) {
+                        XPLMCommandBegin(Page7_Button12CommandContinueCmd);
+                        Page7_Button12ContinueMode = 1;
+                    }
+                } else if (page_number == 8) {
+                    page8_mouse_down[12];
+                    XPLMCommandOnce(Page8_Button12CommandOnceCmd);
+                    if (Page8_Button12ContinueMode < 1) {
+                        XPLMCommandBegin(Page8_Button12CommandContinueCmd);
+                        Page8_Button12ContinueMode = 1;
+                    }
                 }
             }
         }
     }
 
+
     if(xb2cvr_mouse_status == xplm_MouseUp)
     {
-        mouse_down_hide = 0;
+        mouse_down_hide = 0, mouse_down_reload = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -1518,9 +2163,250 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                 XPLMCommandEnd(Page4_Button12CommandContinueCmd);
                 Page4_Button12ContinueMode = 0;
             }
+        } else if (page_number == 5) {
+            if (Page5_Button1ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button1CommandContinueCmd);
+                Page5_Button1ContinueMode = 0;
+            }
+
+            if (Page5_Button2ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button2CommandContinueCmd);
+                Page5_Button2ContinueMode = 0;
+            }
+
+            if (Page5_Button3ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button3CommandContinueCmd);
+                Page5_Button3ContinueMode = 0;
+            }
+
+            if (Page5_Button4ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button4CommandContinueCmd);
+                Page5_Button4ContinueMode = 0;
+            }
+
+            if (Page5_Button5ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button5CommandContinueCmd);
+                Page5_Button5ContinueMode = 0;
+            }
+
+            if (Page5_Button6ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button6CommandContinueCmd);
+                Page5_Button6ContinueMode = 0;
+            }
+
+            if (Page5_Button7ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button7CommandContinueCmd);
+                Page5_Button7ContinueMode = 0;
+            }
+
+            if (Page5_Button8ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button8CommandContinueCmd);
+                Page5_Button8ContinueMode = 0;
+            }
+
+            if (Page5_Button9ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button9CommandContinueCmd);
+                Page5_Button9ContinueMode = 0;
+            }
+
+            if (Page5_Button10ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button10CommandContinueCmd);
+                Page5_Button10ContinueMode = 0;
+            }
+
+            if (Page5_Button11ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button11CommandContinueCmd);
+                Page5_Button11ContinueMode = 0;
+            }
+
+            if (Page5_Button12ContinueMode == 1) {
+                XPLMCommandEnd(Page5_Button12CommandContinueCmd);
+                Page5_Button12ContinueMode = 0;
+            }
+        } else if (page_number == 6) {
+            if (Page6_Button1ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button1CommandContinueCmd);
+                Page6_Button1ContinueMode = 0;
+            }
+
+            if (Page6_Button2ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button2CommandContinueCmd);
+                Page6_Button2ContinueMode = 0;
+            }
+
+            if (Page6_Button3ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button3CommandContinueCmd);
+                Page6_Button3ContinueMode = 0;
+            }
+
+            if (Page6_Button4ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button4CommandContinueCmd);
+                Page6_Button4ContinueMode = 0;
+            }
+
+            if (Page6_Button5ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button5CommandContinueCmd);
+                Page6_Button5ContinueMode = 0;
+            }
+
+            if (Page6_Button6ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button6CommandContinueCmd);
+                Page6_Button6ContinueMode = 0;
+            }
+
+            if (Page6_Button7ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button7CommandContinueCmd);
+                Page6_Button7ContinueMode = 0;
+            }
+
+            if (Page6_Button8ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button8CommandContinueCmd);
+                Page6_Button8ContinueMode = 0;
+            }
+
+            if (Page6_Button9ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button9CommandContinueCmd);
+                Page6_Button9ContinueMode = 0;
+            }
+
+            if (Page6_Button10ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button10CommandContinueCmd);
+                Page6_Button10ContinueMode = 0;
+            }
+
+            if (Page6_Button11ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button11CommandContinueCmd);
+                Page6_Button11ContinueMode = 0;
+            }
+
+            if (Page6_Button12ContinueMode == 1) {
+                XPLMCommandEnd(Page6_Button12CommandContinueCmd);
+                Page6_Button12ContinueMode = 0;
+            }
+        } else if (page_number == 7) {
+            if (Page7_Button1ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button1CommandContinueCmd);
+                Page7_Button1ContinueMode = 0;
+            }
+
+            if (Page7_Button2ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button2CommandContinueCmd);
+                Page7_Button2ContinueMode = 0;
+            }
+
+            if (Page7_Button3ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button3CommandContinueCmd);
+                Page7_Button3ContinueMode = 0;
+            }
+
+            if (Page7_Button4ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button4CommandContinueCmd);
+                Page7_Button4ContinueMode = 0;
+            }
+
+            if (Page7_Button5ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button5CommandContinueCmd);
+                Page7_Button5ContinueMode = 0;
+            }
+
+            if (Page7_Button6ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button6CommandContinueCmd);
+                Page7_Button6ContinueMode = 0;
+            }
+
+            if (Page7_Button7ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button7CommandContinueCmd);
+                Page7_Button7ContinueMode = 0;
+            }
+
+            if (Page7_Button8ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button8CommandContinueCmd);
+                Page7_Button8ContinueMode = 0;
+            }
+
+            if (Page7_Button9ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button9CommandContinueCmd);
+                Page7_Button9ContinueMode = 0;
+            }
+
+            if (Page7_Button10ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button10CommandContinueCmd);
+                Page7_Button10ContinueMode = 0;
+            }
+
+            if (Page7_Button11ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button11CommandContinueCmd);
+                Page7_Button11ContinueMode = 0;
+            }
+
+            if (Page7_Button12ContinueMode == 1) {
+                XPLMCommandEnd(Page7_Button12CommandContinueCmd);
+                Page7_Button12ContinueMode = 0;
+            }
+        } else if (page_number == 8) {
+            if (Page8_Button1ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button1CommandContinueCmd);
+                Page8_Button1ContinueMode = 0;
+            }
+
+            if (Page8_Button2ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button2CommandContinueCmd);
+                Page8_Button2ContinueMode = 0;
+            }
+
+            if (Page8_Button3ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button3CommandContinueCmd);
+                Page8_Button3ContinueMode = 0;
+            }
+
+            if (Page8_Button4ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button4CommandContinueCmd);
+                Page8_Button4ContinueMode = 0;
+            }
+
+            if (Page8_Button5ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button5CommandContinueCmd);
+                Page8_Button5ContinueMode = 0;
+            }
+
+            if (Page8_Button6ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button6CommandContinueCmd);
+                Page8_Button6ContinueMode = 0;
+            }
+
+            if (Page8_Button7ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button7CommandContinueCmd);
+                Page8_Button7ContinueMode = 0;
+            }
+
+            if (Page8_Button8ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button8CommandContinueCmd);
+                Page8_Button8ContinueMode = 0;
+            }
+
+            if (Page8_Button9ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button9CommandContinueCmd);
+                Page8_Button9ContinueMode = 0;
+            }
+
+            if (Page8_Button10ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button10CommandContinueCmd);
+                Page8_Button10ContinueMode = 0;
+            }
+
+            if (Page8_Button11ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button11CommandContinueCmd);
+                Page8_Button11ContinueMode = 0;
+            }
+
+            if (Page8_Button12ContinueMode == 1) {
+                XPLMCommandEnd(Page8_Button12CommandContinueCmd);
+                Page8_Button12ContinueMode = 0;
+            }
         }
 
     }
 
     return 1;
 }
+

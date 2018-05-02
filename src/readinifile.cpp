@@ -582,5 +582,407 @@ void process_read_ini_file()
     Page4_Button12CommandContinueCmd = XPLMFindCommand(page4_button12_command_continue.c_str());
 
 
+
+    // ****************** page five   ***************************
+
+    page5_button_label = getOptionToString("page5_button_label");
+
+    page5_button1_label = getOptionToString("page5_button1_label");
+    page5_button1_command_once = getOptionToString("page5_button1_command_once");
+    page5_button1_command_continue = getOptionToString("page5_button1_command_continue");
+    Page5_Button1LabelCmd = XPLMFindCommand(page5_button1_label.c_str());
+    Page5_Button1CommandOnceCmd = XPLMFindCommand(page5_button1_command_once.c_str());
+    Page5_Button1CommandContinueCmd = XPLMFindCommand(page5_button1_command_continue.c_str());
+
+
+    page5_button2_label = getOptionToString("page5_button2_label");
+    page5_button2_command_once = getOptionToString("page5_button2_command_once");
+    page5_button2_command_continue = getOptionToString("page5_button2_command_continue");
+    Page5_Button2LabelCmd = XPLMFindCommand(page5_button2_label.c_str());
+    Page5_Button2CommandOnceCmd = XPLMFindCommand(page5_button2_command_once.c_str());
+    Page5_Button2CommandContinueCmd = XPLMFindCommand(page5_button2_command_continue.c_str());
+
+
+    page5_button3_label = getOptionToString("page5_button3_label");
+    page5_button3_command_once = getOptionToString("page5_button3_command_once");
+    page5_button3_command_continue = getOptionToString("page5_button3_command_continue");
+    Page5_Button3LabelCmd = XPLMFindCommand(page5_button3_label.c_str());
+    Page5_Button3CommandOnceCmd = XPLMFindCommand(page5_button3_command_once.c_str());
+    Page5_Button3CommandContinueCmd = XPLMFindCommand(page5_button3_command_continue.c_str());
+
+
+    page5_button4_label = getOptionToString("page5_button4_label");
+    page5_button4_command_once = getOptionToString("page5_button4_command_once");
+    page5_button4_command_continue = getOptionToString("page5_button4_command_continue");
+    Page5_Button4LabelCmd = XPLMFindCommand(page5_button4_label.c_str());
+    Page5_Button4CommandOnceCmd = XPLMFindCommand(page5_button4_command_once.c_str());
+    Page5_Button4CommandContinueCmd = XPLMFindCommand(page5_button4_command_continue.c_str());
+
+
+    page5_button5_label = getOptionToString("page5_button5_label");
+    page5_button5_command_once = getOptionToString("page5_button5_command_once");
+    page5_button5_command_continue = getOptionToString("page5_button5_command_continue");
+    Page5_Button5LabelCmd = XPLMFindCommand(page5_button5_label.c_str());
+    Page5_Button5CommandOnceCmd = XPLMFindCommand(page5_button5_command_once.c_str());
+    Page5_Button5CommandContinueCmd = XPLMFindCommand(page5_button5_command_continue.c_str());
+
+
+    page5_button6_label = getOptionToString("page5_button6_label");
+    page5_button6_command_once = getOptionToString("page5_button6_command_once");
+    page5_button6_command_continue = getOptionToString("page5_button6_command_continue");
+    Page5_Button6LabelCmd = XPLMFindCommand(page5_button6_label.c_str());
+    Page5_Button6CommandOnceCmd = XPLMFindCommand(page5_button6_command_once.c_str());
+    Page5_Button6CommandContinueCmd = XPLMFindCommand(page5_button6_command_continue.c_str());
+
+
+    page5_button7_label = getOptionToString("page5_button7_label");
+    page5_button7_command_once = getOptionToString("page5_button7_command_once");
+    page5_button7_command_continue = getOptionToString("page5_button7_command_continue");
+    Page5_Button7LabelCmd = XPLMFindCommand(page5_button7_label.c_str());
+    Page5_Button7CommandOnceCmd = XPLMFindCommand(page5_button7_command_once.c_str());
+    Page5_Button7CommandContinueCmd = XPLMFindCommand(page5_button7_command_continue.c_str());
+
+
+    page5_button8_label = getOptionToString("page5_button8_label");
+    page5_button8_command_once = getOptionToString("page5_button8_command_once");
+    page5_button8_command_continue = getOptionToString("page5_button8_command_continue");
+    Page5_Button8LabelCmd = XPLMFindCommand(page5_button8_label.c_str());
+    Page5_Button8CommandOnceCmd = XPLMFindCommand(page5_button8_command_once.c_str());
+    Page5_Button8CommandContinueCmd = XPLMFindCommand(page5_button8_command_continue.c_str());
+
+
+    page5_button9_label = getOptionToString("page5_button9_label");
+    page5_button9_command_once = getOptionToString("page5_button9_command_once");
+    page5_button9_command_continue = getOptionToString("page5_button9_command_continue");
+    Page5_Button9LabelCmd = XPLMFindCommand(page5_button9_label.c_str());
+    Page5_Button9CommandOnceCmd = XPLMFindCommand(page5_button9_command_once.c_str());
+    Page5_Button9CommandContinueCmd = XPLMFindCommand(page5_button9_command_continue.c_str());
+
+
+    page5_button10_label = getOptionToString("page5_button10_label");
+    page5_button10_command_once = getOptionToString("page5_button10_command_once");
+    page5_button10_command_continue = getOptionToString("page5_button10_command_continue");
+    Page5_Button10LabelCmd = XPLMFindCommand(page5_button10_label.c_str());
+    Page5_Button10CommandOnceCmd = XPLMFindCommand(page5_button10_command_once.c_str());
+    Page5_Button10CommandContinueCmd = XPLMFindCommand(page5_button10_command_continue.c_str());
+
+
+    page5_button11_label = getOptionToString("page5_button11_label");
+    page5_button11_command_once = getOptionToString("page5_button11_command_once");
+    page5_button11_command_continue = getOptionToString("page5_button11_command_continue");
+    Page5_Button11LabelCmd = XPLMFindCommand(page5_button11_label.c_str());
+    Page5_Button11CommandOnceCmd = XPLMFindCommand(page5_button11_command_once.c_str());
+    Page5_Button11CommandContinueCmd = XPLMFindCommand(page5_button11_command_continue.c_str());
+
+
+    page5_button12_label = getOptionToString("page5_button12_label");
+    page5_button12_command_once = getOptionToString("page5_button12_command_once");
+    page5_button12_command_continue = getOptionToString("page5_button12_command_continue");
+    Page5_Button12LabelCmd = XPLMFindCommand(page5_button12_label.c_str());
+    Page5_Button12CommandOnceCmd = XPLMFindCommand(page5_button12_command_once.c_str());
+    Page5_Button12CommandContinueCmd = XPLMFindCommand(page5_button12_command_continue.c_str());
+
+
+    //  ************************   page six   ********************
+
+    page6_button_label = getOptionToString("page6_button_label");
+
+    page6_button1_label = getOptionToString("page6_button1_label");
+    page6_button1_command_once = getOptionToString("page6_button1_command_once");
+    page6_button1_command_continue = getOptionToString("page6_button1_command_continue");
+    Page6_Button1LabelCmd = XPLMFindCommand(page6_button1_label.c_str());
+    Page6_Button1CommandOnceCmd = XPLMFindCommand(page6_button1_command_once.c_str());
+    Page6_Button1CommandContinueCmd = XPLMFindCommand(page6_button1_command_continue.c_str());
+
+
+    page6_button6_label = getOptionToString("page6_button2_label");
+    page6_button6_command_once = getOptionToString("page6_button2_command_once");
+    page6_button2_command_continue = getOptionToString("page6_button2_command_continue");
+    Page6_Button2LabelCmd = XPLMFindCommand(page2_button6_label.c_str());
+    Page6_Button2CommandOnceCmd = XPLMFindCommand(page6_button2_command_once.c_str());
+    Page6_Button2CommandContinueCmd = XPLMFindCommand(page6_button2_command_continue.c_str());
+
+
+    page6_button3_label = getOptionToString("page6_button3_label");
+    page6_button3_command_once = getOptionToString("page6_button3_command_once");
+    page6_button3_command_continue = getOptionToString("page6_button3_command_continue");
+    Page6_Button3LabelCmd = XPLMFindCommand(page6_button3_label.c_str());
+    Page6_Button3CommandOnceCmd = XPLMFindCommand(page6_button3_command_once.c_str());
+    Page6_Button3CommandContinueCmd = XPLMFindCommand(page6_button3_command_continue.c_str());
+
+
+    page6_button4_label = getOptionToString("page6_button4_label");
+    page6_button4_command_once = getOptionToString("page6_button4_command_once");
+    page6_button4_command_continue = getOptionToString("page6_button4_command_continue");
+    Page6_Button4LabelCmd = XPLMFindCommand(page6_button4_label.c_str());
+    Page6_Button4CommandOnceCmd = XPLMFindCommand(page6_button4_command_once.c_str());
+    Page6_Button4CommandContinueCmd = XPLMFindCommand(page6_button4_command_continue.c_str());
+
+
+    page6_button5_label = getOptionToString("page6_button5_label");
+    page6_button5_command_once = getOptionToString("page6_button5_command_once");
+    page6_button5_command_continue = getOptionToString("page6_button5_command_continue");
+    Page6_Button5LabelCmd = XPLMFindCommand(page6_button5_label.c_str());
+    Page6_Button5CommandOnceCmd = XPLMFindCommand(page6_button5_command_once.c_str());
+    Page6_Button5CommandContinueCmd = XPLMFindCommand(page6_button5_command_continue.c_str());
+
+
+    page6_button6_label = getOptionToString("page6_button6_label");
+    page6_button6_command_once = getOptionToString("page6_button6_command_once");
+    page6_button6_command_continue = getOptionToString("page6_button6_command_continue");
+    Page6_Button6LabelCmd = XPLMFindCommand(page6_button6_label.c_str());
+    Page6_Button6CommandOnceCmd = XPLMFindCommand(page6_button6_command_once.c_str());
+    Page6_Button6CommandContinueCmd = XPLMFindCommand(page6_button6_command_continue.c_str());
+
+
+    page6_button7_label = getOptionToString("page6_button7_label");
+    page6_button7_command_once = getOptionToString("page6_button7_command_once");
+    page6_button7_command_continue = getOptionToString("page6_button7_command_continue");
+    Page6_Button7LabelCmd = XPLMFindCommand(page6_button7_label.c_str());
+    Page6_Button7CommandOnceCmd = XPLMFindCommand(page6_button7_command_once.c_str());
+    Page6_Button7CommandContinueCmd = XPLMFindCommand(page6_button7_command_continue.c_str());
+
+
+    page6_button8_label = getOptionToString("page6_button8_label");
+    page6_button8_command_once = getOptionToString("page6_button8_command_once");
+    page6_button8_command_continue = getOptionToString("page6_button8_command_continue");
+    Page6_Button8LabelCmd = XPLMFindCommand(page6_button8_label.c_str());
+    Page6_Button8CommandOnceCmd = XPLMFindCommand(page6_button8_command_once.c_str());
+    Page6_Button8CommandContinueCmd = XPLMFindCommand(page6_button8_command_continue.c_str());
+
+
+    page6_button9_label = getOptionToString("page6_button9_label");
+    page6_button9_command_once = getOptionToString("page6_button9_command_once");
+    page6_button9_command_continue = getOptionToString("page6_button9_command_continue");
+    Page6_Button9LabelCmd = XPLMFindCommand(page6_button9_label.c_str());
+    Page6_Button9CommandOnceCmd = XPLMFindCommand(page6_button9_command_once.c_str());
+    Page6_Button9CommandContinueCmd = XPLMFindCommand(page6_button9_command_continue.c_str());
+
+
+    page6_button10_label = getOptionToString("page6_button10_label");
+    page6_button10_command_once = getOptionToString("page6_button10_command_once");
+    page6_button10_command_continue = getOptionToString("page6_button10_command_continue");
+    Page6_Button10LabelCmd = XPLMFindCommand(page6_button10_label.c_str());
+    Page6_Button10CommandOnceCmd = XPLMFindCommand(page6_button10_command_once.c_str());
+    Page6_Button10CommandContinueCmd = XPLMFindCommand(page6_button10_command_continue.c_str());
+
+
+    page6_button11_label = getOptionToString("page6_button11_label");
+    page6_button11_command_once = getOptionToString("page6_button11_command_once");
+    page6_button11_command_continue = getOptionToString("page6_button11_command_continue");
+    Page6_Button11LabelCmd = XPLMFindCommand(page6_button11_label.c_str());
+    Page6_Button11CommandOnceCmd = XPLMFindCommand(page6_button11_command_once.c_str());
+    Page6_Button11CommandContinueCmd = XPLMFindCommand(page6_button11_command_continue.c_str());
+
+
+    page6_button12_label = getOptionToString("page6_button12_label");
+    page6_button12_command_once = getOptionToString("page6_button12_command_once");
+    page6_button12_command_continue = getOptionToString("page6_button12_command_continue");
+    Page6_Button12LabelCmd = XPLMFindCommand(page6_button12_label.c_str());
+    Page6_Button12CommandOnceCmd = XPLMFindCommand(page6_button12_command_once.c_str());
+    Page6_Button12CommandContinueCmd = XPLMFindCommand(page6_button12_command_continue.c_str());
+
+
+
+    //  ******************************  page seven   ***********************************
+
+    page7_button_label = getOptionToString("page7_button_label");
+
+    page7_button1_label = getOptionToString("page7_button1_label");
+    page7_button1_command_once = getOptionToString("page7_button1_command_once");
+    page7_button1_command_continue = getOptionToString("page7_button1_command_continue");
+    Page7_Button1LabelCmd = XPLMFindCommand(page7_button1_label.c_str());
+    Page7_Button1CommandOnceCmd = XPLMFindCommand(page7_button1_command_once.c_str());
+    Page7_Button1CommandContinueCmd = XPLMFindCommand(page7_button1_command_continue.c_str());
+
+
+    page7_button2_label = getOptionToString("page7_button2_label");
+    page7_button2_command_once = getOptionToString("page7_button2_command_once");
+    page7_button2_command_continue = getOptionToString("page7_button2_command_continue");
+    Page7_Button2LabelCmd = XPLMFindCommand(page7_button2_label.c_str());
+    Page7_Button2CommandOnceCmd = XPLMFindCommand(page7_button2_command_once.c_str());
+    Page7_Button2CommandContinueCmd = XPLMFindCommand(page7_button2_command_continue.c_str());
+
+
+    page7_button3_label = getOptionToString("page7_button3_label");
+    page7_button3_command_once = getOptionToString("page7_button3_command_once");
+    page7_button3_command_continue = getOptionToString("page7_button3_command_continue");
+    Page7_Button3LabelCmd = XPLMFindCommand(page7_button3_label.c_str());
+    Page7_Button3CommandOnceCmd = XPLMFindCommand(page7_button3_command_once.c_str());
+    Page7_Button3CommandContinueCmd = XPLMFindCommand(page7_button3_command_continue.c_str());
+
+
+    page7_button4_label = getOptionToString("page7_button4_label");
+    page7_button4_command_once = getOptionToString("page7_button4_command_once");
+    page7_button4_command_continue = getOptionToString("page7_button4_command_continue");
+    Page7_Button4LabelCmd = XPLMFindCommand(page7_button4_label.c_str());
+    Page7_Button4CommandOnceCmd = XPLMFindCommand(page7_button4_command_once.c_str());
+    Page7_Button4CommandContinueCmd = XPLMFindCommand(page7_button4_command_continue.c_str());
+
+
+    page7_button5_label = getOptionToString("page7_button5_label");
+    page7_button5_command_once = getOptionToString("page7_button5_command_once");
+    page7_button5_command_continue = getOptionToString("page7_button5_command_continue");
+    Page7_Button5LabelCmd = XPLMFindCommand(page7_button5_label.c_str());
+    Page7_Button5CommandOnceCmd = XPLMFindCommand(page7_button5_command_once.c_str());
+    Page7_Button5CommandContinueCmd = XPLMFindCommand(page7_button5_command_continue.c_str());
+
+
+    page7_button6_label = getOptionToString("page7_button6_label");
+    page7_button6_command_once = getOptionToString("page7_button6_command_once");
+    page7_button6_command_continue = getOptionToString("page7_button6_command_continue");
+    Page7_Button6LabelCmd = XPLMFindCommand(page7_button6_label.c_str());
+    Page7_Button6CommandOnceCmd = XPLMFindCommand(page7_button6_command_once.c_str());
+    Page7_Button6CommandContinueCmd = XPLMFindCommand(page7_button6_command_continue.c_str());
+
+
+    page7_button7_label = getOptionToString("page7_button7_label");
+    page7_button7_command_once = getOptionToString("page7_button7_command_once");
+    page7_button7_command_continue = getOptionToString("page7_button7_command_continue");
+    Page7_Button7LabelCmd = XPLMFindCommand(page7_button7_label.c_str());
+    Page7_Button7CommandOnceCmd = XPLMFindCommand(page7_button7_command_once.c_str());
+    Page7_Button7CommandContinueCmd = XPLMFindCommand(page7_button7_command_continue.c_str());
+
+
+    page7_button8_label = getOptionToString("page7_button8_label");
+    page7_button8_command_once = getOptionToString("page7_button8_command_once");
+    page7_button8_command_continue = getOptionToString("page7_button8_command_continue");
+    Page7_Button8LabelCmd = XPLMFindCommand(page7_button8_label.c_str());
+    Page7_Button8CommandOnceCmd = XPLMFindCommand(page7_button8_command_once.c_str());
+    Page7_Button8CommandContinueCmd = XPLMFindCommand(page7_button8_command_continue.c_str());
+
+
+    page7_button9_label = getOptionToString("page7_button9_label");
+    page7_button9_command_once = getOptionToString("page7_button9_command_once");
+    page7_button9_command_continue = getOptionToString("page7_button9_command_continue");
+    Page7_Button9LabelCmd = XPLMFindCommand(page7_button9_label.c_str());
+    Page7_Button9CommandOnceCmd = XPLMFindCommand(page7_button9_command_once.c_str());
+    Page7_Button9CommandContinueCmd = XPLMFindCommand(page7_button9_command_continue.c_str());
+
+
+    page7_button10_label = getOptionToString("page7_button10_label");
+    page7_button10_command_once = getOptionToString("page7_button10_command_once");
+    page7_button10_command_continue = getOptionToString("page7_button10_command_continue");
+    Page7_Button10LabelCmd = XPLMFindCommand(page7_button10_label.c_str());
+    Page7_Button10CommandOnceCmd = XPLMFindCommand(page7_button10_command_once.c_str());
+    Page7_Button10CommandContinueCmd = XPLMFindCommand(page7_button10_command_continue.c_str());
+
+
+    page7_button11_label = getOptionToString("page7_button11_label");
+    page7_button11_command_once = getOptionToString("page7_button11_command_once");
+    page7_button11_command_continue = getOptionToString("page7_button11_command_continue");
+    Page7_Button11LabelCmd = XPLMFindCommand(page7_button11_label.c_str());
+    Page7_Button11CommandOnceCmd = XPLMFindCommand(page7_button11_command_once.c_str());
+    Page7_Button11CommandContinueCmd = XPLMFindCommand(page7_button11_command_continue.c_str());
+
+
+    page7_button12_label = getOptionToString("page7_button12_label");
+    page7_button12_command_once = getOptionToString("page7_button12_command_once");
+    page7_button12_command_continue = getOptionToString("page7_button12_command_continue");
+    Page7_Button12LabelCmd = XPLMFindCommand(page7_button12_label.c_str());
+    Page7_Button12CommandOnceCmd = XPLMFindCommand(page7_button12_command_once.c_str());
+    Page7_Button12CommandContinueCmd = XPLMFindCommand(page7_button12_command_continue.c_str());
+
+
+    //  **************************  page eight   **********************************
+
+    page8_button_label = getOptionToString("page8_button_label");
+
+    page8_button1_label = getOptionToString("page8_button1_label");
+    page8_button1_command_once = getOptionToString("page8_button1_command_once");
+    page8_button1_command_continue = getOptionToString("page8_button1_command_continue");
+    Page8_Button1LabelCmd = XPLMFindCommand(page8_button1_label.c_str());
+    Page8_Button1CommandOnceCmd = XPLMFindCommand(page8_button1_command_once.c_str());
+    Page8_Button1CommandContinueCmd = XPLMFindCommand(page8_button1_command_continue.c_str());
+
+
+    page8_button2_label = getOptionToString("page8_button2_label");
+    page8_button2_command_once = getOptionToString("page8_button2_command_once");
+    page8_button2_command_continue = getOptionToString("page8_button2_command_continue");
+    Page8_Button2LabelCmd = XPLMFindCommand(page8_button2_label.c_str());
+    Page8_Button2CommandOnceCmd = XPLMFindCommand(page8_button2_command_once.c_str());
+    Page8_Button2CommandContinueCmd = XPLMFindCommand(page8_button2_command_continue.c_str());
+
+
+    page8_button3_label = getOptionToString("page8_button3_label");
+    page8_button3_command_once = getOptionToString("page8_button3_command_once");
+    page8_button3_command_continue = getOptionToString("page8_button3_command_continue");
+    Page8_Button3LabelCmd = XPLMFindCommand(page8_button3_label.c_str());
+    Page8_Button3CommandOnceCmd = XPLMFindCommand(page8_button3_command_once.c_str());
+    Page8_Button3CommandContinueCmd = XPLMFindCommand(page8_button3_command_continue.c_str());
+
+
+    page8_button4_label = getOptionToString("page8_button4_label");
+    page8_button4_command_once = getOptionToString("page8_button4_command_once");
+    page8_button4_command_continue = getOptionToString("page8_button4_command_continue");
+    Page8_Button4LabelCmd = XPLMFindCommand(page8_button4_label.c_str());
+    Page8_Button4CommandOnceCmd = XPLMFindCommand(page8_button4_command_once.c_str());
+    Page8_Button4CommandContinueCmd = XPLMFindCommand(page8_button4_command_continue.c_str());
+
+
+    page8_button5_label = getOptionToString("page8_button5_label");
+    page8_button5_command_once = getOptionToString("page8_button5_command_once");
+    page8_button5_command_continue = getOptionToString("page8_button5_command_continue");
+    Page8_Button5LabelCmd = XPLMFindCommand(page8_button5_label.c_str());
+    Page8_Button5CommandOnceCmd = XPLMFindCommand(page8_button5_command_once.c_str());
+    Page8_Button5CommandContinueCmd = XPLMFindCommand(page8_button5_command_continue.c_str());
+
+
+    page8_button6_label = getOptionToString("page8_button6_label");
+    page8_button6_command_once = getOptionToString("page8_button6_command_once");
+    page8_button6_command_continue = getOptionToString("page8_button6_command_continue");
+    Page8_Button6LabelCmd = XPLMFindCommand(page8_button6_label.c_str());
+    Page8_Button6CommandOnceCmd = XPLMFindCommand(page8_button6_command_once.c_str());
+    Page8_Button6CommandContinueCmd = XPLMFindCommand(page8_button6_command_continue.c_str());
+
+
+    page8_button7_label = getOptionToString("page8_button7_label");
+    page8_button7_command_once = getOptionToString("page8_button7_command_once");
+    page8_button7_command_continue = getOptionToString("page8_button7_command_continue");
+    Page8_Button7LabelCmd = XPLMFindCommand(page8_button7_label.c_str());
+    Page8_Button7CommandOnceCmd = XPLMFindCommand(page8_button7_command_once.c_str());
+    Page8_Button7CommandContinueCmd = XPLMFindCommand(page8_button7_command_continue.c_str());
+
+
+    page8_button8_label = getOptionToString("page8_button8_label");
+    page8_button8_command_once = getOptionToString("page8_button8_command_once");
+    page8_button8_command_continue = getOptionToString("page8_button8_command_continue");
+    Page8_Button8LabelCmd = XPLMFindCommand(page8_button8_label.c_str());
+    Page8_Button8CommandOnceCmd = XPLMFindCommand(page8_button8_command_once.c_str());
+    Page8_Button8CommandContinueCmd = XPLMFindCommand(page8_button8_command_continue.c_str());
+
+
+    page8_button9_label = getOptionToString("page8_button9_label");
+    page8_button9_command_once = getOptionToString("page8_button9_command_once");
+    page8_button9_command_continue = getOptionToString("page8_button9_command_continue");
+    Page8_Button9LabelCmd = XPLMFindCommand(page8_button9_label.c_str());
+    Page8_Button9CommandOnceCmd = XPLMFindCommand(page8_button9_command_once.c_str());
+    Page8_Button9CommandContinueCmd = XPLMFindCommand(page8_button9_command_continue.c_str());
+
+
+    page8_button10_label = getOptionToString("page8_button10_label");
+    page8_button10_command_once = getOptionToString("page8_button10_command_once");
+    page8_button10_command_continue = getOptionToString("page8_button10_command_continue");
+    Page8_Button10LabelCmd = XPLMFindCommand(page8_button10_label.c_str());
+    Page8_Button10CommandOnceCmd = XPLMFindCommand(page8_button10_command_once.c_str());
+    Page8_Button10CommandContinueCmd = XPLMFindCommand(page8_button10_command_continue.c_str());
+
+
+    page8_button11_label = getOptionToString("page8_button11_label");
+    page8_button11_command_once = getOptionToString("page8_button11_command_once");
+    page8_button11_command_continue = getOptionToString("page8_button11_command_continue");
+    Page8_Button11LabelCmd = XPLMFindCommand(page8_button11_label.c_str());
+    Page8_Button11CommandOnceCmd = XPLMFindCommand(page8_button11_command_once.c_str());
+    Page8_Button11CommandContinueCmd = XPLMFindCommand(page8_button11_command_continue.c_str());
+
+
+    page8_button12_label = getOptionToString("page8_button12_label");
+    page8_button12_command_once = getOptionToString("page8_button12_command_once");
+    page8_button12_command_continue = getOptionToString("page8_button12_command_continue");
+    Page8_Button12LabelCmd = XPLMFindCommand(page8_button12_label.c_str());
+    Page8_Button12CommandOnceCmd = XPLMFindCommand(page8_button12_command_once.c_str());
+    Page8_Button12CommandContinueCmd = XPLMFindCommand(page8_button12_command_continue.c_str());
+
+
   return;
 }
