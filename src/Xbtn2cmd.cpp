@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.10 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.11 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -406,6 +406,8 @@ int mouse_down_page8 = 0;
 
 int page_number = 1;
 
+int first_time = 0;
+
 PLUGIN_API int XPluginStart(
 						char *		outName,
 						char *		outSig,
@@ -506,7 +508,11 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         {
             xb2cvr_create_gui_window();
             process_read_ini_file();
-            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            if (first_time == 0) {
+                XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+                first_time = 1;
+            }
+
             XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
         }
 
@@ -514,7 +520,10 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         {
             xb2cvr_create_gui_window();
             process_read_ini_file();
-            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            if (first_time == 0) {
+                XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+                first_time = 1;
+            }
             XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
         }
 

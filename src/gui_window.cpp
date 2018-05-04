@@ -30,6 +30,7 @@ static float g_next_button_lbrt[4]; // left, bottom, right, top
 static float g_check_item_button_lbrt[4]; // left, bottom, right, top
 
 static float g_hide_button_lbrt[4]; // left, bottom, right, top
+static float g_in_front_button_lbrt[4]; // left, bottom, right, top
 static float g_reload_button_lbrt[4]; // left, bottom, right, top
 
 static float g_page1_button_lbrt[4]; // left, bottom, right, top
@@ -289,8 +290,42 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         XPLMDrawString(col_black, g_hide_button_lbrt[0], g_hide_button_lbrt[1] + 8, (char *)hide_btn_label, NULL, xplmFont_Proportional);
 
 
+        // Draw the In Front box
+        line_number = line_number + 3;
+        const char * in_front_btn_label = "In Front";
+        int in_front = XPLMIsWindowInFront(xb2cvr_in_window_id);
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_in_front_button_lbrt[0] = l + 460;
+        g_in_front_button_lbrt[3] = t - (line_number * char_height);
+        g_in_front_button_lbrt[2] = g_in_front_button_lbrt[0] + XPLMMeasureString(xplmFont_Proportional, in_front_btn_label, strlen(in_front_btn_label)) + 5; // *just* wide enough to fit the button text
+        g_in_front_button_lbrt[1] = g_in_front_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (in_front) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_in_front_button_lbrt[0], g_in_front_button_lbrt[3]);
+            glVertex2i(g_in_front_button_lbrt[2], g_in_front_button_lbrt[3]);
+            glVertex2i(g_in_front_button_lbrt[2], g_in_front_button_lbrt[1]);
+            glVertex2i(g_in_front_button_lbrt[0], g_in_front_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the previous button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_in_front_button_lbrt[0] = g_in_front_button_lbrt[0] + 3;
+        XPLMDrawString(col_black, g_in_front_button_lbrt[0], g_in_front_button_lbrt[1] + 8, (char *)in_front_btn_label, NULL, xplmFont_Proportional);
+
+
         // Draw the page 5 button
-        line_number = line_number + 6;
+        line_number = line_number + 3;
         const char * page5_btn_label = page5_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -679,8 +714,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         } else if (page_number == 8) {
             btn5_label = page8_button5_label.c_str();
         }
-
-
 
         // 0 left, 1 bottom, 2 right, 3 top
         // Position the button in the upper left of the window (sized to fit the button text)
@@ -1912,8 +1945,6 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
         mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
-
-
 
 
         if (page_number == 1) {
