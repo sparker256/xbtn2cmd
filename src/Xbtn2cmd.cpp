@@ -504,6 +504,7 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         // so that VR will actually be available.
         // if(!xcvr_g_window && inMsg == XPLM_MSG_SCENERY_LOADED)
 
+
         if(inMsg == XPLM_MSG_SCENERY_LOADED)
         {
             xb2cvr_create_gui_window();
@@ -514,26 +515,6 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             }
 
             XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
-        }
-
-        if(inMsg == XPLM_MSG_WILL_WRITE_PREFS)
-        {
-            xb2cvr_create_gui_window();
-            process_read_ini_file();
-            if (first_time == 0) {
-                XPLMSetWindowIsVisible(xb2cvr_g_window,0);
-                first_time = 1;
-            }
-            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
-        }
-
-        if(inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_ENTERED_VR)
-        {
-            XPLMDebugString("Xbtn2cmd: inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_ENTERED_VR\n");
-        }
-        else if(inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_EXITING_VR && XPLMWindowIsInVR(xb2cvr_g_window))
-        {
-            XPLMDebugString("Xbtn2cmd: inFrom == XPLM_PLUGIN_XPLANE && inMsg == XPLM_MSG_EXITING_VR && XPLMWindowIsInVR(xb2cvr_g_window\n");
         }
     }
 }
@@ -599,6 +580,7 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 {
     if(!strcmp((const char *)in_item_ref, "Menu Item 1"))
     {
+        process_read_ini_file();
         if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
