@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-cd X-Plane_Github_Plugins/xbtn2cmd &&
-./build_1020_lin_win &&
-./Make_1020_MacOnLinux &&
-
-exec $SHELL
-#
-

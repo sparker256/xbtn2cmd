@@ -695,8 +695,8 @@ void process_read_ini_file()
     Page6_Button1CommandContinueCmd = XPLMFindCommand(page6_button1_command_continue.c_str());
 
 
-    page6_button6_label = getOptionToString("page6_button2_label");
-    page6_button6_command_once = getOptionToString("page6_button2_command_once");
+    page6_button2_label = getOptionToString("page6_button2_label");
+    page6_button2_command_once = getOptionToString("page6_button2_command_once");
     page6_button2_command_continue = getOptionToString("page6_button2_command_continue");
     Page6_Button2LabelCmd = XPLMFindCommand(page2_button6_label.c_str());
     Page6_Button2CommandOnceCmd = XPLMFindCommand(page6_button2_command_once.c_str());

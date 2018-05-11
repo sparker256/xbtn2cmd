@@ -7,11 +7,11 @@
 //     A plugin to create a window of buttons in VR
 //     that can be mapped to commands.
 //
-//     Supporting  X-Plane 11.20r3+
+//     Supporting  X-Plane 11.20r4+
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.11 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.12 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -440,8 +440,6 @@ PLUGIN_API int XPluginStart(
     XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Reload Window", (void *)"Menu Item 3", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
     XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Recreate Window", (void *)"Menu Item 4", 1);
-    XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Hide Window", (void *)"Menu Item 5", 1);
 
     // Changed your mind? You can destroy the submenu you created with XPLMDestroyMenu(),
     // then remove the "Sample Menu" item from the "Plugins" menu with XPLMRemoveMenuItem().
@@ -504,17 +502,16 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         // so that VR will actually be available.
         // if(!xcvr_g_window && inMsg == XPLM_MSG_SCENERY_LOADED)
 
-
         if(inMsg == XPLM_MSG_SCENERY_LOADED)
         {
+            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
             xb2cvr_create_gui_window();
             process_read_ini_file();
             if (first_time == 0) {
+                XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED   XPLMSetWindowIsVisible(xb2cvr_g_window,0);\n");
                 XPLMSetWindowIsVisible(xb2cvr_g_window,0);
                 first_time = 1;
             }
-
-            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
         }
     }
 }
@@ -582,6 +579,7 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     {
         process_read_ini_file();
         if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
+            XPLMDebugString("Xbtn2cmd: Hide from Menu Toggle Window\n");
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
         else {
@@ -618,14 +616,11 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
         mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
     }
-    else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
-    {
-        XPLMSetWindowIsVisible(xb2cvr_g_window,0);
-    }
 }
 
 void Xbtn2hide_window()
 {
+    XPLMDebugString("Xbtn2cmd: Hide from GUI Hide Button\n");
     XPLMSetWindowIsVisible(xb2cvr_g_window,0);
 }
 
@@ -642,6 +637,7 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
         switch((intptr_t)inRefcon){
         case TOGGLE_WINDOW_COMMAND:
             if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
+                XPLMDebugString("Xbtn2cmd: Hide from Command Toggle Window\n");
                 XPLMSetWindowIsVisible(xb2cvr_g_window,0);
             }
             else {
@@ -677,6 +673,5 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
             break;
         }
     }
-
     return 1;
 }
