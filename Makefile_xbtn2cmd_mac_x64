@@ -1,0 +1,50 @@
+# This makefile has been modified to accept
+# external environment variables
+
+
+OS ?= MACOSX
+
+
+ifeq ($(OS), MACOSX)
+CC ?= gcc-4.2
+DEFINES += -DAPL=1 -DIBM=0 -DLIN=0 -DXPLM200 -DXPLM210 -DXPLM300 -DXPLM301
+SDK ?= /Developer/SDKs/MacOSX10.5.sdk
+#ARCH = -arch i386 -mmacosx-version-min=10.5
+ARCH ?= -arch i386 -arch x86_64 -mmacosx-version-min=10.5
+INC += -I../SDK/CHeaders/XPLM
+INC += -I../SDK/CHeaders/Widgets
+#INC += -Ihidapi/hidapi
+CFLAGS += -Wall -O2 $(ARCH) -D$(OS) -isysroot $(SDK) $(INC) -fvisibility=hidden
+LDFLAGS += $(ARCH) -isysroot $(SDK)
+LDDYNFLAGS += -bundle -undefined dynamic_lookup -single_module
+LIBS += -framework IOKit -framework CoreFoundation -framework OpenGL
+TARGET ?= mac.xpl
+endif
+
+
+all:Xbtn2cmd.xpl
+
+OBJS = Xbtn2cmd.o gui_window.o inireader.o readinifile.o
+
+
+Xbtn2cmd.xpl: $(OBJS)
+	$(CC) $(LDFLAGS) $(LDDYNFLAGS) $(OBJS) -o Xbtn2cmd.xpl $(LIBS)
+	cp Xbtn2cmd.xpl $(TARGET)
+
+Xbtn2cmd.o: src/Xbtn2cmd.cpp
+	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o Xbtn2cmd.o src/Xbtn2cmd.cpp
+
+gui_window.o: src/gui_window.cpp
+	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o gui_window.o src/gui_window.cpp
+
+
+inireader.o: src/inireader.cpp
+	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o inireader.o src/inireader.cpp
+
+
+readinifile.o: src/readinifile.cpp
+	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o readinifile.o src/readinifile.cpp
+
+
+clean:
+	rm -f *.o Xbtn2cmd.xpl
