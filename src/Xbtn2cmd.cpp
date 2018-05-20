@@ -508,7 +508,6 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
             xb2cvr_create_gui_window();
             process_read_ini_file();
             if (first_time == 0) {
-                XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED   XPLMSetWindowIsVisible(xb2cvr_g_window,0);\n");
                 XPLMSetWindowIsVisible(xb2cvr_g_window,0);
                 first_time = 1;
             }
@@ -579,7 +578,6 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     {
         process_read_ini_file();
         if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
-            XPLMDebugString("Xbtn2cmd: Hide from Menu Toggle Window\n");
             XPLMSetWindowIsVisible(xb2cvr_g_window,0);
         }
         else {
@@ -620,7 +618,6 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 
 void Xbtn2hide_window()
 {
-    XPLMDebugString("Xbtn2cmd: Hide from GUI Hide Button\n");
     XPLMSetWindowIsVisible(xb2cvr_g_window,0);
 }
 
@@ -637,7 +634,6 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
         switch((intptr_t)inRefcon){
         case TOGGLE_WINDOW_COMMAND:
             if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
-                XPLMDebugString("Xbtn2cmd: Hide from Command Toggle Window\n");
                 XPLMSetWindowIsVisible(xb2cvr_g_window,0);
             }
             else {
