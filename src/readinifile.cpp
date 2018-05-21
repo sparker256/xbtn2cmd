@@ -96,6 +96,7 @@ void process_read_ini_file()
     std::size_t pos1 = xpsini_aircraft_name.find(".acf");
     xpsini_aircraft_name = xpsini_aircraft_name.substr(0, pos1);
 
+    /*
     #if APL && __MACH__
         std::string mac_converted_path = convert_Mac_Path(xpsini_path_name);
         XPLMDebugString("\nXbtn2cmd: mac_converted_path is \n");
@@ -104,6 +105,7 @@ void process_read_ini_file()
         //mac_converted_path = "./Aircraft/General Aviation/KingAir C90B/";
         xpsini_path_name = mac_converted_path;
     #endif
+    */
 
     std::string xpsini_path_name1 = xpsini_path_name;
 

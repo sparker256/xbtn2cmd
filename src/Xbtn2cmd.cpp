@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.12 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.13 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -417,6 +417,8 @@ PLUGIN_API int XPluginStart(
     strcpy(outName, "Xbtn2cmd: ver " VERSION_NUMBER);
     strcpy(outSig, "sparker.example.xbtn2cmdplugin");
     strcpy(outDesc, "A plug-in that demonstrates a window of buttons in VR than can be mapped to commands.");
+
+    XPLMEnableFeature("XPLM_USE_NATIVE_PATHS", 1);
 
 	// NOTE: We do *not* create the window here, because our plugin initialization
 	//       happens *before* VR gets initialized. So, the sim will *always* report
