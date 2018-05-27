@@ -128,6 +128,7 @@ void process_read_ini_file()
 
         parseIniFile(&parse_ini_path_name[0]);
         found_file = 1;
+        xbtn2cmdini_path_name = &parse_ini_path_name[0];
 
     } else if (!ifile) {
         std::vector<char> parse_ini_path_name1(xpsini_path_name1.size() + 1);
@@ -141,6 +142,7 @@ void process_read_ini_file()
 
             parseIniFile(&parse_ini_path_name1[0]);
             found_file = 1;
+            xbtn2cmdini_path_name = &parse_ini_path_name1[0];
 
         }
         if (found_file == 0) {
@@ -156,6 +158,7 @@ void process_read_ini_file()
                 XPLMDebugString("\n");
 
                 parseIniFile(iniDefaultPluginPath);
+                xbtn2cmdini_path_name = iniDefaultPluginPath;
             }
        } else {
            return;

@@ -1181,62 +1181,127 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button1_lbrt)) {
                 mouse_down[0] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[0];
-                    XPLMCommandOnce(Page1_Button1CommandOnceCmd);
-                    if (Page1_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button1CommandContinueCmd);
-                        Page1_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[0];
+                        XPLMCommandOnce(Page1_Button1CommandOnceCmd);
+                        if (Page1_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button1CommandContinueCmd);
+                            Page1_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button1_label =";
+                        search_current_page_button_command_once = "page1_button1_command_once =";
+                        search_current_page_button_command_continue = "page1_button1_command_continue =";
+                        populate_edit_window();
                     }
+
                 } else if (page_number == 2) {
-                    page2_mouse_down[0];
-                    XPLMCommandOnce(Page2_Button1CommandOnceCmd);
-                    if (Page2_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button1CommandContinueCmd);
-                        Page2_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[0];
+                        XPLMCommandOnce(Page2_Button1CommandOnceCmd);
+                        if (Page2_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button1CommandContinueCmd);
+                            Page2_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button1_label =";
+                        search_current_page_button_command_once = "page2_button1_command_once =";
+                        search_current_page_button_command_continue = "page2_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[0];
-                    XPLMCommandOnce(Page3_Button1CommandOnceCmd);
-                    if (Page3_Button1ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button1CommandContinueCmd);
-                        Page3_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[0];
+                        XPLMCommandOnce(Page3_Button1CommandOnceCmd);
+                        if (Page3_Button1ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button1CommandContinueCmd);
+                            Page3_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button1_label =";
+                        search_current_page_button_command_once = "page3_button1_command_once =";
+                        search_current_page_button_command_continue = "page3_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[0];
-                    XPLMCommandOnce(Page4_Button1CommandOnceCmd);
-                    if (Page4_Button1ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button1CommandContinueCmd);
-                        Page4_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[0];
+                        XPLMCommandOnce(Page4_Button1CommandOnceCmd);
+                        if (Page4_Button1ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button1CommandContinueCmd);
+                            Page4_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button1_label =";
+                        search_current_page_button_command_once = "page4_button1_command_once =";
+                        search_current_page_button_command_continue = "page4_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[0];
-                    XPLMCommandOnce(Page5_Button1CommandOnceCmd);
-                    if (Page2_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button1CommandContinueCmd);
-                        Page5_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[0];
+                        XPLMCommandOnce(Page5_Button1CommandOnceCmd);
+                        if (Page2_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button1CommandContinueCmd);
+                            Page5_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button1_label =";
+                        search_current_page_button_command_once = "page5_button1_command_once =";
+                        search_current_page_button_command_continue = "page5_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[0];
-                    XPLMCommandOnce(Page6_Button1CommandOnceCmd);
-                    if (Page6_Button1ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button1CommandContinueCmd);
-                        Page6_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[0];
+                        XPLMCommandOnce(Page6_Button1CommandOnceCmd);
+                        if (Page6_Button1ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button1CommandContinueCmd);
+                            Page6_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button1_label =";
+                        search_current_page_button_command_once = "page6_button1_command_once =";
+                        search_current_page_button_command_continue = "page6_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[0];
-                    XPLMCommandOnce(Page7_Button1CommandOnceCmd);
-                    if (Page7_Button1ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button1CommandContinueCmd);
-                        Page7_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[0];
+                        XPLMCommandOnce(Page7_Button1CommandOnceCmd);
+                        if (Page7_Button1ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button1CommandContinueCmd);
+                            Page7_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button1_label =";
+                        search_current_page_button_command_once = "page7_button1_command_once =";
+                        search_current_page_button_command_continue = "page7_button1_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[0];
-                    XPLMCommandOnce(Page8_Button1CommandOnceCmd);
-                    if (Page8_Button1ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button1CommandContinueCmd);
-                        Page8_Button1ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[0];
+                        XPLMCommandOnce(Page8_Button1CommandOnceCmd);
+                        if (Page8_Button1ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button1CommandContinueCmd);
+                            Page8_Button1ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button1_label =";
+                        search_current_page_button_command_once = "page8_button1_command_once =";
+                        search_current_page_button_command_continue = "page8_button1_command_continue =";
+                        populate_edit_window();
                     }
-                }
+                 }
             }
 
 
@@ -1244,126 +1309,252 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[1] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[1];
-                    XPLMCommandOnce(Page1_Button2CommandOnceCmd);
-                    if (Page1_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button2CommandContinueCmd);
-                        Page1_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[1];
+                        XPLMCommandOnce(Page1_Button2CommandOnceCmd);
+                        if (Page1_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button2CommandContinueCmd);
+                            Page1_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button2_label =";
+                        search_current_page_button_command_once = "page1_button2_command_once =";
+                        search_current_page_button_command_continue = "page1_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[1];
-                    XPLMCommandOnce(Page2_Button2CommandOnceCmd);
-                    if (Page2_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button2CommandContinueCmd);
-                        Page2_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[1];
+                        XPLMCommandOnce(Page2_Button2CommandOnceCmd);
+                        if (Page2_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button2CommandContinueCmd);
+                            Page2_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button2_label =";
+                        search_current_page_button_command_once = "page2_button2_command_once =";
+                        search_current_page_button_command_continue = "page2_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[1];
-                    XPLMCommandOnce(Page3_Button2CommandOnceCmd);
-                    if (Page3_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button2CommandContinueCmd);
-                        Page3_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[1];
+                        XPLMCommandOnce(Page3_Button2CommandOnceCmd);
+                        if (Page3_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button2CommandContinueCmd);
+                            Page3_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button2_label =";
+                        search_current_page_button_command_once = "page3_button2_command_once =";
+                        search_current_page_button_command_continue = "page3_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[1];
-                    XPLMCommandOnce(Page4_Button2CommandOnceCmd);
-                    if (Page4_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button2CommandContinueCmd);
-                        Page4_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[1];
+                        XPLMCommandOnce(Page4_Button2CommandOnceCmd);
+                        if (Page4_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button2CommandContinueCmd);
+                            Page4_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button2_label =";
+                        search_current_page_button_command_once = "page4_button2_command_once =";
+                        search_current_page_button_command_continue = "page4_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[1];
-                    XPLMCommandOnce(Page5_Button2CommandOnceCmd);
-                    if (Page5_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button2CommandContinueCmd);
-                        Page5_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[1];
+                        XPLMCommandOnce(Page5_Button2CommandOnceCmd);
+                        if (Page5_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button2CommandContinueCmd);
+                            Page5_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button2_label =";
+                        search_current_page_button_command_once = "page5_button2_command_once =";
+                        search_current_page_button_command_continue = "page5_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[1];
-                    XPLMCommandOnce(Page6_Button2CommandOnceCmd);
-                    if (Page6_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button2CommandContinueCmd);
-                        Page6_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[1];
+                        XPLMCommandOnce(Page6_Button2CommandOnceCmd);
+                        if (Page6_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button2CommandContinueCmd);
+                            Page6_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button2_label =";
+                        search_current_page_button_command_once = "page6_button2_command_once =";
+                        search_current_page_button_command_continue = "page6_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[1];
-                    XPLMCommandOnce(Page7_Button2CommandOnceCmd);
-                    if (Page7_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button2CommandContinueCmd);
-                        Page7_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[1];
+                        XPLMCommandOnce(Page7_Button2CommandOnceCmd);
+                        if (Page7_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button2CommandContinueCmd);
+                            Page7_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button2_label =";
+                        search_current_page_button_command_once = "page7_button2_command_once =";
+                        search_current_page_button_command_continue = "page7_button2_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[1];
-                    XPLMCommandOnce(Page8_Button2CommandOnceCmd);
-                    if (Page8_Button2ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button2CommandContinueCmd);
-                        Page8_Button2ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[1];
+                        XPLMCommandOnce(Page8_Button2CommandOnceCmd);
+                        if (Page8_Button2ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button2CommandContinueCmd);
+                            Page8_Button2ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button2_label =";
+                        search_current_page_button_command_once = "page8_button2_command_once =";
+                        search_current_page_button_command_continue = "page8_button2_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
-
-
-
 
 
             else if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button3_lbrt))
             {
                 mouse_down[2] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[2];
-                    XPLMCommandOnce(Page1_Button3CommandOnceCmd);
-                    if (Page1_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button3CommandContinueCmd);
-                        Page1_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[2];
+                        XPLMCommandOnce(Page1_Button3CommandOnceCmd);
+                        if (Page1_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button3CommandContinueCmd);
+                            Page1_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button3_label =";
+                        search_current_page_button_command_once = "page1_button3_command_once =";
+                        search_current_page_button_command_continue = "page1_button3_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[2];
-                    XPLMCommandOnce(Page2_Button3CommandOnceCmd);
-                    if (Page2_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button3CommandContinueCmd);
-                        Page2_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[2];
+                        XPLMCommandOnce(Page2_Button3CommandOnceCmd);
+                        if (Page2_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button3CommandContinueCmd);
+                            Page2_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button3_label =";
+                        search_current_page_button_command_once = "page2_button3_command_once =";
+                        search_current_page_button_command_continue = "page2_button3_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[2];
-                    XPLMCommandOnce(Page3_Button3CommandOnceCmd);
-                    if (Page3_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button3CommandContinueCmd);
-                        Page3_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[2];
+                        XPLMCommandOnce(Page3_Button3CommandOnceCmd);
+                        if (Page3_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button3CommandContinueCmd);
+                            Page3_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button3_label =";
+                        search_current_page_button_command_once = "page3_button3_command_once =";
+                        search_current_page_button_command_continue = "page3_button3_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                   page4_mouse_down[2];
-                    XPLMCommandOnce(Page4_Button3CommandOnceCmd);
-                    if (Page4_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button3CommandContinueCmd);
-                        Page4_Button3ContinueMode = 1;
-                    }
+                   if (!edit_mode) {
+                       page4_mouse_down[2];
+                       XPLMCommandOnce(Page4_Button3CommandOnceCmd);
+                       if (Page4_Button3ContinueMode < 1) {
+                           XPLMCommandBegin(Page4_Button3CommandContinueCmd);
+                           Page4_Button3ContinueMode = 1;
+                       }
+                   } else {
+                       search_current_page_label = "page4_button_label =";
+                       search_current_page_button_label = "page4_button3_label =";
+                       search_current_page_button_command_once = "page4_button3_command_once =";
+                       search_current_page_button_command_continue = "page4_button3_command_continue =";
+                       populate_edit_window();
+                   }
                 } else if (page_number == 5) {
-                    page5_mouse_down[2];
-                    XPLMCommandOnce(Page5_Button3CommandOnceCmd);
-                    if (Page5_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button3CommandContinueCmd);
-                        Page5_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[2];
+                        XPLMCommandOnce(Page5_Button3CommandOnceCmd);
+                        if (Page5_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button3CommandContinueCmd);
+                            Page5_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button3_label =";
+                        search_current_page_button_command_once = "page5_button3_command_once =";
+                        search_current_page_button_command_continue = "page5_button3_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[2];
-                    XPLMCommandOnce(Page6_Button3CommandOnceCmd);
-                    if (Page6_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button3CommandContinueCmd);
-                        Page6_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[2];
+                        XPLMCommandOnce(Page6_Button3CommandOnceCmd);
+                        if (Page6_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button3CommandContinueCmd);
+                            Page6_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button3_label =";
+                        search_current_page_button_command_once = "page6_button3_command_once =";
+                        search_current_page_button_command_continue = "page6_button3_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                   page7_mouse_down[2];
-                    XPLMCommandOnce(Page7_Button3CommandOnceCmd);
-                    if (Page7_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button3CommandContinueCmd);
-                        Page7_Button3ContinueMode = 1;
-                    }
+                   if (!edit_mode) {
+                       page7_mouse_down[2];
+                       XPLMCommandOnce(Page7_Button3CommandOnceCmd);
+                       if (Page7_Button3ContinueMode < 1) {
+                           XPLMCommandBegin(Page7_Button3CommandContinueCmd);
+                           Page7_Button3ContinueMode = 1;
+                       }
+                   } else {
+                       search_current_page_label = "page7_button_label =";
+                       search_current_page_button_label = "page7_button3_label =";
+                       search_current_page_button_command_once = "page7_button3_command_once =";
+                       search_current_page_button_command_continue = "page7_button3_command_continue =";
+                       populate_edit_window();
+                   }
+
                 } else if (page_number == 8) {
-                   page8_mouse_down[2];
-                    XPLMCommandOnce(Page8_Button3CommandOnceCmd);
-                    if (Page8_Button3ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button3CommandContinueCmd);
-                        Page8_Button3ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[2];
+                        XPLMCommandOnce(Page8_Button3CommandOnceCmd);
+                        if (Page8_Button3ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button3CommandContinueCmd);
+                            Page8_Button3ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button3_label =";
+                        search_current_page_button_command_once = "page8_button3_command_once =";
+                        search_current_page_button_command_continue = "page8_button3_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1373,60 +1564,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[3] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[3];
-                    XPLMCommandOnce(Page1_Button4CommandOnceCmd);
-                    if (Page1_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button4CommandContinueCmd);
-                        Page1_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[3];
+                        XPLMCommandOnce(Page1_Button4CommandOnceCmd);
+                        if (Page1_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button4CommandContinueCmd);
+                            Page1_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button4_label =";
+                        search_current_page_button_command_once = "page1_button4_command_once =";
+                        search_current_page_button_command_continue = "page1_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[3];
-                    XPLMCommandOnce(Page2_Button4CommandOnceCmd);
-                    if (Page2_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button4CommandContinueCmd);
-                        Page2_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[3];
+                        XPLMCommandOnce(Page2_Button4CommandOnceCmd);
+                        if (Page2_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button4CommandContinueCmd);
+                            Page2_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button4_label =";
+                        search_current_page_button_command_once = "page2_button4_command_once =";
+                        search_current_page_button_command_continue = "page2_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[3];
-                    XPLMCommandOnce(Page3_Button4CommandOnceCmd);
-                    if (Page3_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button4CommandContinueCmd);
-                        Page3_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[3];
+                        XPLMCommandOnce(Page3_Button4CommandOnceCmd);
+                        if (Page3_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button4CommandContinueCmd);
+                            Page3_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button4_label =";
+                        search_current_page_button_command_once = "page3_button4_command_once =";
+                        search_current_page_button_command_continue = "page3_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[3];
-                    XPLMCommandOnce(Page4_Button4CommandOnceCmd);
-                    if (Page4_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button4CommandContinueCmd);
-                        Page4_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[3];
+                        XPLMCommandOnce(Page4_Button4CommandOnceCmd);
+                        if (Page4_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button4CommandContinueCmd);
+                            Page4_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button4_label =";
+                        search_current_page_button_command_once = "page4_button4_command_once =";
+                        search_current_page_button_command_continue = "page4_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[3];
-                    XPLMCommandOnce(Page5_Button4CommandOnceCmd);
-                    if (Page5_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button4CommandContinueCmd);
-                        Page5_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[3];
+                        XPLMCommandOnce(Page5_Button4CommandOnceCmd);
+                        if (Page5_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button4CommandContinueCmd);
+                            Page5_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button4_label =";
+                        search_current_page_button_command_once = "page5_button4_command_once =";
+                        search_current_page_button_command_continue = "page5_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[3];
-                    XPLMCommandOnce(Page6_Button4CommandOnceCmd);
-                    if (Page6_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button4CommandContinueCmd);
-                        Page6_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[3];
+                        XPLMCommandOnce(Page6_Button4CommandOnceCmd);
+                        if (Page6_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button4CommandContinueCmd);
+                            Page6_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button4_label =";
+                        search_current_page_button_command_once = "page6_button4_command_once =";
+                        search_current_page_button_command_continue = "page6_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[3];
-                    XPLMCommandOnce(Page7_Button4CommandOnceCmd);
-                    if (Page7_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button4CommandContinueCmd);
-                        Page7_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[3];
+                        XPLMCommandOnce(Page7_Button4CommandOnceCmd);
+                        if (Page7_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button4CommandContinueCmd);
+                            Page7_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button4_label =";
+                        search_current_page_button_command_once = "page7_button4_command_once =";
+                        search_current_page_button_command_continue = "page7_button4_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[3];
-                    XPLMCommandOnce(Page8_Button4CommandOnceCmd);
-                    if (Page8_Button4ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button4CommandContinueCmd);
-                        Page8_Button4ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[3];
+                        XPLMCommandOnce(Page8_Button4CommandOnceCmd);
+                        if (Page8_Button4ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button4CommandContinueCmd);
+                            Page8_Button4ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button4_label =";
+                        search_current_page_button_command_once = "page8_button4_command_once =";
+                        search_current_page_button_command_continue = "page8_button4_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1436,60 +1691,125 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[4] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[4];
-                    XPLMCommandOnce(Page1_Button5CommandOnceCmd);
-                    if (Page1_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button5CommandContinueCmd);
-                        Page1_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[4];
+                        XPLMCommandOnce(Page1_Button5CommandOnceCmd);
+                        if (Page1_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button5CommandContinueCmd);
+                            Page1_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button5_label =";
+                        search_current_page_button_command_once = "page1_button5_command_once =";
+                        search_current_page_button_command_continue = "page1_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[4];
-                    XPLMCommandOnce(Page2_Button5CommandOnceCmd);
-                    if (Page2_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button5CommandContinueCmd);
-                        Page2_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[4];
+                        XPLMCommandOnce(Page2_Button5CommandOnceCmd);
+                        if (Page2_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button5CommandContinueCmd);
+                            Page2_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button5_label =";
+                        search_current_page_button_command_once = "page2_button5_command_once =";
+                        search_current_page_button_command_continue = "page2_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[4];
-                    XPLMCommandOnce(Page3_Button5CommandOnceCmd);
-                    if (Page3_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button5CommandContinueCmd);
-                        Page3_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[4];
+                        XPLMCommandOnce(Page3_Button5CommandOnceCmd);
+                        if (Page3_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button5CommandContinueCmd);
+                            Page3_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button5_label =";
+                        search_current_page_button_command_once = "page3_button5_command_once =";
+                        search_current_page_button_command_continue = "page3_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[4];
-                    XPLMCommandOnce(Page4_Button5CommandOnceCmd);
-                    if (Page4_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button5CommandContinueCmd);
-                        Page4_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[4];
+                        XPLMCommandOnce(Page4_Button5CommandOnceCmd);
+                        if (Page4_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button5CommandContinueCmd);
+                            Page4_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button5_label =";
+                        search_current_page_button_command_once = "page4_button5_command_once =";
+                        search_current_page_button_command_continue = "page4_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[4];
-                    XPLMCommandOnce(Page5_Button5CommandOnceCmd);
-                    if (Page5_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button5CommandContinueCmd);
-                        Page5_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[4];
+                        XPLMCommandOnce(Page5_Button5CommandOnceCmd);
+                        if (Page5_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button5CommandContinueCmd);
+                            Page5_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button5_label =";
+                        search_current_page_button_command_once = "page5_button5_command_once =";
+                        search_current_page_button_command_continue = "page5_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[4];
-                    XPLMCommandOnce(Page6_Button5CommandOnceCmd);
-                    if (Page6_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button5CommandContinueCmd);
-                        Page6_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[4];
+                        XPLMCommandOnce(Page6_Button5CommandOnceCmd);
+                        if (Page6_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button5CommandContinueCmd);
+                            Page6_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button5_label =";
+                        search_current_page_button_command_once = "page6_button5_command_once =";
+                        search_current_page_button_command_continue = "page6_button5_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[4];
-                    XPLMCommandOnce(Page7_Button5CommandOnceCmd);
-                    if (Page7_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button5CommandContinueCmd);
-                        Page7_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[4];
+                        XPLMCommandOnce(Page7_Button5CommandOnceCmd);
+                        if (Page7_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button5CommandContinueCmd);
+                            Page7_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button5_label =";
+                        search_current_page_button_command_once = "page7_button5_command_once =";
+                        search_current_page_button_command_continue = "page7_button5_command_continue =";
+                        populate_edit_window();
                     }
+
                 } else if (page_number == 8) {
-                    page8_mouse_down[4];
-                    XPLMCommandOnce(Page8_Button5CommandOnceCmd);
-                    if (Page8_Button5ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button5CommandContinueCmd);
-                        Page8_Button5ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[4];
+                        XPLMCommandOnce(Page8_Button5CommandOnceCmd);
+                        if (Page8_Button5ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button5CommandContinueCmd);
+                            Page8_Button5ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button5_label =";
+                        search_current_page_button_command_once = "page8_button5_command_once =";
+                        search_current_page_button_command_continue = "page8_button5_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1499,60 +1819,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[5] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[5];
-                    XPLMCommandOnce(Page1_Button6CommandOnceCmd);
-                    if (Page1_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button6CommandContinueCmd);
-                        Page1_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[5];
+                        XPLMCommandOnce(Page1_Button6CommandOnceCmd);
+                        if (Page1_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button6CommandContinueCmd);
+                            Page1_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button6_label =";
+                        search_current_page_button_command_once = "page1_button6_command_once =";
+                        search_current_page_button_command_continue = "page1_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[5];
-                    XPLMCommandOnce(Page2_Button6CommandOnceCmd);
-                    if (Page2_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button6CommandContinueCmd);
-                        Page2_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[5];
+                        XPLMCommandOnce(Page2_Button6CommandOnceCmd);
+                        if (Page2_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button6CommandContinueCmd);
+                            Page2_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button6_label =";
+                        search_current_page_button_command_once = "page2_button6_command_once =";
+                        search_current_page_button_command_continue = "page2_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[5];
-                    XPLMCommandOnce(Page3_Button6CommandOnceCmd);
-                    if (Page3_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button6CommandContinueCmd);
-                        Page3_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[5];
+                        XPLMCommandOnce(Page3_Button6CommandOnceCmd);
+                        if (Page3_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button6CommandContinueCmd);
+                            Page3_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button6_label =";
+                        search_current_page_button_command_once = "page3_button6_command_once =";
+                        search_current_page_button_command_continue = "page3_button6_command_continue =";
+                        populate_edit_window();
                     }
-                } else if (page_number == 4) {
-                    page4_mouse_down[5];
-                    XPLMCommandOnce(Page4_Button6CommandOnceCmd);
-                    if (Page4_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button6CommandContinueCmd);
-                        Page4_Button6ContinueMode = 1;
+                 } else if (page_number == 4) {
+                    if (!edit_mode) {
+                        page4_mouse_down[5];
+                        XPLMCommandOnce(Page4_Button6CommandOnceCmd);
+                        if (Page4_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button6CommandContinueCmd);
+                            Page4_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button6_label =";
+                        search_current_page_button_command_once = "page4_button6_command_once =";
+                        search_current_page_button_command_continue = "page4_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[5];
-                    XPLMCommandOnce(Page5_Button6CommandOnceCmd);
-                    if (Page5_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button6CommandContinueCmd);
-                        Page5_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[5];
+                        XPLMCommandOnce(Page5_Button6CommandOnceCmd);
+                        if (Page5_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button6CommandContinueCmd);
+                            Page5_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button6_label =";
+                        search_current_page_button_command_once = "page5_button6_command_once =";
+                        search_current_page_button_command_continue = "page5_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[5];
-                    XPLMCommandOnce(Page6_Button6CommandOnceCmd);
-                    if (Page6_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button6CommandContinueCmd);
-                        Page6_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[5];
+                        XPLMCommandOnce(Page6_Button6CommandOnceCmd);
+                        if (Page6_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button6CommandContinueCmd);
+                            Page6_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button6_label -";
+                        search_current_page_button_command_once= "page6_button6_command_once =";
+                        search_current_page_button_command_continue = "page6_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[5];
-                    XPLMCommandOnce(Page7_Button6CommandOnceCmd);
-                    if (Page7_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button6CommandContinueCmd);
-                        Page7_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[5];
+                        XPLMCommandOnce(Page7_Button6CommandOnceCmd);
+                        if (Page7_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button6CommandContinueCmd);
+                            Page7_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button6_label =";
+                        search_current_page_button_command_once = "page7_button6_command_once =";
+                        search_current_page_button_command_continue = "page7_button6_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[5];
-                    XPLMCommandOnce(Page8_Button6CommandOnceCmd);
-                    if (Page8_Button6ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button6CommandContinueCmd);
-                        Page8_Button6ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[5];
+                        XPLMCommandOnce(Page8_Button6CommandOnceCmd);
+                        if (Page8_Button6ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button6CommandContinueCmd);
+                            Page8_Button6ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button6_label =";
+                        search_current_page_button_command_once = "page8_button6_command_once =";
+                        search_current_page_button_command_continue = "page8_button6_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1562,60 +1946,127 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[6] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[6];
-                    XPLMCommandOnce(Page1_Button7CommandOnceCmd);
-                    if (Page1_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button7CommandContinueCmd);
-                        Page1_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[6];
+                        XPLMCommandOnce(Page1_Button7CommandOnceCmd);
+                        if (Page1_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button7CommandContinueCmd);
+                            Page1_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button7_label =";
+                        search_current_page_button_command_once = "page1_button7_command_once =";
+                        search_current_page_button_command_continue = "page1_button7_command_continue =";
+                        populate_edit_window();
                     }
+
                 } else if (page_number == 2) {
-                    page2_mouse_down[6];
-                    XPLMCommandOnce(Page2_Button7CommandOnceCmd);
-                    if (Page2_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button7CommandContinueCmd);
-                        Page2_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[6];
+                        XPLMCommandOnce(Page2_Button7CommandOnceCmd);
+                        if (Page2_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button7CommandContinueCmd);
+                            Page2_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button7_label =";
+                        search_current_page_button_command_once = "page2_button7_command_once =";
+                        search_current_page_button_command_continue = "page2_button7_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[6];
-                    XPLMCommandOnce(Page3_Button7CommandOnceCmd);
-                    if (Page3_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button7CommandContinueCmd);
-                        Page3_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[6];
+                        XPLMCommandOnce(Page3_Button7CommandOnceCmd);
+                        if (Page3_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button7CommandContinueCmd);
+                            Page3_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button7_label =";
+                        search_current_page_button_command_once = "page3_button7_command_once =";
+                        search_current_page_button_command_continue = "page3_button7_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[6];
-                    XPLMCommandOnce(Page4_Button7CommandOnceCmd);
-                    if (Page4_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button7CommandContinueCmd);
-                        Page4_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[6];
+                        XPLMCommandOnce(Page4_Button7CommandOnceCmd);
+                        if (Page4_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button7CommandContinueCmd);
+                            Page4_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button7_label =";
+                        search_current_page_button_command_once = "page4_button7_command_once =";
+                        search_current_page_button_command_continue = "page4_button7_command_continue =";
+                        populate_edit_window();
                     }
+
                 } else if (page_number == 5) {
-                    page5_mouse_down[6];
-                    XPLMCommandOnce(Page5_Button7CommandOnceCmd);
-                    if (Page5_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button7CommandContinueCmd);
-                        Page5_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[6];
+                        XPLMCommandOnce(Page5_Button7CommandOnceCmd);
+                        if (Page5_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button7CommandContinueCmd);
+                            Page5_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button7_label =";
+                        search_current_page_button_command_once = "page5_button7_command_once =";
+                        search_current_page_button_command_continue = "page5_button7_command_continue =";
+                        populate_edit_window();
                     }
+
                 } else if (page_number == 6) {
-                    page6_mouse_down[6];
-                    XPLMCommandOnce(Page6_Button7CommandOnceCmd);
-                    if (Page6_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button7CommandContinueCmd);
-                        Page6_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[6];
+                        XPLMCommandOnce(Page6_Button7CommandOnceCmd);
+                        if (Page6_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button7CommandContinueCmd);
+                            Page6_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button7_label =";
+                        search_current_page_button_command_once = "page6_button7_command_once =";
+                        search_current_page_button_command_continue = "page6_button7_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[6];
-                    XPLMCommandOnce(Page7_Button7CommandOnceCmd);
-                    if (Page7_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button7CommandContinueCmd);
-                        Page7_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[6];
+                        XPLMCommandOnce(Page7_Button7CommandOnceCmd);
+                        if (Page7_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button7CommandContinueCmd);
+                            Page7_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button7_label =";
+                        search_current_page_button_command_once = "page7_button7_command_once =";
+                        search_current_page_button_command_continue = "page7_button7_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[6];
-                    XPLMCommandOnce(Page8_Button7CommandOnceCmd);
-                    if (Page8_Button7ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button7CommandContinueCmd);
-                        Page8_Button7ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[6];
+                        XPLMCommandOnce(Page8_Button7CommandOnceCmd);
+                        if (Page8_Button7ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button7CommandContinueCmd);
+                            Page8_Button7ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button7_label =";
+                        search_current_page_button_command_once = "page8_button7_command_once =";
+                        search_current_page_button_command_continue = "page8_button7_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1625,60 +2076,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[7] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[7];
-                    XPLMCommandOnce(Page1_Button8CommandOnceCmd);
-                    if (Page1_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button8CommandContinueCmd);
-                        Page1_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[7];
+                        XPLMCommandOnce(Page1_Button8CommandOnceCmd);
+                        if (Page1_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button8CommandContinueCmd);
+                            Page1_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button8_label =";
+                        search_current_page_button_command_once = "page1_button8_command_once =";
+                        search_current_page_button_command_continue = "page1_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[7];
-                    XPLMCommandOnce(Page2_Button8CommandOnceCmd);
-                    if (Page2_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button8CommandContinueCmd);
-                        Page2_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[7];
+                        XPLMCommandOnce(Page2_Button8CommandOnceCmd);
+                        if (Page2_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button8CommandContinueCmd);
+                            Page2_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button8_label =";
+                        search_current_page_button_command_once = "page2_button8_command_once =";
+                        search_current_page_button_command_continue = "page2_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[7];
-                    XPLMCommandOnce(Page3_Button8CommandOnceCmd);
-                    if (Page3_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button8CommandContinueCmd);
-                        Page3_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[7];
+                        XPLMCommandOnce(Page3_Button8CommandOnceCmd);
+                        if (Page3_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button8CommandContinueCmd);
+                            Page3_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button8_label =";
+                        search_current_page_button_command_once = "page3_button8_command_once =";
+                        search_current_page_button_command_continue = "page3_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[7];
-                    XPLMCommandOnce(Page4_Button8CommandOnceCmd);
-                    if (Page4_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button8CommandContinueCmd);
-                        Page4_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[7];
+                        XPLMCommandOnce(Page4_Button8CommandOnceCmd);
+                        if (Page4_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button8CommandContinueCmd);
+                            Page4_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button8_label =";
+                        search_current_page_button_command_once = "page4_button8_command_once =";
+                        search_current_page_button_command_continue = "page4_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[7];
-                    XPLMCommandOnce(Page5_Button8CommandOnceCmd);
-                    if (Page5_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button8CommandContinueCmd);
-                        Page5_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[7];
+                        XPLMCommandOnce(Page5_Button8CommandOnceCmd);
+                        if (Page5_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button8CommandContinueCmd);
+                            Page5_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button8_label =";
+                        search_current_page_button_command_once = "page5_button8_command_once =";
+                        search_current_page_button_command_continue = "page5_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[7];
-                    XPLMCommandOnce(Page6_Button8CommandOnceCmd);
-                    if (Page6_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button8CommandContinueCmd);
-                        Page6_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[7];
+                        XPLMCommandOnce(Page6_Button8CommandOnceCmd);
+                        if (Page6_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button8CommandContinueCmd);
+                            Page6_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button8_label =";
+                        search_current_page_button_command_once = "page6_button8_command_once =";
+                        search_current_page_button_command_continue = "page6_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[7];
-                    XPLMCommandOnce(Page7_Button8CommandOnceCmd);
-                    if (Page7_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button8CommandContinueCmd);
-                        Page7_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[7];
+                        XPLMCommandOnce(Page7_Button8CommandOnceCmd);
+                        if (Page7_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button8CommandContinueCmd);
+                            Page7_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button8_label =";
+                        search_current_page_button_command_once = "page7_button8_command_once =";
+                        search_current_page_button_command_continue = "page7_button8_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[7];
-                    XPLMCommandOnce(Page8_Button8CommandOnceCmd);
-                    if (Page8_Button8ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button8CommandContinueCmd);
-                        Page8_Button8ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[7];
+                        XPLMCommandOnce(Page8_Button8CommandOnceCmd);
+                        if (Page8_Button8ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button8CommandContinueCmd);
+                            Page8_Button8ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button8_label =";
+                        search_current_page_button_command_once = "page8_button8_command_once =";
+                        search_current_page_button_command_continue = "page8_button8_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1688,60 +2203,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[8] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[8];
-                    XPLMCommandOnce(Page1_Button9CommandOnceCmd);
-                    if (Page1_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button9CommandContinueCmd);
-                        Page1_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[8];
+                        XPLMCommandOnce(Page1_Button9CommandOnceCmd);
+                        if (Page1_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button9CommandContinueCmd);
+                            Page1_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button9_label =";
+                        search_current_page_button_command_once = "page1_button9_command_once =";
+                        search_current_page_button_command_continue = "page1_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[8];
-                    XPLMCommandOnce(Page2_Button9CommandOnceCmd);
-                    if (Page2_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button9CommandContinueCmd);
-                        Page2_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[8];
+                        XPLMCommandOnce(Page2_Button9CommandOnceCmd);
+                        if (Page2_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button9CommandContinueCmd);
+                            Page2_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button9_label =";
+                        search_current_page_button_command_once = "page2_button9_command_once =";
+                        search_current_page_button_command_continue = "page2_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[8];
-                    XPLMCommandOnce(Page3_Button9CommandOnceCmd);
-                    if (Page3_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button9CommandContinueCmd);
-                        Page3_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[8];
+                        XPLMCommandOnce(Page3_Button9CommandOnceCmd);
+                        if (Page3_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button9CommandContinueCmd);
+                            Page3_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button9_label =";
+                        search_current_page_button_command_once = "page3_button9_command_once =";
+                        search_current_page_button_command_continue = "page3_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[8];
-                    XPLMCommandOnce(Page4_Button9CommandOnceCmd);
-                    if (Page4_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button9CommandContinueCmd);
-                        Page4_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[8];
+                        XPLMCommandOnce(Page4_Button9CommandOnceCmd);
+                        if (Page4_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button9CommandContinueCmd);
+                            Page4_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button9_label =";
+                        search_current_page_button_command_once = "page4_button9_command_once =";
+                        search_current_page_button_command_continue = "page4_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[8];
-                    XPLMCommandOnce(Page5_Button9CommandOnceCmd);
-                    if (Page5_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button9CommandContinueCmd);
-                        Page5_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[8];
+                        XPLMCommandOnce(Page5_Button9CommandOnceCmd);
+                        if (Page5_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button9CommandContinueCmd);
+                            Page5_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button9_label =";
+                        search_current_page_button_command_once = "page5_button9_command_once =";
+                        search_current_page_button_command_continue = "page5_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[8];
-                    XPLMCommandOnce(Page6_Button9CommandOnceCmd);
-                    if (Page6_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button9CommandContinueCmd);
-                        Page6_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[8];
+                        XPLMCommandOnce(Page6_Button9CommandOnceCmd);
+                        if (Page6_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button9CommandContinueCmd);
+                            Page6_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button9_label =";
+                        search_current_page_button_command_once = "page6_button9_command_once =";
+                        search_current_page_button_command_continue = "page6_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[8];
-                    XPLMCommandOnce(Page7_Button9CommandOnceCmd);
-                    if (Page7_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button9CommandContinueCmd);
-                        Page7_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[8];
+                        XPLMCommandOnce(Page7_Button9CommandOnceCmd);
+                        if (Page7_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button9CommandContinueCmd);
+                            Page7_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button9_label =";
+                        search_current_page_button_command_once = "page7_button9_command_once =";
+                        search_current_page_button_command_continue = "page7_button9_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[8];
-                    XPLMCommandOnce(Page8_Button9CommandOnceCmd);
-                    if (Page8_Button9ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button9CommandContinueCmd);
-                        Page8_Button9ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[8];
+                        XPLMCommandOnce(Page8_Button9CommandOnceCmd);
+                        if (Page8_Button9ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button9CommandContinueCmd);
+                            Page8_Button9ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button9_label =";
+                        search_current_page_button_command_once = "page8_button9_command_once =";
+                        search_current_page_button_command_continue = "page8_button9_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1751,60 +2330,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[9] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[9];
-                    XPLMCommandOnce(Page1_Button10CommandOnceCmd);
-                    if (Page1_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button10CommandContinueCmd);
-                        Page1_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[9];
+                        XPLMCommandOnce(Page1_Button10CommandOnceCmd);
+                        if (Page1_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button10CommandContinueCmd);
+                            Page1_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button10_label =";
+                        search_current_page_button_command_once = "page1_button10_command_once =";
+                        search_current_page_button_command_continue = "page1_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[9];
-                    XPLMCommandOnce(Page2_Button10CommandOnceCmd);
-                    if (Page2_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button10CommandContinueCmd);
-                        Page2_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[9];
+                        XPLMCommandOnce(Page2_Button10CommandOnceCmd);
+                        if (Page2_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button10CommandContinueCmd);
+                            Page2_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label";
+                        search_current_page_button_label = "page2_button10_label =";
+                        search_current_page_button_command_once = "page2_button10_command_once =";
+                        search_current_page_button_command_continue = "page2_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[9];
-                    XPLMCommandOnce(Page3_Button10CommandOnceCmd);
-                    if (Page3_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button10CommandContinueCmd);
-                        Page3_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[9];
+                        XPLMCommandOnce(Page3_Button10CommandOnceCmd);
+                        if (Page3_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button10CommandContinueCmd);
+                            Page3_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button10_label =";
+                        search_current_page_button_command_once = "page3_button10_command_once =";
+                        search_current_page_button_command_continue = "page3_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[9];
-                    XPLMCommandOnce(Page4_Button10CommandOnceCmd);
-                    if (Page4_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button10CommandContinueCmd);
-                        Page4_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[9];
+                        XPLMCommandOnce(Page4_Button10CommandOnceCmd);
+                        if (Page4_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button10CommandContinueCmd);
+                            Page4_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button10_label =";
+                        search_current_page_button_command_once = "page4_button10_command_once =";
+                        search_current_page_button_command_continue = "page4_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[9];
-                    XPLMCommandOnce(Page5_Button10CommandOnceCmd);
-                    if (Page5_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button10CommandContinueCmd);
-                        Page5_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[9];
+                        XPLMCommandOnce(Page5_Button10CommandOnceCmd);
+                        if (Page5_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button10CommandContinueCmd);
+                            Page5_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button10_label =";
+                        search_current_page_button_command_once = "page5_button10_command_once =";
+                        search_current_page_button_command_continue = "page5_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[9];
-                    XPLMCommandOnce(Page6_Button10CommandOnceCmd);
-                    if (Page6_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button10CommandContinueCmd);
-                        Page6_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[9];
+                        XPLMCommandOnce(Page6_Button10CommandOnceCmd);
+                        if (Page6_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button10CommandContinueCmd);
+                            Page6_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button10_label =";
+                        search_current_page_button_command_once = "page6_button10_command_once =";
+                        search_current_page_button_command_continue = "page6_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[9];
-                    XPLMCommandOnce(Page7_Button10CommandOnceCmd);
-                    if (Page7_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button10CommandContinueCmd);
-                        Page7_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[9];
+                        XPLMCommandOnce(Page7_Button10CommandOnceCmd);
+                        if (Page7_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button10CommandContinueCmd);
+                            Page7_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button10_label =";
+                        search_current_page_button_command_once = "page7_button10_command_once =";
+                        search_current_page_button_command_continue = "page7_button10_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[9];
-                    XPLMCommandOnce(Page8_Button10CommandOnceCmd);
-                    if (Page8_Button10ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button10CommandContinueCmd);
-                        Page8_Button10ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[9];
+                        XPLMCommandOnce(Page8_Button10CommandOnceCmd);
+                        if (Page8_Button10ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button10CommandContinueCmd);
+                            Page8_Button10ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button10_label =";
+                        search_current_page_button_command_once = "page8_button10_command_once =";
+                        search_current_page_button_command_continue = "page8_button10_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1814,60 +2457,125 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[10] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[10];
-                    XPLMCommandOnce(Page1_Button11CommandOnceCmd);
-                    if (Page1_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button11CommandContinueCmd);
-                        Page1_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[10];
+                        XPLMCommandOnce(Page1_Button11CommandOnceCmd);
+                        if (Page1_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button11CommandContinueCmd);
+                            Page1_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button11_label =";
+                        search_current_page_button_command_once = "page1_button11_command_once =";
+                        search_current_page_button_command_continue = "page1_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[10];
-                    XPLMCommandOnce(Page2_Button11CommandOnceCmd);
-                    if (Page2_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button11CommandContinueCmd);
-                        Page2_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[10];
+                        XPLMCommandOnce(Page2_Button11CommandOnceCmd);
+                        if (Page2_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button11CommandContinueCmd);
+                            Page2_Button11ContinueMode = 1;
+                        }
+
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button11_label =";
+                        search_current_page_button_command_once = "page2_button11_command_once =";
+                        search_current_page_button_command_continue = "page2_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[10];
-                    XPLMCommandOnce(Page3_Button11CommandOnceCmd);
-                    if (Page3_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button11CommandContinueCmd);
-                        Page3_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[10];
+                        XPLMCommandOnce(Page3_Button11CommandOnceCmd);
+                        if (Page3_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button11CommandContinueCmd);
+                            Page3_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button11_label =";
+                        search_current_page_button_command_once = "page3_button11_command_once =";
+                        search_current_page_button_command_continue = "page3_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 4) {
-                    page4_mouse_down[10];
-                    XPLMCommandOnce(Page4_Button11CommandOnceCmd);
-                    if (Page4_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button11CommandContinueCmd);
-                        Page4_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page4_mouse_down[10];
+                        XPLMCommandOnce(Page4_Button11CommandOnceCmd);
+                        if (Page4_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button11CommandContinueCmd);
+                            Page4_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button11_label =";
+                        search_current_page_button_command_once = "page4_button11_command_once =";
+                        search_current_page_button_command_continue = "page4_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[10];
-                    XPLMCommandOnce(Page5_Button11CommandOnceCmd);
-                    if (Page5_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button11CommandContinueCmd);
-                        Page5_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[10];
+                        XPLMCommandOnce(Page5_Button11CommandOnceCmd);
+                        if (Page5_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button11CommandContinueCmd);
+                            Page5_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button11_label =";
+                        search_current_page_button_command_once = "page5_button11_command_once =";
+                        search_current_page_button_command_continue = "page5_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[10];
-                    XPLMCommandOnce(Page6_Button11CommandOnceCmd);
-                    if (Page6_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button11CommandContinueCmd);
-                        Page6_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[10];
+                        XPLMCommandOnce(Page6_Button11CommandOnceCmd);
+                        if (Page6_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button11CommandContinueCmd);
+                            Page6_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button11_label =";
+                        search_current_page_button_command_once = "page6_button11_command_once =";
+                        search_current_page_button_command_continue = "page6_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[10];
-                    XPLMCommandOnce(Page7_Button11CommandOnceCmd);
-                    if (Page7_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button11CommandContinueCmd);
-                        Page7_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[10];
+                        XPLMCommandOnce(Page7_Button11CommandOnceCmd);
+                        if (Page7_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button11CommandContinueCmd);
+                            Page7_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button11_label =";
+                        search_current_page_button_command_once = "page7_button11_command_once =";
+                        search_current_page_button_command_continue = "page7_button11_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[10];
-                    XPLMCommandOnce(Page8_Button11CommandOnceCmd);
-                    if (Page8_Button11ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button11CommandContinueCmd);
-                        Page8_Button11ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[10];
+                        XPLMCommandOnce(Page8_Button11CommandOnceCmd);
+                        if (Page8_Button11ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button11CommandContinueCmd);
+                            Page8_Button11ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button11_label =";
+                        search_current_page_button_command_once = "page8_button11_command_once =";
+                        search_current_page_button_command_continue = "page8_button11_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
@@ -1877,60 +2585,124 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
             {
                 mouse_down[11] = 1;
                 if (page_number == 1) {
-                    page1_mouse_down[11];
-                    XPLMCommandOnce(Page1_Button12CommandOnceCmd);
-                    if (Page1_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page1_Button12CommandContinueCmd);
-                        Page1_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page1_mouse_down[11];
+                        XPLMCommandOnce(Page1_Button12CommandOnceCmd);
+                        if (Page1_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page1_Button12CommandContinueCmd);
+                            Page1_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page1_button_label =";
+                        search_current_page_button_label = "page1_button12_label =";
+                        search_current_page_button_command_once = "page1_button12_command_once =";
+                        search_current_page_button_command_continue = "page1_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 2) {
-                    page2_mouse_down[10];
-                    XPLMCommandOnce(Page2_Button12CommandOnceCmd);
-                    if (Page2_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page2_Button12CommandContinueCmd);
-                        Page2_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page2_mouse_down[10];
+                        XPLMCommandOnce(Page2_Button12CommandOnceCmd);
+                        if (Page2_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page2_Button12CommandContinueCmd);
+                            Page2_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page2_button_label =";
+                        search_current_page_button_label = "page2_button12_label =";
+                        search_current_page_button_command_once = "page2_button12_command_once =";
+                        search_current_page_button_command_continue = "page2_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 3) {
-                    page3_mouse_down[11];
-                    XPLMCommandOnce(Page3_Button12CommandOnceCmd);
-                    if (Page3_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page3_Button12CommandContinueCmd);
-                        Page3_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page3_mouse_down[11];
+                        XPLMCommandOnce(Page3_Button12CommandOnceCmd);
+                        if (Page3_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page3_Button12CommandContinueCmd);
+                            Page3_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page3_button_label =";
+                        search_current_page_button_label = "page3_button12_label =";
+                        search_current_page_button_command_once = "page3_button12_command_once =";
+                        search_current_page_button_command_continue = "page3_button12_command_continue =";
+                        populate_edit_window();
                     }
-                } else if (page_number == 4) {
-                    page4_mouse_down[12];
-                    XPLMCommandOnce(Page4_Button12CommandOnceCmd);
-                    if (Page4_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page4_Button12CommandContinueCmd);
-                        Page4_Button12ContinueMode = 1;
+                 } else if (page_number == 4) {
+                    if (!edit_mode) {
+                        page4_mouse_down[12];
+                        XPLMCommandOnce(Page4_Button12CommandOnceCmd);
+                        if (Page4_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page4_Button12CommandContinueCmd);
+                            Page4_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page4_button_label =";
+                        search_current_page_button_label = "page4_button12_label =";
+                        search_current_page_button_command_once = "page4_button12_command_once =";
+                        search_current_page_button_command_continue = "page4_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 5) {
-                    page5_mouse_down[10];
-                    XPLMCommandOnce(Page5_Button12CommandOnceCmd);
-                    if (Page5_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page5_Button12CommandContinueCmd);
-                        Page5_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page5_mouse_down[10];
+                        XPLMCommandOnce(Page5_Button12CommandOnceCmd);
+                        if (Page5_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page5_Button12CommandContinueCmd);
+                            Page5_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page5_button_label =";
+                        search_current_page_button_label = "page5_button12_label =";
+                        search_current_page_button_command_once = "page5_button12_command_once =";
+                        search_current_page_button_command_continue = "page5_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 6) {
-                    page6_mouse_down[11];
-                    XPLMCommandOnce(Page6_Button12CommandOnceCmd);
-                    if (Page6_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page6_Button12CommandContinueCmd);
-                        Page6_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page6_mouse_down[11];
+                        XPLMCommandOnce(Page6_Button12CommandOnceCmd);
+                        if (Page6_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page6_Button12CommandContinueCmd);
+                            Page6_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page6_button_label =";
+                        search_current_page_button_label = "page6_button12_label =";
+                        search_current_page_button_command_once = "page6_button12_command_once =";
+                        search_current_page_button_command_continue = "page6_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 7) {
-                    page7_mouse_down[12];
-                    XPLMCommandOnce(Page7_Button12CommandOnceCmd);
-                    if (Page7_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page7_Button12CommandContinueCmd);
-                        Page7_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page7_mouse_down[12];
+                        XPLMCommandOnce(Page7_Button12CommandOnceCmd);
+                        if (Page7_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page7_Button12CommandContinueCmd);
+                            Page7_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page7_button_label =";
+                        search_current_page_button_label = "page7_button12_label =";
+                        search_current_page_button_command_once = "page7_button12_command_once =";
+                        search_current_page_button_command_continue = "page7_button12_command_continue =";
+                        populate_edit_window();
                     }
                 } else if (page_number == 8) {
-                    page8_mouse_down[12];
-                    XPLMCommandOnce(Page8_Button12CommandOnceCmd);
-                    if (Page8_Button12ContinueMode < 1) {
-                        XPLMCommandBegin(Page8_Button12CommandContinueCmd);
-                        Page8_Button12ContinueMode = 1;
+                    if (!edit_mode) {
+                        page8_mouse_down[12];
+                        XPLMCommandOnce(Page8_Button12CommandOnceCmd);
+                        if (Page8_Button12ContinueMode < 1) {
+                            XPLMCommandBegin(Page8_Button12CommandContinueCmd);
+                            Page8_Button12ContinueMode = 1;
+                        }
+                    } else {
+                        search_current_page_label = "page8_button_label =";
+                        search_current_page_button_label = "page8_button12_label =";
+                        search_current_page_button_command_once = "page8_button12_command_once =";
+                        search_current_page_button_command_continue = "page8_button12_command_continue =";
+                        populate_edit_window();
                     }
                 }
             }
