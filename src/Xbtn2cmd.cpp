@@ -7,7 +7,7 @@
 //     A plugin to create a window of buttons in VR
 //     that can be mapped to commands.
 //
-//     Supporting  X-Plane 11.20r4+
+//     Supporting  X-Plane 11.21r2+
 //
 // *********************************************************
 
@@ -82,7 +82,7 @@ static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return ((x >=
 void xb2cvr_create_gui_window();
 void process_read_ini_file();
 
-enum {TOGGLE_WINDOW_COMMAND, RELOAD_CONFIG_COMMAND, RELOAD_WINDOW_COMMAND, RECREATE_WINDOW_COMMAND};
+enum {TOGGLE_WINDOW_COMMAND, RELOAD_CONFIG_COMMAND, RELOAD_WINDOW_COMMAND, RECREATE_WINDOW_COMMAND, OPEN_EDIT_WINDOW_COMMAND};
 
 int Xbtn2cmdCommandCallback(
                                    XPLMCommandRef       inCommand,
@@ -93,7 +93,7 @@ XPLMCommandRef cmdtogglewindow;
 XPLMCommandRef cmdreloadconfig;
 XPLMCommandRef cmdreloadwindow;
 XPLMCommandRef cmdrecreatewindow;
-
+XPLMCommandRef cmdopeneditwindow;
 
 char scratch_buffer[150];
 
@@ -416,6 +416,8 @@ XPWidgetID	Xbtn2cmdEditWidget = NULL;
 static void CreateXbtn2cmdEditWidget(int xx1, int yy1, int ww, int hh);
 
 void populate_edit_window();
+void update_current_button();
+void write_ini_file_from_array();
 
 string search_current_page_label;
 string search_current_page_button_label;
@@ -441,110 +443,40 @@ int current_page_button_label_write_start_position = 0;
 int current_page_button_command_once_write_start_position = 0;
 int current_page_button_command_continue_write_start_position = 0;
 
-
-
-
-string test_current_page_label = "page1_button_label =";
-
-string test_current_page_button_label = "page1_button1_label =";
-string test_current_page_button_once_label = "page1_button1_command_once =";
-string test_current_page_button_continue_label = "page1_button1_command_continue =";
-
 string current_page_label_line = "";
 string current_page_button_label_line = "";
 string current_page_button_command_once_line = "";
 string current_page_button_command_continue_line = "";
 
+string updated_page_label_line = "";
+string updated_page_button_label_line = "";
+string updated_page_button_command_once_line = "";
+string updated_page_button_command_continue_line = "";
+
+
+string current_page_label = "";
+string current_page_button_label = "";
+string current_page_button_command_once = "";
+string current_page_button_command_continue = "";
+
 
 string xbtn2cmdini_path_name = "";
-
-string search_current_page_button1_label;
-string search_current_page_button1_once_label;
-string search_current_page_button1_continue_label;
-
-string search_current_page_button2_label;
-string search_current_page_button2_once_label;
-string search_current_page_button2_continue_label;
-
-string search_current_page_button3_label;
-string search_current_page_button3_once_label;
-string search_current_page_button3_continue_label;
-
-string search_current_page_button4_label;
-string search_current_page_button4_once_label;
-string search_current_page_button4_continue_label;
-
-string search_current_page_button5_label;
-string search_current_page_button5_once_label;
-string search_current_page_button5_continue_label;
-
-string search_current_page_button6_label;
-string search_current_page_button6_once_label;
-string search_current_page_button6_continue_label;
-
-string search_current_page_button7_label;
-string search_current_page_button7_once_label;
-string search_current_page_button7_continue_label;
-
-string search_current_page_button8_label;
-string search_current_page_button8_once_label;
-string search_current_page_button8_continue_label;
-
-string search_current_page_button9_label;
-string search_current_page_button9_once_label;
-string search_current_page_button9_continue_label;
-
-string search_current_page_button10_label;
-string search_current_page_button10_once_label;
-string search_current_page_button10_continue_label;
-
-string search_current_page_button11_label;
-string search_current_page_button11_once_label;
-string search_current_page_button11_continue_label;
-
-string search_current_page_button12_label;
-string search_current_page_button12_once_label;
-string search_current_page_button12_continue_label;
-
-
-
 
 
 static int Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr_t  inParam1, intptr_t  inParam2);
 
 static XPLMWindowID	xbtn2cmd_edit_window;
 
-XPWidgetID	Xbtn2cmdEditTextWidget[10] = {NULL};
-XPWidgetID	Xbtn2cmdEditTextBoxWidget[10] = {NULL};
+XPWidgetID	CurrentPageLabelLineTextBoxWidget = NULL;
 
+XPWidgetID	CurrentPageButtonLabelLineTextBoxWidget = NULL;
 
-XPWidgetID	SearchCurrentPageLabelTextWidget = NULL;
-XPWidgetID	CurrentPageLabelTextBoxWidget = NULL;
-XPWidgetID	CurrentPageLabelLineNumberTextWidget = NULL;
-XPWidgetID	CurrentPageLabelLineLengthTextWidget = NULL;
-XPWidgetID	CurrentPageLabelCommandPositionTextWidget = NULL;
+XPWidgetID	CurrentPageButtonCommandOnceLineTextBoxWidget = NULL;
 
+XPWidgetID	CurrentPageButtonCommandContinueLineTextBoxWidget = NULL;
 
-XPWidgetID	SearchCurrentPageButtonLabelTextWidget = NULL;
-XPWidgetID	CurrentPageButtonLabelTextBoxWidget = NULL;
-XPWidgetID	CurrentPageButtonLabelLineNumberTextWidget = NULL;
-XPWidgetID	CurrentPageButtonLabelLineLengthTextWidget = NULL;
-XPWidgetID	CurrentPageButtonLabelCommandPositionTextWidget = NULL;
-
-
-XPWidgetID	SearchCurrentPageButtonCommandOnceTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandOnceTextBoxWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandOnceLineNumberTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandOnceLineLengthTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandOnceCommandPositionTextWidget = NULL;
-
-
-XPWidgetID	SearchCurrentPageButtonCommandContinueTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandContinueTextBoxWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandContinueLineNumberTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandContinueLineLengthTextWidget = NULL;
-XPWidgetID	CurrentPageButtonCommandContinueCommandPositionTextWidget = NULL;
-
+XPWidgetID	WriteIniFileButtonWidget = NULL;
+XPWidgetID	UpdatePageLabelButtonWidget = NULL;
 
 XPWidgetID	Xbtn2cmdEditPageButtonLabelTextBoxWidget = NULL;
 
@@ -590,7 +522,7 @@ PLUGIN_API int XPluginStart(
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
     XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Recreate Window", (void *)"Menu Item 4", 1);
     XPLMAppendMenuSeparator(Xbtn2cmd_menu_id);
-    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Edit Window", (void *)"Menu Item 5", 1);
+    XPLMAppendMenuItem(Xbtn2cmd_menu_id, "Edit Current Button", (void *)"Menu Item 5", 1);
 
     // Changed your mind? You can destroy the submenu you created with XPLMDestroyMenu(),
     // then remove the "Sample Menu" item from the "Plugins" menu with XPLMRemoveMenuItem().
@@ -605,6 +537,8 @@ PLUGIN_API int XPluginStart(
     cmdreloadconfig = XPLMCreateCommand("bgood/xbtn2cmd/reload_config","Reload xbtn2cmd.ini");
     cmdreloadwindow = XPLMCreateCommand("bgood/xbtn2cmd/reload_window","Reload Window");
     cmdrecreatewindow = XPLMCreateCommand("bgood/xbtn2cmd/recreate_window","Recreate Window");
+    cmdopeneditwindow = XPLMCreateCommand("bgood/xbtn2cmd/open_edit_window","Open Edit Window");
+
 
     XPLMRegisterCommandHandler(
                 cmdtogglewindow,
@@ -629,6 +563,13 @@ PLUGIN_API int XPluginStart(
                 Xbtn2cmdCommandCallback,
                 true,
                 (void *)RECREATE_WINDOW_COMMAND);
+
+    XPLMRegisterCommandHandler(
+                cmdopeneditwindow,
+                Xbtn2cmdCommandCallback,
+                true,
+                (void *)OPEN_EDIT_WINDOW_COMMAND);
+
 
 	return g_vr_dref != NULL;
 }
@@ -770,21 +711,15 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
     {
       if (Xbtn2cmdEditWidget == NULL){
-        CreateXbtn2cmdEditWidget(400, 550, 700, 250);	//left, top, right, bottom.
+        CreateXbtn2cmdEditWidget(400, 550, 520, 250);	//left, top, right, bottom.
       }else{
         if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
             XPShowWidget(Xbtn2cmdEditWidget);
       }
-
+      edit_mode = 1;
     }
-
-    edit_mode = 1;
-
-
-
-
-
 }
+
 
 void Xbtn2hide_window()
 {
@@ -801,7 +736,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     // Create the Edit Widget window.
     Xbtn2cmdEditWidget = XPCreateWidget(xx, yy, xx2, yy2,
                   1,		  // Visible
-                  "Xbtn2cmd Edit Window",  // desc
+                  "Xbtn2cmd Current Button Edit Window",  // desc
                   1,			  // root
                   NULL,			  // no container
                   xpWidgetClass_MainWindow);
@@ -813,57 +748,15 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    SearchCurrentPageLabelTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
+    CurrentPageLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
                    1,	        // Visible
-                   "page1_button_label =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-
-    // Create a checklist item description text widget
-    CurrentPageLabelTextBoxWidget = XPCreateWidget(xx+250, yy-yOffset, xx+60+630, yy-yOffset-20,
-                   1,	        // Visible
-                   "",    // desc
+                   "page1_button_label = Page 1",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
                    xpWidgetClass_TextField);
 
     // Set it to be text entry
-    XPSetWidgetProperty(CurrentPageLabelTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
-
-
-    l = 1;
-
-    yOffset = (5+18+(l*25));
-
-    // Create a checklist item description text widget
-    CurrentPageLabelLineNumberTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Number =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-
-    // Create a checklist item description text widget
-    CurrentPageLabelLineLengthTextWidget = XPCreateWidget(xx+130, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Length =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-
-    // Create a checklist item description text widget
-    CurrentPageLabelCommandPositionTextWidget = XPCreateWidget(xx+255, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Command Start Position =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-
+    XPSetWidgetProperty(CurrentPageLabelLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
 
 
     l = 2;
@@ -871,49 +764,15 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    SearchCurrentPageButtonLabelTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
+    CurrentPageButtonLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
                    1,	        // Visible
-                   "page1_button1_label =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonLabelTextBoxWidget = XPCreateWidget(xx+250, yy-yOffset, xx+60+630, yy-yOffset-20,
-                   1,	        // Visible
-                   "",    // desc
+                   "page1_button1_label = Button 1",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
                    xpWidgetClass_TextField);
 
-    l = 3;
-
-    yOffset = (5+18+(l*25));
-
-    // Create a checklist item description text widget
-    CurrentPageButtonLabelLineNumberTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Number =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonLabelLineLengthTextWidget = XPCreateWidget(xx+130, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Length =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonLabelCommandPositionTextWidget = XPCreateWidget(xx+255, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Command Start Position =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
+    // Set it to be text entry
+    XPSetWidgetProperty(CurrentPageButtonLabelLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
 
 
     l = 4;
@@ -921,48 +780,15 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    SearchCurrentPageButtonCommandOnceTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
+    CurrentPageButtonCommandOnceLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button1_command_once =",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandOnceTextBoxWidget = XPCreateWidget(xx+250, yy-yOffset, xx+60+630, yy-yOffset-20,
-                   1,	        // Visible
-                   "",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
                    xpWidgetClass_TextField);
 
-    l = 5;
-
-    yOffset = (5+18+(l*25));
-
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandOnceLineNumberTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Number =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandOnceLineLengthTextWidget = XPCreateWidget(xx+130, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Line Length =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandOnceCommandPositionTextWidget = XPCreateWidget(xx+255, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Command Start Position =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
+    // Set it to be text entry
+    XPSetWidgetProperty(CurrentPageButtonCommandOnceLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
 
 
     l = 6;
@@ -970,51 +796,41 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    SearchCurrentPageButtonCommandContinueTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
+    CurrentPageButtonCommandContinueLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button1_command_continue =",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandContinueTextBoxWidget = XPCreateWidget(xx+250, yy-yOffset, xx+60+630, yy-yOffset-20,
-                   1,	        // Visible
-                   "",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
                    xpWidgetClass_TextField);
 
-    l = 7;
+    // Set it to be text entry
+    XPSetWidgetProperty(CurrentPageButtonCommandContinueLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
+
+
+    l = 8;
 
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    CurrentPageButtonCommandContinueLineNumberTextWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
+    WriteIniFileButtonWidget = XPCreateWidget(xx+5, yy-yOffset, xx+60+200, yy-yOffset-20,
                    1,	        // Visible
-                   "Line Number =",    // desc
+                   "Write Array To Current xbtn2cmd.ini File",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(WriteIniFileButtonWidget, xpProperty_ButtonType, xpPushButton);
 
 
     // Create a checklist item description text widget
-    CurrentPageButtonCommandContinueLineLengthTextWidget = XPCreateWidget(xx+130, yy-yOffset, xx+60+200, yy-yOffset-20,
+    UpdatePageLabelButtonWidget = XPCreateWidget(xx+320, yy-yOffset, xx+60+450, yy-yOffset-20,
                    1,	        // Visible
-                   "Line Length =",    // desc
+                   "Update Current Button Array",    // desc
                    0,		// root
                    Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
+                   xpWidgetClass_Button);
 
-    // Create a checklist item description text widget
-    CurrentPageButtonCommandContinueCommandPositionTextWidget = XPCreateWidget(xx+255, yy-yOffset, xx+60+200, yy-yOffset-20,
-                   1,	        // Visible
-                   "Command Start Position =",    // desc
-                   0,		// root
-                   Xbtn2cmdEditWidget,
-                   xpWidgetClass_Caption);
-
-
+    XPSetWidgetProperty(UpdatePageLabelButtonWidget, xpProperty_ButtonType, xpPushButton);
 
 
     // Register our setup widget handler
@@ -1023,11 +839,11 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     xbtn2cmd_edit_window = XPGetWidgetUnderlyingWindow(Xbtn2cmdEditWidget);
     #endif
 
-    XPLMSetWindowIsVisible(Xbtn2cmdEditWidget, 1);
+    XPLMSetWindowIsVisible(xbtn2cmd_edit_window, 1);
     vr_is_enabled = XPLMGetDatai(g_vr_dref);
 
     #if XPLM301
-    XPLMSetWindowPositioningMode(Xbtn2cmdEditWidget, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
+    XPLMSetWindowPositioningMode(xbtn2cmd_edit_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
     #endif
 
 
@@ -1037,8 +853,8 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
 // This is our setup widget handler.  In this example we are only interested when the close box is pressed.
 int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr_t  inParam1, intptr_t  inParam2)
 {
-    (void) inParam1;
-    (void) inParam2;
+    // inParam1;
+    // (void) inParam2;
 
     char Buffer[256];
 
@@ -1046,6 +862,7 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
         if (inWidget == Xbtn2cmdEditWidget) {
             XPHideWidget(Xbtn2cmdEditWidget);
             edit_mode = 0;
+            // delete [] store_xbtn2cmdini;
             return 1;
         }
     }
@@ -1053,81 +870,34 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
 
     if (update_widget) {
 
-        XPSetWidgetDescriptor(SearchCurrentPageLabelTextWidget, search_current_page_label.c_str());
+        XPSetWidgetDescriptor(CurrentPageLabelLineTextBoxWidget, current_page_label_line.c_str());
 
-        XPSetWidgetDescriptor(CurrentPageLabelTextBoxWidget, current_page_label_line.c_str());
+        XPSetWidgetDescriptor(CurrentPageButtonLabelLineTextBoxWidget, current_page_button_label_line.c_str());
 
-        sprintf(scratch_buffer, "Line Number = %d \n", current_page_label_line_number);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageLabelLineNumberTextWidget, scratch_buffer);
+        XPSetWidgetDescriptor(CurrentPageButtonCommandOnceLineTextBoxWidget, current_page_button_command_once_line.c_str());
 
-        sprintf(scratch_buffer, "Line Length = %d \n", current_page_label_line_length);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageLabelLineLengthTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Command Start Position = %d \n", current_page_label_write_start_position);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageLabelCommandPositionTextWidget, scratch_buffer);
-
-
-        XPSetWidgetDescriptor(SearchCurrentPageButtonLabelTextWidget, search_current_page_button_label.c_str());
-
-        XPSetWidgetDescriptor(CurrentPageButtonLabelTextBoxWidget, current_page_button_label_line.c_str());
-
-        sprintf(scratch_buffer, "Line Number = %d \n", current_page_button_label_line_number);
-        XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonLabelLineNumberTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Line Length = %d \n", current_page_button_label_line_length);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonLabelLineLengthTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Command Start Position = %d \n", current_page_button_label_write_start_position);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonLabelCommandPositionTextWidget, scratch_buffer);
-
-
-        XPSetWidgetDescriptor(SearchCurrentPageButtonCommandOnceTextWidget, search_current_page_button_command_once.c_str());
-
-        XPSetWidgetDescriptor(CurrentPageButtonCommandOnceTextBoxWidget, current_page_button_command_once_line.c_str());
-
-        sprintf(scratch_buffer, "Line Number = %d \n", current_page_button_command_once_line_number);
-        XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandOnceLineNumberTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Line Length = %d \n", current_page_button_command_once_line_length);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandOnceLineLengthTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Command Start Position = %d \n", current_page_button_command_once_write_start_position);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandOnceCommandPositionTextWidget, scratch_buffer);
-
-
-        XPSetWidgetDescriptor(SearchCurrentPageButtonCommandContinueTextWidget, search_current_page_button_command_continue.c_str());
-
-        XPSetWidgetDescriptor(CurrentPageButtonCommandContinueTextBoxWidget, current_page_button_command_continue_line.c_str());
-
-        sprintf(scratch_buffer, "Line Number = %d \n", current_page_button_command_continue_line_number);
-        XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandContinueLineNumberTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Line Length = %d \n", current_page_button_command_continue_line_length);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandContinueLineLengthTextWidget, scratch_buffer);
-
-        sprintf(scratch_buffer, "Command Start Position = %d \n", current_page_button_command_continue_write_start_position);
-        // XPLMDebugString(scratch_buffer);
-        XPSetWidgetDescriptor(CurrentPageButtonCommandContinueCommandPositionTextWidget, scratch_buffer);
-
-
+        XPSetWidgetDescriptor(CurrentPageButtonCommandContinueLineTextBoxWidget, current_page_button_command_continue_line.c_str());
 
         update_widget = 0;
 
-
-
     }
 
+    if (inMessage == xpMsg_PushButtonPressed)
+    {
+        if(inParam1 == (intptr_t)WriteIniFileButtonWidget) {
+
+            write_ini_file_from_array();
+            XPLMDebugString("Xbtn2cmd: WriteIniFileButtonWidget pushed\n");
+            // return 1;
+        }
+
+        if(inParam1 == (intptr_t)UpdatePageLabelButtonWidget) {
+
+            update_current_button();
+            XPLMDebugString("Xbtn2cmd: UpdatePageLabelButtonWidget pushed\n");
+            // return 1;
+        }
+    }
 
     return 0;
 
@@ -1140,12 +910,12 @@ void populate_edit_window()
     test_file = "./Aircraft/Laminar Research/Cessna 172SP/Cessna_172SP_xbtn2cmd.ini";
     size_t pos;
     string line;
-    string find_end = " =";
+    string find_end = "=";
     int line_length;
     int find_end_position = 0;
     current_line_number = 0;
-    int search_loop = 0;
-    string current_line = "";
+    int array_line_number = 0;
+    string array_line = "";
 
     sprintf(scratch_buffer, "Xbtn2cmd: Current xbtn2cmd.ini file path = %s\n", xbtn2cmdini_path_name.c_str());
     XPLMDebugString(scratch_buffer);
@@ -1165,106 +935,129 @@ void populate_edit_window()
         getline(inFile,line); // get line from file
         store_xbtn2cmdini[current_line_number] = line;
 
-        pos=line.find(search_current_page_label); // search
-        if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: Found search_current_page_label\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", line.c_str());
-            XPLMDebugString(scratch_buffer);
-            line_length = line.length();
-            sprintf(scratch_buffer, "Xbtn2cmd: Line Length = %d  Current Line Number = %d\n", line_length, current_line_number);
-            XPLMDebugString(scratch_buffer);
-            current_page_label_line_number = current_line_number;
-            current_page_label_line = line;
-            current_page_label_line_length = line_length;
-            // std::size_t found = line.find(find_end);
-            current_page_label_write_start_position = line.find(find_end) + 1;
-
-        }
-
-        pos=line.find(search_current_page_button_label); // search
-        if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: Found search_current_page_button_label\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", line.c_str());
-            XPLMDebugString(scratch_buffer);
-            line_length = line.length();
-            sprintf(scratch_buffer, "Xbtn2cmd: Line Length = %d  Current Line Number = %d\n", line_length, current_line_number);
-            XPLMDebugString(scratch_buffer);
-            current_page_button_label_line_number = current_line_number;
-            current_page_button_label_line = line;
-            current_page_button_label_line_length = line_length;
-            current_page_button_label_write_start_position = line.find(find_end) + 1;
-        }
-
-        pos=line.find(search_current_page_button_command_once); // search
-        if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: Found search_current_page_button_command_once_label\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", line.c_str());
-            XPLMDebugString(scratch_buffer);
-            line_length = line.length();
-            sprintf(scratch_buffer, "Xbtn2cmd: Line Length = %d  Current Line Number = %d\n", line_length, current_line_number);
-            XPLMDebugString(scratch_buffer);
-            current_page_button_command_once_line_number = current_line_number;
-            current_page_button_command_once_line = line;
-            current_page_button_command_once_line_length = line_length;
-            current_page_button_command_once_write_start_position = line.find(find_end) + 1;
-        }
-
-        pos=line.find(search_current_page_button_command_continue); // search
-        if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: Found search_current_page_button_command_continue_label\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", line.c_str());
-            XPLMDebugString(scratch_buffer);
-            line_length = line.length();
-            sprintf(scratch_buffer, "Xbtn2cmd: Line Length = %d  Current Line Number = %d\n", line_length, current_line_number);
-            XPLMDebugString(scratch_buffer);
-            current_page_button_command_continue_line_number = current_line_number;
-            current_page_button_command_continue_line = line;
-            current_page_button_command_continue_line_length = line_length;
-            current_page_button_command_continue_write_start_position = line.find(find_end) + 1;
-        }
-
-
     }
 
-    XPLMDebugString("Xbtn2cmd: Opened Cessna_172SP_xbtn2cmd.ini file now will close it\n\n");
+    // XPLMDebugString("Xbtn2cmd: Opened Cessna_172SP_xbtn2cmd.ini file now will close it\n\n");
 
     inFile.close();
     update_widget = 1;
 
-    while (search_loop < current_line_number) {
-        current_line = store_xbtn2cmdini[search_loop];
-        pos=current_line.find(search_current_page_label); // search
-        if(pos!=string::npos) {
-            XPLMDebugString("Xbtn2cmd: **************  Found search_current_page_label  ******************\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found current_line = %s\n", current_line.c_str());
-            XPLMDebugString(scratch_buffer);
-        }
+    while (array_line_number < current_line_number) {
+        array_line = store_xbtn2cmdini[array_line_number];
 
-        pos=current_line.find(search_current_page_button_label); // search
+
+        pos=array_line.find(search_current_page_label); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: *****************  Found search_current_page_button_label  *****************\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", current_line.c_str());
-            XPLMDebugString(scratch_buffer);
+            line_length = array_line.length();
+            current_page_label_line_number = array_line_number;
+            current_page_label_line = array_line;
+            current_page_label_line_length = line_length;
+            current_page_label_write_start_position = array_line.find(find_end) + 2;
+            if (line_length > current_page_label_write_start_position) {
+                current_page_label = array_line.substr (current_page_label_write_start_position);
+            } else {
+                current_page_label = "";
+            }
         }
 
-        pos=current_line.find(search_current_page_button_command_once); // search
+        pos=array_line.find(search_current_page_button_label); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: ***************************Found search_current_page_button_command_once_label  *********************\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", current_line.c_str());
-            XPLMDebugString(scratch_buffer);
+            line_length = array_line.length();
+            current_page_button_label_line_number = array_line_number;
+            current_page_button_label_line = array_line;
+            current_page_button_label_line_length = line_length;
+            current_page_button_label_write_start_position = array_line.find(find_end) + 2;
+            if (line_length > current_page_button_label_write_start_position) {
+                current_page_button_label = array_line.substr (current_page_button_label_write_start_position);
+            } else {
+                current_page_button_label = "";
+            }
         }
 
-        pos=current_line.find(search_current_page_button_command_continue); // search
+        pos=array_line.find(search_current_page_button_command_once); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            XPLMDebugString("Xbtn2cmd: **************  Found search_current_page_button_command_continue_label  **********************\n");
-            sprintf(scratch_buffer, "Xbtn2cmd: Found line = %s\n", current_line.c_str());
-            XPLMDebugString(scratch_buffer);
+            line_length = array_line.length();
+            current_page_button_command_once_line_number = array_line_number;
+            current_page_button_command_once_line = array_line;
+            current_page_button_command_once_line_length = line_length;
+            current_page_button_command_once_write_start_position = array_line.find(find_end) + 2;
+            if (line_length > current_page_button_command_once_write_start_position) {
+                current_page_button_command_once = array_line.substr (current_page_button_command_once_write_start_position);
+            } else {
+               current_page_button_command_once = "";
+            }
+
+        }
+
+        pos=array_line.find(search_current_page_button_command_continue); // search
+        if(pos!=string::npos) { // string::npos is returned if string is not found
+            line_length = array_line.length();
+            current_page_button_command_continue_line_number = array_line_number;
+            current_page_button_command_continue_line = array_line;
+            current_page_button_command_continue_line_length = line_length;
+            current_page_button_command_continue_write_start_position = array_line.find(find_end) + 2;
+            if (line_length > current_page_button_command_continue_write_start_position) {
+                current_page_button_command_continue = array_line.substr (current_page_button_command_continue_write_start_position);
+            } else {
+                current_page_button_command_continue = "";
+            }
+
         }
 
 
-
-        search_loop = search_loop + 1;
+        array_line_number = array_line_number + 1;
     }
+
+}
+
+
+void update_current_button()
+{
+    char buffer[100];
+    string tmp;
+
+    memset(buffer, 0, sizeof(buffer));
+    XPGetWidgetDescriptor(CurrentPageLabelLineTextBoxWidget, buffer, sizeof(buffer));
+    tmp = string(buffer);
+    store_xbtn2cmdini[current_page_label_line_number] = tmp;
+
+    memset(buffer, 0, sizeof(buffer));
+    XPGetWidgetDescriptor(CurrentPageButtonLabelLineTextBoxWidget, buffer, sizeof(buffer));
+    tmp = string(buffer);
+    store_xbtn2cmdini[current_page_button_label_line_number] = tmp;
+
+    memset(buffer, 0, sizeof(buffer));
+    XPGetWidgetDescriptor(CurrentPageButtonCommandOnceLineTextBoxWidget, buffer, sizeof(buffer));
+    tmp = string(buffer);
+    store_xbtn2cmdini[current_page_button_command_once_line_number] = tmp;
+
+    memset(buffer, 0, sizeof(buffer));
+    XPGetWidgetDescriptor(CurrentPageButtonCommandContinueLineTextBoxWidget, buffer, sizeof(buffer));
+    tmp = string(buffer);
+    store_xbtn2cmdini[current_page_button_command_continue_line_number] = tmp;
+
+}
+
+void write_ini_file_from_array()
+{
+    int count = 1;
+    std::ofstream outFile;
+    outFile.open(xbtn2cmdini_path_name.c_str());
+
+    if (outFile.fail()) {
+        XPLMDebugString("Xbtn2cmd: Could not open Cessna_172SP_xbtn2cmd.ini file\n");
+        return;
+    }
+    if (outFile.is_open()) {
+        XPLMDebugString("Xbtn2cmd: Found Cessna_172SP_xbtn2cmd.ini open for writing now will close it\n\n");
+        while (count < current_line_number) {
+            outFile << store_xbtn2cmdini[count] << "\n" ;
+            count = count + 1;
+        }
+    }
+
+    XPLMDebugString("Xbtn2cmd: outFile.close()\n");
+    outFile.close();
 
 }
 
@@ -1312,6 +1105,15 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
             mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
             mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
             mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+            break;
+        case OPEN_EDIT_WINDOW_COMMAND:
+            if (Xbtn2cmdEditWidget == NULL){
+              CreateXbtn2cmdEditWidget(400, 550, 520, 250);	//left, top, right, bottom.
+            }else{
+              if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
+                  XPShowWidget(Xbtn2cmdEditWidget);
+            }
+            edit_mode = 1;
             break;
         }
     }

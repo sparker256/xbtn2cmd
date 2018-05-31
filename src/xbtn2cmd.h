@@ -340,53 +340,7 @@ extern string search_current_page_button_command_continue;
 extern string search_current_page_button_once_label;
 extern string search_current_page_button_continue_label;
 
-extern string search_current_page_button1_label;
-extern string search_current_page_button1_once_label;
-extern string search_current_page_button1_continue_label;
 
-extern string search_current_page_button2_label;
-extern string search_current_page_button2_once_label;
-extern string search_current_page_button2_continue_label;
-
-extern string search_current_page_button3_label;
-extern string search_current_page_button3_once_label;
-extern string search_current_page_button3_continue_label;
-
-extern string search_current_page_button4_label;
-extern string search_current_page_button4_once_label;
-extern string search_current_page_button4_continue_label;
-
-extern string search_current_page_button5_label;
-extern string search_current_page_button5_once_label;
-extern string search_current_page_button5_continue_label;
-
-extern string search_current_page_button6_label;
-extern string search_current_page_button6_once_label;
-extern string search_current_page_button6_continue_label;
-
-extern string search_current_page_button7_label;
-extern string search_current_page_button7_once_label;
-extern string search_current_page_button7_continue_label;
-
-extern string search_current_page_button8_label;
-extern string search_current_page_button8_once_label;
-extern string search_current_page_button8_continue_label;
-
-extern string search_current_page_button9_label;
-extern string search_current_page_button9_once_label;
-extern string search_current_page_button9_continue_label;
-
-extern string search_current_page_button10_label;
-extern string search_current_page_button10_once_label;
-extern string search_current_page_button10_continue_label;
-
-extern string search_current_page_button11_label;
-extern string search_current_page_button11_once_label;
-extern string search_current_page_button11_continue_label;
-
-extern string search_current_page_button12_label;
-extern string search_current_page_button12_once_label;
-extern string search_current_page_button12_continue_label;
 
 extern void populate_edit_window();
 
