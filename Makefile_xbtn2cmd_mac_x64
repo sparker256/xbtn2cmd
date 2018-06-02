@@ -24,7 +24,7 @@ endif
 
 all:Xbtn2cmd.xpl
 
-OBJS = Xbtn2cmd.o gui_window.o inireader.o readinifile.o
+OBJS = Xbtn2cmd.o gui_window.o inireader.o readinifile.o clipboard_mac.o
 
 
 Xbtn2cmd.xpl: $(OBJS)
@@ -44,6 +44,9 @@ inireader.o: src/inireader.cpp
 
 readinifile.o: src/readinifile.cpp
 	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o readinifile.o src/readinifile.cpp
+
+clipboard_mac.o: src/clipboard_mac.mm
+	 $(CC) -c -pipe $(CFLAGS) $(SDK) $(INC) $(DEFINES) -o clipboard_mac.o src/clipboard_mac.mm
 
 
 clean:

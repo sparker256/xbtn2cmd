@@ -37,6 +37,8 @@
 #include <vector>
 #include <wchar.h>
 
+#include "clipboard.h"
+
 using namespace std;
 
 #if IBM
@@ -1037,22 +1039,12 @@ bool	XSBGetTextFromClipboard(std::string& outText)
     outText = ret.c_str();
     return 1;
 #endif
-    /*
+
 #if APL
-        ScrapRef	scrap;
-    if (::GetCurrentScrap(&scrap) != noErr)
-        return false;
-
-    SInt32		byteCount = 0;
-    OSStatus	status = ::GetScrapFlavorSize(scrap, kScrapFlavorTypeText, &byteCount);
-    if (status != noErr)
-        return false;
-
-    outText.resize(byteCount);
-
-    return (::GetScrapFlavorData(scrap, kScrapFlavorTypeText, &byteCount, &*outText.begin() ) == noErr);
+    outText = getClipboard();
+    return 1;
 #endif
-*/
+
 #if LIN
     FILE * f = popen( "xclip -sel clip -o", "r" );
     if ( f == 0 ) {
