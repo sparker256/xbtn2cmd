@@ -468,12 +468,16 @@ static int Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget,
 static XPLMWindowID	xbtn2cmd_edit_window;
 
 XPWidgetID	CurrentPageLabelLineTextBoxWidget = NULL;
+XPWidgetID	PastePageLabelLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonLabelLineTextBoxWidget = NULL;
+XPWidgetID	PastePageButtonLabelLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonCommandOnceLineTextBoxWidget = NULL;
+XPWidgetID	PastePageButtonCommandOnceLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonCommandContinueLineTextBoxWidget = NULL;
+XPWidgetID	PastePageButtonCommandContinueLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	WriteIniFileButtonWidget = NULL;
 XPWidgetID	UpdatePageLabelButtonWidget = NULL;
@@ -484,6 +488,10 @@ int edit_mode = 0;
 int update_widget = 0;
 
 string store_xbtn2cmdini[700];
+
+bool	XSBGetTextFromClipboard(std::string& outText);
+
+int paste_button_pushed = 0;
 
 
 PLUGIN_API int XPluginStart(
@@ -743,6 +751,8 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     // Add Close Box to the Setup Widget.  Other options are available.  See the SDK Documentation.
     XPSetWidgetProperty(Xbtn2cmdEditWidget, xpProperty_MainWindowHasCloseBoxes, 1);
 
+    XPSetWidgetProperty(Xbtn2cmdEditWidget, xpProperty_MainWindowType, xpMainWindowStyle_Translucent);
+
     int l = 0;
 
     yOffset = (5+18+(l*25));
@@ -757,6 +767,21 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
 
     // Set it to be text entry
     XPSetWidgetProperty(CurrentPageLabelLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
+
+    l = 1;
+
+    yOffset = (5+18+(l*25));
+
+    // Create a checklist item description text widget
+    PastePageLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+                   1,	        // Visible
+                   "Paste",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageLabelLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
 
 
     l = 2;
@@ -775,6 +800,21 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     XPSetWidgetProperty(CurrentPageButtonLabelLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
 
 
+    l = 3;
+
+    yOffset = (5+18+(l*25));
+
+    // Create a checklist item description text widget
+    PastePageButtonLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+                   1,	        // Visible
+                   "Paste",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonLabelLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
     l = 4;
 
     yOffset = (5+18+(l*25));
@@ -791,6 +831,21 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     XPSetWidgetProperty(CurrentPageButtonCommandOnceLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
 
 
+    l = 5;
+
+    yOffset = (5+18+(l*25));
+
+    // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
+    PastePageButtonCommandOnceLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+                   1,	        // Visible
+                   "Paste",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonCommandOnceLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
     l = 6;
 
     yOffset = (5+18+(l*25));
@@ -805,6 +860,21 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
 
     // Set it to be text entry
     XPSetWidgetProperty(CurrentPageButtonCommandContinueLineTextBoxWidget, xpProperty_TextFieldType, xpTextEntryField);
+
+
+    l = 7;
+
+    yOffset = (5+18+(l*25));
+
+    // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
+    PastePageButtonCommandContinueLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+                   1,	        // Visible
+                   "Paste",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonCommandContinueLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
 
 
     l = 8;
@@ -852,54 +922,156 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
 
 // This is our setup widget handler.  In this example we are only interested when the close box is pressed.
 int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr_t  inParam1, intptr_t  inParam2)
-{
-    // inParam1;
-    // (void) inParam2;
-
+{    
     char Buffer[256];
 
     if (inMessage == xpMessage_CloseButtonPushed) {
         if (inWidget == Xbtn2cmdEditWidget) {
             XPHideWidget(Xbtn2cmdEditWidget);
             edit_mode = 0;
-            // delete [] store_xbtn2cmdini;
             return 1;
         }
     }
 
-
     if (update_widget) {
 
         XPSetWidgetDescriptor(CurrentPageLabelLineTextBoxWidget, current_page_label_line.c_str());
-
         XPSetWidgetDescriptor(CurrentPageButtonLabelLineTextBoxWidget, current_page_button_label_line.c_str());
-
         XPSetWidgetDescriptor(CurrentPageButtonCommandOnceLineTextBoxWidget, current_page_button_command_once_line.c_str());
-
         XPSetWidgetDescriptor(CurrentPageButtonCommandContinueLineTextBoxWidget, current_page_button_command_continue_line.c_str());
 
         update_widget = 0;
-
     }
 
     if (inMessage == xpMsg_PushButtonPressed)
     {
-        if(inParam1 == (intptr_t)WriteIniFileButtonWidget) {
+        if(inParam1 == (intptr_t)PastePageLabelLineTextBoxButtonWidget) {
+            inWidget = CurrentPageLabelLineTextBoxWidget;
+            paste_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: PastePageLabelLineTextBoxButtonWidget pushed\n");
+        }
 
+        if(inParam1 == (intptr_t)PastePageButtonLabelLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonLabelLineTextBoxWidget;
+            paste_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: PastePageButtonLabelLineTextBoxButtonWidget pushed\n");
+        }
+
+        if(inParam1 == (intptr_t)PastePageButtonCommandOnceLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonCommandOnceLineTextBoxWidget;
+            paste_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: PastePageButtonCommandOnceLineTextBoxButtonWidget pushed\n");
+        }
+
+        if(inParam1 == (intptr_t)PastePageButtonCommandContinueLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonCommandContinueLineTextBoxWidget;
+            paste_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: PastePageButtonCommandContinueLineTextBoxButtonWidget pushed\n");
+        }
+
+
+        if (paste_button_pushed) {
+            intptr_t	selStart = XPGetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, NULL);
+            intptr_t	selEnd = XPGetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, NULL);
+            int	strLen = XPGetWidgetDescriptor(inWidget, NULL, 0);
+            std::string	txt;
+            txt.resize(strLen);
+            XPGetWidgetDescriptor(inWidget, &*txt.begin(), txt.size()+1);
+            std::string	scrap;
+
+            if (XSBGetTextFromClipboard(scrap) && !scrap.empty())
+            {
+                if ((selEnd > selStart) && (selStart >= 0) && (selEnd <= strLen))
+                {
+                    txt.replace(selStart, selEnd - selStart, scrap);
+                    XPSetWidgetDescriptor(inWidget, txt.c_str());
+                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
+                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
+                } else if ((selStart >= 0) && (selStart <= strLen)) {
+                    txt.insert(selStart, scrap);
+                    XPSetWidgetDescriptor(inWidget, txt.c_str());
+                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
+                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
+                }
+            }
+            paste_button_pushed = 0;
+            return 1;
+        }
+
+        if(inParam1 == (intptr_t)WriteIniFileButtonWidget) {
             write_ini_file_from_array();
             XPLMDebugString("Xbtn2cmd: WriteIniFileButtonWidget pushed\n");
-            // return 1;
         }
 
         if(inParam1 == (intptr_t)UpdatePageLabelButtonWidget) {
 
             update_current_button();
             XPLMDebugString("Xbtn2cmd: UpdatePageLabelButtonWidget pushed\n");
-            // return 1;
         }
     }
 
     return 0;
+
+}
+
+
+bool	XSBGetTextFromClipboard(std::string& outText)
+{
+#if IBM
+    std::string ret;
+
+    if (TRUE == OpenClipboard(NULL)) {
+            HANDLE hData = GetClipboardData(CF_TEXT);
+            if (NULL != hData) {
+                char * pszText = static_cast<char*>(GlobalLock(hData));
+                if (NULL != pszText) {
+                    ret.assign(pszText);
+                }
+
+                GlobalUnlock(hData);
+            }
+
+            CloseClipboard();
+    }
+
+    outText = ret.c_str();
+    return 1;
+#endif
+    /*
+#if APL
+        ScrapRef	scrap;
+    if (::GetCurrentScrap(&scrap) != noErr)
+        return false;
+
+    SInt32		byteCount = 0;
+    OSStatus	status = ::GetScrapFlavorSize(scrap, kScrapFlavorTypeText, &byteCount);
+    if (status != noErr)
+        return false;
+
+    outText.resize(byteCount);
+
+    return (::GetScrapFlavorData(scrap, kScrapFlavorTypeText, &byteCount, &*outText.begin() ) == noErr);
+#endif
+*/
+#if LIN
+    FILE * f = popen( "xclip -sel clip -o", "r" );
+    if ( f == 0 ) {
+        fprintf( stderr, "Could not execute\n" );
+        return 0;
+    }
+    const int BUFSIZE = 1000;
+    char buf[ BUFSIZE ];
+    while( fgets( buf, BUFSIZE,  f ) ) {
+        fprintf( stdout, "%s", buf  );
+    }
+    pclose( f );
+    sprintf(scratch_buffer, "Xbtn2cmd: buf = %s\n", buf);
+    XPLMDebugString(scratch_buffer);
+    outText = buf;
+    sprintf(scratch_buffer, "Xbtn2cmd: outText.c_str() = %s\n", outText.c_str());
+    XPLMDebugString(scratch_buffer);
+    return 1;
+#endif
 
 }
 
@@ -936,8 +1108,6 @@ void populate_edit_window()
         store_xbtn2cmdini[current_line_number] = line;
 
     }
-
-    // XPLMDebugString("Xbtn2cmd: Opened Cessna_172SP_xbtn2cmd.ini file now will close it\n\n");
 
     inFile.close();
     update_widget = 1;
