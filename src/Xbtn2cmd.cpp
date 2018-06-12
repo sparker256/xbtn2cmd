@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.13 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.14 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -470,15 +470,19 @@ static int Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget,
 static XPLMWindowID	xbtn2cmd_edit_window;
 
 XPWidgetID	CurrentPageLabelLineTextBoxWidget = NULL;
+XPWidgetID	CopyPageLabelLineTextBoxButtonWidget = NULL;
 XPWidgetID	PastePageLabelLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonLabelLineTextBoxWidget = NULL;
+XPWidgetID	CopyPageButtonLabelLineTextBoxButtonWidget = NULL;
 XPWidgetID	PastePageButtonLabelLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonCommandOnceLineTextBoxWidget = NULL;
+XPWidgetID	CopyPageButtonCommandOnceLineTextBoxButtonWidget = NULL;
 XPWidgetID	PastePageButtonCommandOnceLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	CurrentPageButtonCommandContinueLineTextBoxWidget = NULL;
+XPWidgetID	CopyPageButtonCommandContinueLineTextBoxButtonWidget = NULL;
 XPWidgetID	PastePageButtonCommandContinueLineTextBoxButtonWidget = NULL;
 
 XPWidgetID	WriteIniFileButtonWidget = NULL;
@@ -489,11 +493,16 @@ XPWidgetID	Xbtn2cmdEditPageButtonLabelTextBoxWidget = NULL;
 int edit_mode = 0;
 int update_widget = 0;
 
-string store_xbtn2cmdini[700];
+vector<string> xbtn2cmdiniVector;
+
+int vector_size;
+
 
 bool	XSBGetTextFromClipboard(std::string& outText);
+bool	XSBSetTextToClipboard(const std::string& inText);
 
 int paste_button_pushed = 0;
+int copy_button_pushed = 0;
 
 
 PLUGIN_API int XPluginStart(
@@ -589,6 +598,8 @@ PLUGIN_API void	XPluginStop(void)
 	// Since we created the window, we'll be good citizens and clean it up
     XPLMDestroyWindow(xb2cvr_g_window);
     xb2cvr_g_window = NULL;
+    xbtn2cmdiniVector.clear();
+
 }
 
 PLUGIN_API void XPluginDisable(void) { }
@@ -721,7 +732,7 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     else if(!strcmp((const char *)in_item_ref, "Menu Item 5"))
     {
       if (Xbtn2cmdEditWidget == NULL){
-        CreateXbtn2cmdEditWidget(400, 550, 520, 250);	//left, top, right, bottom.
+        CreateXbtn2cmdEditWidget(400, 550, 580, 250);	//left, top, right, bottom.
       }else{
         if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
             XPShowWidget(Xbtn2cmdEditWidget);
@@ -760,7 +771,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    CurrentPageLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
+    CurrentPageLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button_label = Page 1",    // desc
                    0,		// root
@@ -775,7 +786,18 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    PastePageLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+    CopyPageLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60, yy-yOffset-20,
+                   1,	        // Visible
+                   "Copy",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(CopyPageLabelLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
+    // Create a checklist item description text widget
+    PastePageLabelLineTextBoxButtonWidget = XPCreateWidget(xx+510, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "Paste",    // desc
                    0,		// root
@@ -791,7 +813,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    CurrentPageButtonLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
+    CurrentPageButtonLabelLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button1_label = Button 1",    // desc
                    0,		// root
@@ -807,7 +829,18 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    PastePageButtonLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+    CopyPageButtonLabelLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60, yy-yOffset-20,
+                   1,	        // Visible
+                   "Copy",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonLabelLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
+    // Create a checklist item description text widget
+    PastePageButtonLabelLineTextBoxButtonWidget = XPCreateWidget(xx+510, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "Paste",    // desc
                    0,		// root
@@ -822,7 +855,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    CurrentPageButtonCommandOnceLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
+    CurrentPageButtonCommandOnceLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button1_command_once =",    // desc
                    0,		// root
@@ -838,7 +871,18 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
-    PastePageButtonCommandOnceLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+    CopyPageButtonCommandOnceLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60, yy-yOffset-20,
+                   1,	        // Visible
+                   "Copy",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonCommandOnceLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
+    // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
+    PastePageButtonCommandOnceLineTextBoxButtonWidget = XPCreateWidget(xx+510, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "Paste",    // desc
                    0,		// root
@@ -853,7 +897,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist item description text widget
-    CurrentPageButtonCommandContinueLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+450, yy-yOffset-20,
+    CurrentPageButtonCommandContinueLineTextBoxWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "page1_button1_command_continue =",    // desc
                    0,		// root
@@ -869,7 +913,18 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
     yOffset = (5+18+(l*25));
 
     // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
-    PastePageButtonCommandContinueLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60+20, yy-yOffset-20,
+    CopyPageButtonCommandContinueLineTextBoxButtonWidget = XPCreateWidget(xx+10, yy-yOffset, xx+60, yy-yOffset-20,
+                   1,	        // Visible
+                   "Copy",    // desc
+                   0,		// root
+                   Xbtn2cmdEditWidget,
+                   xpWidgetClass_Button);
+
+    XPSetWidgetProperty(PastePageButtonCommandContinueLineTextBoxButtonWidget, xpProperty_ButtonType, xpPushButton);
+
+
+    // Create a checklist itPastePageButtonCommandOnceLineTextBoxButtonWidgetem description text widget
+    PastePageButtonCommandContinueLineTextBoxButtonWidget = XPCreateWidget(xx+510, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "Paste",    // desc
                    0,		// root
@@ -895,7 +950,7 @@ void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
 
 
     // Create a checklist item description text widget
-    UpdatePageLabelButtonWidget = XPCreateWidget(xx+320, yy-yOffset, xx+60+450, yy-yOffset-20,
+    UpdatePageLabelButtonWidget = XPCreateWidget(xx+380, yy-yOffset, xx+60+510, yy-yOffset-20,
                    1,	        // Visible
                    "Update Current Button Array",    // desc
                    0,		// root
@@ -931,6 +986,7 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
         if (inWidget == Xbtn2cmdEditWidget) {
             XPHideWidget(Xbtn2cmdEditWidget);
             edit_mode = 0;
+            // xbtn2cmdiniVector.clear();
             return 1;
         }
     }
@@ -947,10 +1003,23 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
 
     if (inMessage == xpMsg_PushButtonPressed)
     {
+        if(inParam1 == (intptr_t)CopyPageLabelLineTextBoxButtonWidget) {
+            inWidget = CurrentPageLabelLineTextBoxWidget;
+            copy_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: CopyPageLabelLineTextBoxButtonWidget pushed\n");
+        }
+
         if(inParam1 == (intptr_t)PastePageLabelLineTextBoxButtonWidget) {
             inWidget = CurrentPageLabelLineTextBoxWidget;
             paste_button_pushed = 1;
             XPLMDebugString("Xbtn2cmd: PastePageLabelLineTextBoxButtonWidget pushed\n");
+        }
+
+
+        if(inParam1 == (intptr_t)CopyPageButtonLabelLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonLabelLineTextBoxWidget;
+            copy_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: CopyPageButtonLabelLineTextBoxButtonWidget pushed\n");
         }
 
         if(inParam1 == (intptr_t)PastePageButtonLabelLineTextBoxButtonWidget) {
@@ -959,10 +1028,24 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
             XPLMDebugString("Xbtn2cmd: PastePageButtonLabelLineTextBoxButtonWidget pushed\n");
         }
 
+
+        if(inParam1 == (intptr_t)CopyPageButtonCommandOnceLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonCommandOnceLineTextBoxWidget;
+            copy_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: CopyPageButtonCommandOnceLineTextBoxButtonWidget pushed\n");
+        }
+
         if(inParam1 == (intptr_t)PastePageButtonCommandOnceLineTextBoxButtonWidget) {
             inWidget = CurrentPageButtonCommandOnceLineTextBoxWidget;
             paste_button_pushed = 1;
             XPLMDebugString("Xbtn2cmd: PastePageButtonCommandOnceLineTextBoxButtonWidget pushed\n");
+        }
+
+
+        if(inParam1 == (intptr_t)CopyPageButtonCommandContinueLineTextBoxButtonWidget) {
+            inWidget = CurrentPageButtonCommandContinueLineTextBoxWidget;
+            copy_button_pushed = 1;
+            XPLMDebugString("Xbtn2cmd: CopyPageButtonCommandContinueLineTextBoxButtonWidget pushed\n");
         }
 
         if(inParam1 == (intptr_t)PastePageButtonCommandContinueLineTextBoxButtonWidget) {
@@ -972,33 +1055,53 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
         }
 
 
-        if (paste_button_pushed) {
+        if (copy_button_pushed || paste_button_pushed) {
             intptr_t	selStart = XPGetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, NULL);
             intptr_t	selEnd = XPGetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, NULL);
             int	strLen = XPGetWidgetDescriptor(inWidget, NULL, 0);
             std::string	txt;
             txt.resize(strLen);
             XPGetWidgetDescriptor(inWidget, &*txt.begin(), txt.size()+1);
-            std::string	scrap;
 
-            if (XSBGetTextFromClipboard(scrap) && !scrap.empty())
-            {
-                if ((selEnd > selStart) && (selStart >= 0) && (selEnd <= strLen))
-                {
-                    txt.replace(selStart, selEnd - selStart, scrap);
-                    XPSetWidgetDescriptor(inWidget, txt.c_str());
-                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
-                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
-                } else if ((selStart >= 0) && (selStart <= strLen)) {
-                    txt.insert(selStart, scrap);
-                    XPSetWidgetDescriptor(inWidget, txt.c_str());
-                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
-                    XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
+            if (copy_button_pushed) {
+                if ((selStart >= 0) && (selStart < selEnd) && (selEnd <= strLen)) {
+                    std::string	scrap = txt.substr(selStart, selEnd - selStart);
+                    #if IBM
+                    XSBSetTextToClipboard(scrap);
+                    #endif
+                    #if LIN
+                    XSBSetTextToClipboard(scrap);
+                    #endif
+                    #if APL
+                    // XSBSetTextToClipboard(scrap);
+                    #endif
+
                 }
+                copy_button_pushed = 0;
+                return 1;
             }
-            paste_button_pushed = 0;
-            return 1;
+
+
+            if (paste_button_pushed) {
+                std::string	scrap;
+                if (XSBGetTextFromClipboard(scrap) && !scrap.empty()) {
+                    if ((selEnd > selStart) && (selStart >= 0) && (selEnd <= strLen)) {
+                        txt.replace(selStart, selEnd - selStart, scrap);
+                        XPSetWidgetDescriptor(inWidget, txt.c_str());
+                        XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
+                        XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
+                    } else if ((selStart >= 0) && (selStart <= strLen)) {
+                        txt.insert(selStart, scrap);
+                        XPSetWidgetDescriptor(inWidget, txt.c_str());
+                        XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelStart, selStart + scrap.size());
+                        XPSetWidgetProperty(inWidget, xpProperty_EditFieldSelEnd, selStart + scrap.size());
+                    }
+                }
+                paste_button_pushed = 0;
+                return 1;
+            }
         }
+
 
         if(inParam1 == (intptr_t)WriteIniFileButtonWidget) {
             write_ini_file_from_array();
@@ -1046,6 +1149,7 @@ bool	XSBGetTextFromClipboard(std::string& outText)
 #endif
 
 #if LIN
+
     FILE * f = popen( "xclip -sel clip -o", "r" );
     if ( f == 0 ) {
         fprintf( stderr, "Could not execute\n" );
@@ -1062,31 +1166,66 @@ bool	XSBGetTextFromClipboard(std::string& outText)
     outText = buf;
     sprintf(scratch_buffer, "Xbtn2cmd: outText.c_str() = %s\n", outText.c_str());
     XPLMDebugString(scratch_buffer);
+
+    outText = buf;
     return 1;
 #endif
 
 }
 
+bool	XSBSetTextToClipboard(const std::string& inText)
+{
+#if IBM
+    if (TRUE == OpenClipboard(NULL)) {
+        EmptyClipboard();
+
+        HGLOBAL hClipboardData = GlobalAlloc(GMEM_FIXED, inText.size() + 1);
+        if (NULL != hClipboardData) {
+            char * pchData = (char*)GlobalLock(hClipboardData);
+            if (NULL != pchData) {
+                strcpy(pchData, LPCSTR(inText.c_str()));
+
+                GlobalUnlock(hClipboardData);
+
+                SetClipboardData(CF_TEXT, hClipboardData);
+
+            }
+        }
+
+        CloseClipboard();
+    }
+
+
+#endif
+#if APL
+    XPLMDebugString("Xbtn2cmd: setClipboard(inText)\n");
+    setClipboard(inText.c_str());
+#endif
+#if LIN
+    std::string command = "echo -n " + inText + " | xclip -sel c";
+        if(0 != system(command.c_str())) {
+            XPLMDebugString("Copy command failed. Do you have xclip on your system?");
+        }
+#endif
+}
+
 
 void populate_edit_window()
 {
-    std::string test_file;
-    test_file = "./Aircraft/Laminar Research/Cessna 172SP/Cessna_172SP_xbtn2cmd.ini";
     size_t pos;
     string line;
     string find_end = "=";
     int line_length;
-    int find_end_position = 0;
     current_line_number = 0;
-    int array_line_number = 0;
-    string array_line = "";
+    xbtn2cmdiniVector.clear();
+    string vector_line = "";
+    int vector_line_number = 0;
 
     sprintf(scratch_buffer, "Xbtn2cmd: Current xbtn2cmd.ini file path = %s\n", xbtn2cmdini_path_name.c_str());
     XPLMDebugString(scratch_buffer);
 
 
     std::ifstream inFile;
-    // inFile.open(test_file.c_str());
     inFile.open(xbtn2cmdini_path_name.c_str());
 
     if (inFile.fail()) {
@@ -1095,81 +1234,79 @@ void populate_edit_window()
     }
 
     while(inFile.good()) {
-        current_line_number = current_line_number + 1;
+        // current_line_number = current_line_number + 1;
         getline(inFile,line); // get line from file
-        store_xbtn2cmdini[current_line_number] = line;
-
+        xbtn2cmdiniVector.push_back(line);
     }
 
     inFile.close();
     update_widget = 1;
+    vector_size = xbtn2cmdiniVector.size();
+    sprintf(scratch_buffer, "Xbtn2cmd: vector_size = %d\n", vector_size);
+    XPLMDebugString(scratch_buffer);
 
-    while (array_line_number < current_line_number) {
-        array_line = store_xbtn2cmdini[array_line_number];
+    while (vector_line_number < vector_size) {
+        vector_line = xbtn2cmdiniVector[vector_line_number];
 
 
-        pos=array_line.find(search_current_page_label); // search
+        pos=vector_line.find(search_current_page_label); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            line_length = array_line.length();
-            current_page_label_line_number = array_line_number;
-            current_page_label_line = array_line;
+            line_length = vector_line.length();
+            current_page_label_line_number = vector_line_number;
+            current_page_label_line = vector_line;
             current_page_label_line_length = line_length;
-            current_page_label_write_start_position = array_line.find(find_end) + 2;
+            current_page_label_write_start_position = vector_line.find(find_end) + 2;
             if (line_length > current_page_label_write_start_position) {
-                current_page_label = array_line.substr (current_page_label_write_start_position);
+                current_page_label = vector_line.substr (current_page_label_write_start_position);
             } else {
                 current_page_label = "";
             }
         }
 
-        pos=array_line.find(search_current_page_button_label); // search
+        pos=vector_line.find(search_current_page_button_label); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            line_length = array_line.length();
-            current_page_button_label_line_number = array_line_number;
-            current_page_button_label_line = array_line;
+            line_length = vector_line.length();
+            current_page_button_label_line_number = vector_line_number;
+            current_page_button_label_line = vector_line;
             current_page_button_label_line_length = line_length;
-            current_page_button_label_write_start_position = array_line.find(find_end) + 2;
+            current_page_button_label_write_start_position = vector_line.find(find_end) + 2;
             if (line_length > current_page_button_label_write_start_position) {
-                current_page_button_label = array_line.substr (current_page_button_label_write_start_position);
+                current_page_button_label = vector_line.substr (current_page_button_label_write_start_position);
             } else {
                 current_page_button_label = "";
             }
         }
 
-        pos=array_line.find(search_current_page_button_command_once); // search
+        pos=vector_line.find(search_current_page_button_command_once); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            line_length = array_line.length();
-            current_page_button_command_once_line_number = array_line_number;
-            current_page_button_command_once_line = array_line;
+            line_length = vector_line.length();
+            current_page_button_command_once_line_number = vector_line_number;
+            current_page_button_command_once_line = vector_line;
             current_page_button_command_once_line_length = line_length;
-            current_page_button_command_once_write_start_position = array_line.find(find_end) + 2;
+            current_page_button_command_once_write_start_position = vector_line.find(find_end) + 2;
             if (line_length > current_page_button_command_once_write_start_position) {
-                current_page_button_command_once = array_line.substr (current_page_button_command_once_write_start_position);
+                current_page_button_command_once = vector_line.substr (current_page_button_command_once_write_start_position);
             } else {
                current_page_button_command_once = "";
             }
-
         }
 
-        pos=array_line.find(search_current_page_button_command_continue); // search
+        pos=vector_line.find(search_current_page_button_command_continue); // search
         if(pos!=string::npos) { // string::npos is returned if string is not found
-            line_length = array_line.length();
-            current_page_button_command_continue_line_number = array_line_number;
-            current_page_button_command_continue_line = array_line;
+            line_length = vector_line.length();
+            current_page_button_command_continue_line_number = vector_line_number;
+            current_page_button_command_continue_line = vector_line;
             current_page_button_command_continue_line_length = line_length;
-            current_page_button_command_continue_write_start_position = array_line.find(find_end) + 2;
+            current_page_button_command_continue_write_start_position = vector_line.find(find_end) + 2;
             if (line_length > current_page_button_command_continue_write_start_position) {
-                current_page_button_command_continue = array_line.substr (current_page_button_command_continue_write_start_position);
+                current_page_button_command_continue = vector_line.substr (current_page_button_command_continue_write_start_position);
             } else {
                 current_page_button_command_continue = "";
             }
-
         }
 
-
-        array_line_number = array_line_number + 1;
+        vector_line_number = vector_line_number + 1;
     }
-
 }
 
 
@@ -1181,23 +1318,22 @@ void update_current_button()
     memset(buffer, 0, sizeof(buffer));
     XPGetWidgetDescriptor(CurrentPageLabelLineTextBoxWidget, buffer, sizeof(buffer));
     tmp = string(buffer);
-    store_xbtn2cmdini[current_page_label_line_number] = tmp;
+    xbtn2cmdiniVector[current_page_label_line_number] = tmp;
 
     memset(buffer, 0, sizeof(buffer));
     XPGetWidgetDescriptor(CurrentPageButtonLabelLineTextBoxWidget, buffer, sizeof(buffer));
     tmp = string(buffer);
-    store_xbtn2cmdini[current_page_button_label_line_number] = tmp;
+    xbtn2cmdiniVector[current_page_button_label_line_number] = tmp;
 
     memset(buffer, 0, sizeof(buffer));
     XPGetWidgetDescriptor(CurrentPageButtonCommandOnceLineTextBoxWidget, buffer, sizeof(buffer));
     tmp = string(buffer);
-    store_xbtn2cmdini[current_page_button_command_once_line_number] = tmp;
+    xbtn2cmdiniVector[current_page_button_command_once_line_number] = tmp;
 
     memset(buffer, 0, sizeof(buffer));
     XPGetWidgetDescriptor(CurrentPageButtonCommandContinueLineTextBoxWidget, buffer, sizeof(buffer));
     tmp = string(buffer);
-    store_xbtn2cmdini[current_page_button_command_continue_line_number] = tmp;
-
+    xbtn2cmdiniVector[current_page_button_command_continue_line_number] = tmp;
 }
 
 void write_ini_file_from_array()
@@ -1212,8 +1348,8 @@ void write_ini_file_from_array()
     }
     if (outFile.is_open()) {
         XPLMDebugString("Xbtn2cmd: Found Cessna_172SP_xbtn2cmd.ini open for writing now will close it\n\n");
-        while (count < current_line_number) {
-            outFile << store_xbtn2cmdini[count] << "\n" ;
+        while (count < vector_size) {
+            outFile << xbtn2cmdiniVector[count] << "\n" ;
             count = count + 1;
         }
     }
@@ -1270,7 +1406,7 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
             break;
         case OPEN_EDIT_WINDOW_COMMAND:
             if (Xbtn2cmdEditWidget == NULL){
-              CreateXbtn2cmdEditWidget(400, 550, 520, 250);	//left, top, right, bottom.
+              CreateXbtn2cmdEditWidget(400, 550, 580, 250);	//left, top, right, bottom.
             }else{
               if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
                   XPShowWidget(Xbtn2cmdEditWidget);
