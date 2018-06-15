@@ -32,8 +32,6 @@ string convert_Mac_Path(string in_path) {
     int count = 0;
     for (int i = 0; i < in_path.size(); i++)
        if (in_path[i] == ':') count++;
-            // sprintf(seperator_number_buffer, "Xsaitekpanels: How many path seperators are in the path = %d\n", count);
-            // XPLMDebugString(seperator_number_buffer);
 
     size_t found;
     int n = count;
@@ -166,23 +164,10 @@ void process_read_ini_file()
 
     }
 
-    // get xbtn2cmd.ini version
     version = getOptionToString("Version");
     XPLMDebugString("\nXbtn2cmd: xbtn2cmd.ini is version   ");
     XPLMDebugString(version.c_str());
     XPLMDebugString("\n");
-
-    // Do we want to enable data reference editor?
-    // readOptionAsInt("Data Reference Editor enable", &dre_enable);
-
-    // Do we want to display the plane icao on screen?
-    // readOptionAsInt("Display Plane ICAO On Screen Enable", &icao_enable);
-
-    // Do we want debug loging enabled
-    // readOptionAsInt("Add Debug Entries To Log Enable", &log_enable);
-
-    // sprintf(buf, "Xsaitekpanels: dre_enable = %d  icao_enable = %d  log_enable = %d\n",dre_enable, icao_enable, log_enable);
-    // XPLMDebugString(buf);
 
 
     // ****************** page one   ***************************

@@ -617,7 +617,6 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
 
         if(inMsg == XPLM_MSG_SCENERY_LOADED)
         {
-            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
             xb2cvr_create_gui_window();
             process_read_ini_file();
             if (first_time == 0) {
@@ -632,11 +631,8 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
 void xb2cvr_create_gui_window() {
 
     vr_is_enabled = XPLMGetDatai(g_vr_dref);
-    sprintf(scratch_buffer, "Xbtn2cmd:In xb2cvr_create_gui_window() function vr_is_enabled = %d\n", vr_is_enabled);
-    XPLMDebugString(scratch_buffer);
 
     if (xb2cvr_g_window == NULL) {
-        XPLMDebugString("Xbtn2cmd: xcvr_g_window == NULL\n");
         // We're not guaranteed that the main monitor's lower left is at (0, 0)...
         // we'll need to query for the global desktop bounds!
         int xb2cvr_global_desktop_bounds[4]; // left, bottom, right, top
@@ -665,9 +661,6 @@ void xb2cvr_create_gui_window() {
         }
 
         xb2cvr_g_window = XPLMCreateWindowEx(&params);
-
-        sprintf(scratch_buffer, "Xbtn2cmd: xb2cvr_create_gui_window vr_is_enabled = %d\n", vr_is_enabled);
-        XPLMDebugString(scratch_buffer);
         XPLMSetWindowPositioningMode(xb2cvr_g_window, vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
         g_in_vr = vr_is_enabled;
 
@@ -986,7 +979,6 @@ int	Xbtn2cmdEditHandler(XPWidgetMessage  inMessage, XPWidgetID  inWidget, intptr
         if (inWidget == Xbtn2cmdEditWidget) {
             XPHideWidget(Xbtn2cmdEditWidget);
             edit_mode = 0;
-            // xbtn2cmdiniVector.clear();
             return 1;
         }
     }
@@ -1234,7 +1226,6 @@ void populate_edit_window()
     }
 
     while(inFile.good()) {
-        // current_line_number = current_line_number + 1;
         getline(inFile,line); // get line from file
         xbtn2cmdiniVector.push_back(line);
     }
@@ -1338,7 +1329,7 @@ void update_current_button()
 
 void write_ini_file_from_array()
 {
-    int count = 1;
+    int count = 0;
     std::ofstream outFile;
     outFile.open(xbtn2cmdini_path_name.c_str());
 
@@ -1348,7 +1339,7 @@ void write_ini_file_from_array()
     }
     if (outFile.is_open()) {
         XPLMDebugString("Xbtn2cmd: Found Cessna_172SP_xbtn2cmd.ini open for writing now will close it\n\n");
-        while (count < vector_size) {
+        while (count < vector_size - 1) {
             outFile << xbtn2cmdiniVector[count] << "\n" ;
             count = count + 1;
         }

@@ -56,7 +56,6 @@ static float g_button11_lbrt[4]; // left, bottom, right, top
 static float g_button12_lbrt[4]; // left, bottom, right, top
 
 
-// char scratch_buffer[150];
 float col_white[] = {1.0, 1.0, 1.0};
 float col_green[] = {0.0, 1.0, 0.0};
 float col_red[] = {1.0, 0.0, 0.0};
@@ -89,8 +88,6 @@ size_t ii;
 void				xb2cvr_draw(XPLMWindowID in_window_id, void * in_refcon);
 int					xb2cvr_handle_mouse(XPLMWindowID in_window_id, int x, int y, int is_down, void * in_refcon);
 
-
-// bounds_lbrt  0 left,  1 bottom,  2 right,  3 top
 static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return (((x - 10) >= bounds_lbrt[0]) && ((x - 20) < bounds_lbrt[2]) && (y < bounds_lbrt[3]) && (y >= bounds_lbrt[1])); }
 
 
@@ -110,8 +107,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
     // We draw our rudimentary button boxes based on the height of the button text
     int char_height;
     XPLMGetFontDimensions(xplmFont_Proportional, NULL, &char_height, NULL);
-    // sprintf(scratch_buffer, "Xbtn2cmd: char_height = %d\n", char_height);
-    // XPLMDebugString(scratch_buffer);
 
     int l, t, r, b;
     XPLMGetWindowGeometry(xb2cvr_in_window_id, &l, &t, &r, &b);
@@ -125,7 +120,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the page 1 button
-        // line_number = line_number + 2;
         const char * page1_btn_label = page1_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -151,14 +145,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         }
         glEnd();
 
-        // Draw the text on the Button1 button.
+        // Draw the text on the Page1 button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_page1_button_lbrt[0] = g_page1_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page1_button_lbrt[0], g_page1_button_lbrt[1] + 8, (char *)page1_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the page 2 button
-        // line_number = line_number + 2;
         const char * page2_btn_label = page2_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -184,14 +177,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         }
         glEnd();
 
-        // Draw the text on the Button1 button.
+        // Draw the text on the Page2 button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_page2_button_lbrt[0] = g_page2_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page2_button_lbrt[0], g_page2_button_lbrt[1] + 8, (char *)page2_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the page 3 button
-        // line_number = line_number + 2;
         const char * page3_btn_label = page3_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -217,14 +209,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         }
         glEnd();
 
-        // Draw the text on the Button1 button.
+        // Draw the text on the Page3 button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_page3_button_lbrt[0] = g_page3_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page3_button_lbrt[0], g_page3_button_lbrt[1] + 8, (char *)page3_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the page 4 button
-        // line_number = line_number + 2;
         const char * page4_btn_label = page4_button_label.c_str();
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -250,14 +241,13 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         }
         glEnd();
 
-        // Draw the text on the Button1 button.
+        // Draw the text on the Page4 button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_page4_button_lbrt[0] = g_page4_button_lbrt[0] + 1;
         XPLMDrawString(col_black, g_page4_button_lbrt[0], g_page4_button_lbrt[1] + 8, (char *)page4_btn_label, NULL, xplmFont_Proportional);
 
 
         // Draw the hide button
-        // line_number = line_number + 2;
         const char * hide_btn_label = "Hide";
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -284,14 +274,145 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         glEnd();
 
 
-        // Draw the text on the Button1 button.
+        // Draw the text on the Hide button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_hide_button_lbrt[0] = g_hide_button_lbrt[0] + 10;
         XPLMDrawString(col_black, g_hide_button_lbrt[0], g_hide_button_lbrt[1] + 8, (char *)hide_btn_label, NULL, xplmFont_Proportional);
 
 
+
+
+        // Draw the page 5 button
+        line_number = line_number + 4;
+        const char * page5_btn_label = page5_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page5_button_lbrt[0] = l;
+        g_page5_button_lbrt[3] = t - (line_number * char_height);
+        g_page5_button_lbrt[2] = g_page5_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page5_button_lbrt[1] = g_page5_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 5) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[3]);
+            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[3]);
+            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[1]);
+            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Page5 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page5_button_lbrt[0] = g_page5_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page5_button_lbrt[0], g_page5_button_lbrt[1] + 8, (char *)page5_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 6 button
+        const char * page6_btn_label = page6_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page6_button_lbrt[0] = l + 115;
+        g_page6_button_lbrt[3] = t - (line_number * char_height);
+        g_page6_button_lbrt[2] = g_page6_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page6_button_lbrt[1] = g_page6_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 6) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[3]);
+            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[3]);
+            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[1]);
+            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Page6 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page6_button_lbrt[0] = g_page6_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page6_button_lbrt[0], g_page6_button_lbrt[1] + 8, (char *)page6_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 7 button
+        const char * page7_btn_label = page7_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page7_button_lbrt[0] = l + 230;
+        g_page7_button_lbrt[3] = t - (line_number * char_height);
+        g_page7_button_lbrt[2] = g_page7_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page7_button_lbrt[1] = g_page7_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 7) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[3]);
+            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[3]);
+            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[1]);
+            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Page7 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page7_button_lbrt[0] = g_page7_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page7_button_lbrt[0], g_page7_button_lbrt[1] + 8, (char *)page7_btn_label, NULL, xplmFont_Proportional);
+
+
+        // Draw the page 8 button
+        const char * page8_btn_label = page8_button_label.c_str();
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_page8_button_lbrt[0] = l + 345;
+        g_page8_button_lbrt[3] = t - (line_number * char_height);
+        g_page8_button_lbrt[2] = g_page8_button_lbrt[0] + 90; // *just* wide enough to fit the button text
+        g_page8_button_lbrt[1] = g_page8_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (page_number == 8) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[3]);
+            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[3]);
+            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[1]);
+            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[1]);
+        }
+        glEnd();
+
+        // Draw the text on the Page8 button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_page8_button_lbrt[0] = g_page8_button_lbrt[0] + 1;
+        XPLMDrawString(col_black, g_page8_button_lbrt[0], g_page8_button_lbrt[1] + 8, (char *)page8_btn_label, NULL, xplmFont_Proportional);
+
+
         // Draw the In Front box
-        line_number = line_number + 3;
+        // line_number = line_number + 3;
         const char * in_front_btn_label = "In Front";
         int in_front = XPLMIsWindowInFront(xb2cvr_in_window_id);
 
@@ -318,146 +439,14 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         }
         glEnd();
 
-        // Draw the text on the previous button.
+        // Draw the text on the In Front button.
         // 0 left, 1 bottom, 2 right, 3 top
         g_in_front_button_lbrt[0] = g_in_front_button_lbrt[0] + 3;
         XPLMDrawString(col_black, g_in_front_button_lbrt[0], g_in_front_button_lbrt[1] + 8, (char *)in_front_btn_label, NULL, xplmFont_Proportional);
 
 
-        // Draw the page 5 button
-        line_number = line_number + 3;
-        const char * page5_btn_label = page5_button_label.c_str();
-
-        // 0 left, 1 bottom, 2 right, 3 top
-        // Position the button in the upper left of the window (sized to fit the button text)
-        g_page5_button_lbrt[0] = l;
-        g_page5_button_lbrt[3] = t - (line_number * char_height);
-        g_page5_button_lbrt[2] = g_page5_button_lbrt[0] + 90; // *just* wide enough to fit the button text
-        g_page5_button_lbrt[1] = g_page5_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
-
-        // Draw the box around our rudimentary button
-        if (page_number == 5) {
-            glColor4fv(light_green);
-        }
-        else {
-           glColor4fv(green);
-        }
-        glBegin(GL_POLYGON);
-        {
-            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[3]);
-            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[3]);
-            glVertex2i(g_page5_button_lbrt[2], g_page5_button_lbrt[1]);
-            glVertex2i(g_page5_button_lbrt[0], g_page5_button_lbrt[1]);
-        }
-        glEnd();
-
-        // Draw the text on the Button1 button.
-        // 0 left, 1 bottom, 2 right, 3 top
-        g_page5_button_lbrt[0] = g_page5_button_lbrt[0] + 1;
-        XPLMDrawString(col_black, g_page5_button_lbrt[0], g_page5_button_lbrt[1] + 8, (char *)page5_btn_label, NULL, xplmFont_Proportional);
-
-
-        // Draw the page 6 button
-        // line_number = line_number + 2;
-        const char * page6_btn_label = page6_button_label.c_str();
-
-        // 0 left, 1 bottom, 2 right, 3 top
-        // Position the button in the upper left of the window (sized to fit the button text)
-        g_page6_button_lbrt[0] = l + 115;
-        g_page6_button_lbrt[3] = t - (line_number * char_height);
-        g_page6_button_lbrt[2] = g_page6_button_lbrt[0] + 90; // *just* wide enough to fit the button text
-        g_page6_button_lbrt[1] = g_page6_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
-
-        // Draw the box around our rudimentary button
-        if (page_number == 6) {
-            glColor4fv(light_green);
-        }
-        else {
-           glColor4fv(green);
-        }
-        glBegin(GL_POLYGON);
-        {
-            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[3]);
-            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[3]);
-            glVertex2i(g_page6_button_lbrt[2], g_page6_button_lbrt[1]);
-            glVertex2i(g_page6_button_lbrt[0], g_page6_button_lbrt[1]);
-        }
-        glEnd();
-
-        // Draw the text on the Button1 button.
-        // 0 left, 1 bottom, 2 right, 3 top
-        g_page6_button_lbrt[0] = g_page6_button_lbrt[0] + 1;
-        XPLMDrawString(col_black, g_page6_button_lbrt[0], g_page6_button_lbrt[1] + 8, (char *)page6_btn_label, NULL, xplmFont_Proportional);
-
-
-        // Draw the page 7 button
-        // line_number = line_number + 2;
-        const char * page7_btn_label = page7_button_label.c_str();
-
-        // 0 left, 1 bottom, 2 right, 3 top
-        // Position the button in the upper left of the window (sized to fit the button text)
-        g_page7_button_lbrt[0] = l + 230;
-        g_page7_button_lbrt[3] = t - (line_number * char_height);
-        g_page7_button_lbrt[2] = g_page7_button_lbrt[0] + 90; // *just* wide enough to fit the button text
-        g_page7_button_lbrt[1] = g_page7_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
-
-        // Draw the box around our rudimentary button
-        if (page_number == 7) {
-            glColor4fv(light_green);
-        }
-        else {
-           glColor4fv(green);
-        }
-        glBegin(GL_POLYGON);
-        {
-            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[3]);
-            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[3]);
-            glVertex2i(g_page7_button_lbrt[2], g_page7_button_lbrt[1]);
-            glVertex2i(g_page7_button_lbrt[0], g_page7_button_lbrt[1]);
-        }
-        glEnd();
-
-        // Draw the text on the Button1 button.
-        // 0 left, 1 bottom, 2 right, 3 top
-        g_page7_button_lbrt[0] = g_page7_button_lbrt[0] + 1;
-        XPLMDrawString(col_black, g_page7_button_lbrt[0], g_page7_button_lbrt[1] + 8, (char *)page7_btn_label, NULL, xplmFont_Proportional);
-
-
-        // Draw the page 8 button
-        // line_number = line_number + 2;
-        const char * page8_btn_label = page8_button_label.c_str();
-
-        // 0 left, 1 bottom, 2 right, 3 top
-        // Position the button in the upper left of the window (sized to fit the button text)
-        g_page8_button_lbrt[0] = l + 345;
-        g_page8_button_lbrt[3] = t - (line_number * char_height);
-        g_page8_button_lbrt[2] = g_page8_button_lbrt[0] + 90; // *just* wide enough to fit the button text
-        g_page8_button_lbrt[1] = g_page8_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
-
-        // Draw the box around our rudimentary button
-        if (page_number == 8) {
-            glColor4fv(light_green);
-        }
-        else {
-           glColor4fv(green);
-        }
-        glBegin(GL_POLYGON);
-        {
-            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[3]);
-            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[3]);
-            glVertex2i(g_page8_button_lbrt[2], g_page8_button_lbrt[1]);
-            glVertex2i(g_page8_button_lbrt[0], g_page8_button_lbrt[1]);
-        }
-        glEnd();
-
-        // Draw the text on the Button1 button.
-        // 0 left, 1 bottom, 2 right, 3 top
-        g_page8_button_lbrt[0] = g_page8_button_lbrt[0] + 1;
-        XPLMDrawString(col_black, g_page8_button_lbrt[0], g_page8_button_lbrt[1] + 8, (char *)page8_btn_label, NULL, xplmFont_Proportional);
-
-
         // Draw the reload button
-        // line_number = line_number + 2;
+        line_number = line_number + 4;
         const char * reload_btn_label = "Reload";
 
         // 0 left, 1 bottom, 2 right, 3 top
@@ -491,7 +480,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button1 button
-        line_number = line_number + 6;
+        line_number = line_number + 5;
         const char * btn1_label;
         if (page_number == 1) {
             btn1_label = page1_button1_label.c_str();
@@ -592,7 +581,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button3 button
-        // const char * btn3_label = button3_label.c_str();
         const char * btn3_label;
         if (page_number == 1) {
             btn3_label = page1_button3_label.c_str();
@@ -644,7 +632,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the Button4 button
         line_number = line_number + 6;
-        // const char * btn4_label = button4_label.c_str();
         const char * btn4_label;
         if (page_number == 1) {
             btn4_label = page1_button4_label.c_str();
@@ -745,8 +732,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button6 button
-        // const char * previous_btn_label = "Previous";
-        // const char * btn6_label = button6_label.c_str();
         const char * btn6_label;
         if (page_number == 1) {
             btn6_label = page1_button6_label.c_str();
@@ -799,7 +784,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the Button7 button
         line_number = line_number + 6;
-        // const char * btn7_label = button7_label.c_str();
         const char * btn7_label;
         if (page_number == 1) {
             btn7_label = page1_button7_label.c_str();
@@ -851,7 +835,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button8 button
-        // const char * btn8_label = button8_label.c_str();
         const char * btn8_label;
         if (page_number == 1) {
             btn8_label = page1_button8_label.c_str();
@@ -902,7 +885,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button9 button
-        // const char * btn9_label = button9_label.c_str();
         const char * btn9_label;
         if (page_number == 1) {
             btn9_label = page1_button9_label.c_str();
@@ -955,7 +937,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
         // Draw the Button10 button
         line_number = line_number + 6;
-        // const char * btn10_label = button10_label.c_str();
         const char * btn10_label;
         if (page_number == 1) {
             btn10_label = page1_button10_label.c_str();
@@ -1007,7 +988,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button11 button
-        // const char * btn11_label = button11_label.c_str();
         const char * btn11_label;
         if (page_number == 1) {
             btn11_label = page1_button11_label.c_str();
@@ -1058,7 +1038,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
 
         // Draw the Button12 button
-        // const char * btn12_label = button12_label.c_str();
         const char * btn12_label;
         if (page_number == 1) {
             btn12_label = page1_button12_label.c_str();
@@ -1084,7 +1063,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         // Position the button in the upper left of the window (sized to fit the button text)
         g_button12_lbrt[0] = l + 360;
         g_button12_lbrt[3] = t - (line_number * char_height);
-        // g_previous_button_lbrt[2] = g_previous_button_lbrt[0] + XPLMMeasureString(xplmFont_Proportional, previous_btn_label, strlen(previous_btn_label) * 3.5); // *just* wide enough to fit the button text
         g_button12_lbrt[2] = g_button12_lbrt[0] + label_width; // *just* wide enough to fit the button text
         g_button12_lbrt[1] = g_button12_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
 
