@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.14 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.15 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -408,6 +408,19 @@ int mouse_down_page5 = 0;
 int mouse_down_page6 = 0;
 int mouse_down_page7 = 0;
 int mouse_down_page8 = 0;
+int mouse_down_page9 = 0;
+int mouse_down_page10 = 0;
+int mouse_down_page11 = 0;
+int mouse_down_page12 = 0;
+
+int number0_mouse_down = 0, number1_mouse_down = 0, number2_mouse_down = 0, number3_mouse_down = 0;
+int number4_mouse_down = 0, number5_mouse_down = 0, number6_mouse_down = 0, number7_mouse_down = 0;
+int number8_mouse_down = 0, number9_mouse_down = 0, clear_mouse_down = 0;
+int com1a_mouse_down = 0, com2a_mouse_down = 0, nav1a_mouse_down = 0, nav2a_mouse_down = 0;
+int com1s_mouse_down = 0, com2s_mouse_down = 0, nav1s_mouse_down = 0, nav2s_mouse_down = 0;
+
+int number_mouse_down_value = 0;
+int number_position = 0;
 
 int page_number = 1;
 
@@ -504,6 +517,34 @@ bool	XSBSetTextToClipboard(const std::string& inText);
 int paste_button_pushed = 0;
 int copy_button_pushed = 0;
 
+int radio_freq = 0;
+int radio_freq1 = 0;
+int radio_freq2 = 0;
+int radio_freq3 = 0;
+int radio_freq4 = 0;
+int radio_freq5 = 0;
+int radio_freq6 = 0;
+
+int radio_com1_actv_freq = 0;
+int radio_com2_actv_freq = 0;
+int radio_nav1_actv_freq = 0;
+int radio_nav2_actv_freq = 0;
+
+int radio_com1_stby_freq = 0;
+int radio_com2_stby_freq = 0;
+int radio_nav1_stby_freq = 0;
+int radio_nav2_stby_freq = 0;
+
+XPLMDataRef XPLM_radio_com1_actv_freq;
+XPLMDataRef XPLM_radio_com2_actv_freq;
+XPLMDataRef XPLM_radio_nav1_actv_freq;
+XPLMDataRef XPLM_radio_nav2_actv_freq;
+
+XPLMDataRef XPLM_radio_com1_stby_freq;
+XPLMDataRef XPLM_radio_com2_stby_freq;
+XPLMDataRef XPLM_radio_nav1_stby_freq;
+XPLMDataRef XPLM_radio_nav2_stby_freq;
+
 
 PLUGIN_API int XPluginStart(
 						char *		outName,
@@ -557,6 +598,16 @@ PLUGIN_API int XPluginStart(
     cmdreloadwindow = XPLMCreateCommand("bgood/xbtn2cmd/reload_window","Reload Window");
     cmdrecreatewindow = XPLMCreateCommand("bgood/xbtn2cmd/recreate_window","Recreate Window");
     cmdopeneditwindow = XPLMCreateCommand("bgood/xbtn2cmd/open_edit_window","Open Edit Window");
+
+    XPLM_radio_com1_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com1_frequency_hz");
+    XPLM_radio_com2_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com2_frequency_hz");
+    XPLM_radio_nav1_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav1_frequency_hz");
+    XPLM_radio_nav2_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav2_frequency_hz");
+
+    XPLM_radio_com1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com1_standby_frequency_hz");
+    XPLM_radio_com2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com2_standby_frequency_hz");
+    XPLM_radio_nav1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav1_standby_frequency_hz");
+    XPLM_radio_nav2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav2_standby_frequency_hz");
 
 
     XPLMRegisterCommandHandler(

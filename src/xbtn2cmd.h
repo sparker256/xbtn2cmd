@@ -326,6 +326,20 @@ extern int mouse_down_page5;
 extern int mouse_down_page6;
 extern int mouse_down_page7;
 extern int mouse_down_page8;
+extern int mouse_down_page9;
+extern int mouse_down_page10;
+extern int mouse_down_page11;
+extern int mouse_down_page12;
+
+extern int number0_mouse_down, number1_mouse_down, number2_mouse_down, number3_mouse_down;
+extern int number4_mouse_down, number5_mouse_down, number6_mouse_down, number7_mouse_down;
+extern int number8_mouse_down, number9_mouse_down, clear_mouse_down;
+extern int com1a_mouse_down, com2a_mouse_down, nav1a_mouse_down, nav2a_mouse_down;
+extern int com1s_mouse_down, com2s_mouse_down, nav1s_mouse_down, nav2s_mouse_down;
+
+extern int number_mouse_down_value;
+extern int number_position;
+
 
 extern int page_number;
 
@@ -345,5 +359,33 @@ extern string search_current_page_button_continue_label;
 extern void populate_edit_window();
 
 extern string xbtn2cmdini_path_name;
+
+extern int radio_freq;
+extern int radio_freq1;
+extern int radio_freq2;
+extern int radio_freq3;
+extern int radio_freq4;
+extern int radio_freq5;
+extern int radio_freq6;
+
+extern int radio_com1_actv_freq;
+extern int radio_com2_actv_freq;
+extern int radio_nav1_actv_freq;
+extern int radio_nav2_actv_freq;
+
+extern int radio_com1_stby_freq;
+extern int radio_com2_stby_freq;
+extern int radio_nav1_stby_freq;
+extern int radio_nav2_stby_freq;
+
+extern XPLMDataRef XPLM_radio_com1_actv_freq;
+extern XPLMDataRef XPLM_radio_com2_actv_freq;
+extern XPLMDataRef XPLM_radio_nav1_actv_freq;
+extern XPLMDataRef XPLM_radio_nav2_actv_freq;
+
+extern XPLMDataRef XPLM_radio_com1_stby_freq;
+extern XPLMDataRef XPLM_radio_com2_stby_freq;
+extern XPLMDataRef XPLM_radio_nav1_stby_freq;
+extern XPLMDataRef XPLM_radio_nav2_stby_freq;
 
 #endif
