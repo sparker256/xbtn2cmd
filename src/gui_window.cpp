@@ -3620,7 +3620,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             g_430n2_fpl_button_lbrt[0] = g_430n2_fpl_button_lbrt[0] + 5;
             XPLMDrawString(col_black, g_430n2_fpl_button_lbrt[0], g_430n2_fpl_button_lbrt[1] + 8, (char *)g_430n2_fpl_btn_label, NULL, xplmFont_Proportional);
 
-            /*
 
             // Draw the VNAV button
             // line_number = line_number + 5;
@@ -3654,8 +3653,6 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // 0 left, 1 bottom, 2 right, 3 top
             g_430n2_vnav_button_lbrt[0] = g_430n2_vnav_button_lbrt[0];
             XPLMDrawString(col_black, g_430n2_vnav_button_lbrt[0], g_430n2_vnav_button_lbrt[1] + 8, (char *)g_430n2_vnav_btn_label, NULL, xplmFont_Proportional);
-
-            */
 
 
             // Draw the PROC button
