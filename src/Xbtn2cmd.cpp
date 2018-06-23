@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.15 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.16 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -327,6 +327,29 @@ XPLMCommandRef Page8_Button10LabelCmd = NULL, Page8_Button10CommandOnceCmd = NUL
 XPLMCommandRef Page8_Button11LabelCmd = NULL, Page8_Button11CommandOnceCmd = NULL, Page8_Button11CommandContinueCmd = NULL;
 XPLMCommandRef Page8_Button12LabelCmd = NULL, Page8_Button12CommandOnceCmd = NULL, Page8_Button12CommandContinueCmd = NULL;
 
+XPLMCommandRef g430n1_cdi_cmd = NULL, g430n1_chapter_dn_cmd = NULL, g430n1_chapter_up_cmd = NULL, g430n1_clr_cmd = NULL;
+XPLMCommandRef g430n1_coarse_down_cmd = NULL, g430n1_coarse_up_cmd = NULL, g430n1_com_ff_cmd = NULL, g430n1_cursor_cmd = NULL;
+XPLMCommandRef g430n1_cvol_cmd = NULL, g430n1_direct_cmd = NULL, g430n1_ent_cmd = NULL, g430n1_fine_down_cmd = NULL;
+XPLMCommandRef g430n1_fine_up_cmd = NULL, g430n1_fpl_cmd = NULL, g430n1_menu_cmd = NULL, g430n1_msg_cmd = NULL;
+XPLMCommandRef g430n1_nav_com_tog_cmd = NULL, g430n1_nav_ff_cmd = NULL, g430n1_obs_cmd = NULL, g430n1_page_dn_cmd = NULL;
+XPLMCommandRef g430n1_page_up_cmd = NULL, g430n1_popout_cmd = NULL, g430n1_popup_cmd = NULL, g430n1_proc_cmd = NULL;
+XPLMCommandRef g430n1_vnav_cmd = NULL, g430n1_vvol_cmd = NULL, g430n1_zoom_in_cmd = NULL, g430n1_zoom_out_cmd = NULL;
+
+XPLMCommandRef g430n2_cdi_cmd = NULL, g430n2_chapter_dn_cmd = NULL, g430n2_chapter_up_cmd = NULL, g430n2_clr_cmd = NULL;
+XPLMCommandRef g430n2_coarse_down_cmd = NULL, g430n2_coarse_up_cmd = NULL, g430n2_com_ff_cmd = NULL, g430n2_cursor_cmd = NULL;
+XPLMCommandRef g430n2_cvol_cmd = NULL, g430n2_direct_cmd = NULL, g430n2_ent_cmd = NULL, g430n2_fine_down_cmd = NULL;
+XPLMCommandRef g430n2_fine_up_cmd = NULL, g430n2_fpl_cmd = NULL, g430n2_menu_cmd = NULL, g430n2_msg_cmd = NULL;
+XPLMCommandRef g430n2_nav_com_tog_cmd = NULL, g430n2_nav_ff_cmd = NULL, g430n2_obs_cmd = NULL, g430n2_page_dn_cmd = NULL;
+XPLMCommandRef g430n2_page_up_cmd = NULL, g430n2_popout_cmd = NULL, g430n2_popup_cmd = NULL, g430n2_proc_cmd = NULL;
+XPLMCommandRef g430n2_vnav_cmd = NULL, g430n2_vvol_cmd = NULL, g430n2_zoom_in_cmd = NULL, g430n2_zoom_out_cmd = NULL;
+
+
+
+
+
+
+
+
 
 int Page1_Button1ContinueMode = 0, Page1_Button2ContinueMode = 0, Page1_Button3ContinueMode = 0;
 int Page1_Button4ContinueMode = 0, Page1_Button5ContinueMode = 0, Page1_Button6ContinueMode = 0;
@@ -412,6 +435,9 @@ int mouse_down_page9 = 0;
 int mouse_down_page10 = 0;
 int mouse_down_page11 = 0;
 int mouse_down_page12 = 0;
+int mouse_down_page13 = 0;
+int mouse_down_page14 = 0;
+
 
 int number0_mouse_down = 0, number1_mouse_down = 0, number2_mouse_down = 0, number3_mouse_down = 0;
 int number4_mouse_down = 0, number5_mouse_down = 0, number6_mouse_down = 0, number7_mouse_down = 0;
@@ -421,6 +447,24 @@ int com1s_mouse_down = 0, com2s_mouse_down = 0, nav1s_mouse_down = 0, nav2s_mous
 
 int number_mouse_down_value = 0;
 int number_position = 0;
+
+
+int g_430n1_com_ff_mouse_down = 0, g_430n1_nav_ff_mouse_down = 0, g_430n1_fine_down_mouse_down = 0, g_430n1_fine_up_mouse_down = 0;
+int g_430n1_coarse_down_mouse_down = 0, g_430n1_coarse_up_mouse_down = 0, g_430n1_nav_com_tog_mouse_down = 0, g_430n1_cdi_mouse_down = 0;
+int g_430n1_obs_mouse_down = 0, g_430n1_msg_mouse_down = 0, g_430n1_fpl_mouse_down = 0, g_430n1_vnav_mouse_down = 0, g_430n1_proc_mouse_down = 0;
+int g_430n1_zoom_in_mouse_down = 0, g_430n1_zoom_out_mouse_down = 0, g_430n1_direct_mouse_down = 0, g_430n1_menu_mouse_down = 0, g_430n1_clr_mouse_down = 0;
+int g_430n1_ent_mouse_down = 0, g_430n1_cursor_mouse_down = 0;
+int g_430n1_page_dn_mouse_down = 0, g_430n1_page_up_mouse_down = 0, g_430n1_chapter_dn_mouse_down = 0, g_430n1_chapter_up_mouse_down = 0;
+
+
+int g_430n2_com_ff_mouse_down = 0, g_430n2_nav_ff_mouse_down = 0, g_430n2_fine_down_mouse_down = 0, g_430n2_fine_up_mouse_down = 0;
+int g_430n2_coarse_down_mouse_down = 0, g_430n2_coarse_up_mouse_down = 0, g_430n2_nav_com_tog_mouse_down = 0, g_430n2_cdi_mouse_down = 0;
+int g_430n2_obs_mouse_down = 0, g_430n2_msg_mouse_down = 0, g_430n2_fpl_mouse_down = 0, g_430n2_vnav_mouse_down = 0, g_430n2_proc_mouse_down = 0;
+int g_430n2_zoom_in_mouse_down = 0, g_430n2_zoom_out_mouse_down = 0, g_430n2_direct_mouse_down = 0, g_430n2_menu_mouse_down = 0, g_430n2_clr_mouse_down = 0;
+int g_430n2_ent_mouse_down = 0, g_430n2_cursor_mouse_down = 0;
+int g_430n2_page_dn_mouse_down = 0, g_430n2_page_up_mouse_down = 0, g_430n2_chapter_dn_mouse_down = 0, g_430n2_chapter_up_mouse_down = 0;
+
+
 
 int page_number = 1;
 
@@ -433,6 +477,7 @@ static void CreateXbtn2cmdEditWidget(int xx1, int yy1, int ww, int hh);
 void populate_edit_window();
 void update_current_button();
 void write_ini_file_from_array();
+void process_find_xplane_radios_commands();
 
 string search_current_page_label;
 string search_current_page_button_label;
@@ -608,6 +653,8 @@ PLUGIN_API int XPluginStart(
     XPLM_radio_com2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com2_standby_frequency_hz");
     XPLM_radio_nav1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav1_standby_frequency_hz");
     XPLM_radio_nav2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav2_standby_frequency_hz");
+
+    process_find_xplane_radios_commands();
 
 
     XPLMRegisterCommandHandler(

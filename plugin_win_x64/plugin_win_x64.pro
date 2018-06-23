@@ -103,5 +103,6 @@ HEADERS += ../src/xbtn2cmd.h \
 SOURCES += ../src/Xbtn2cmd.cpp \
            ../src/gui_window.cpp \
            ../src/inireader.cpp \
-           ../src/readinifile.cpp
+           ../src/readinifile.cpp \
+           ../src/find_commands.cpp
 

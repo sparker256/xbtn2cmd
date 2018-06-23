@@ -71,7 +71,7 @@ unix:!macx {
          --param ssp-buffer-size=4 -fstack-protector -D_FORTIFY_SOURCE=2
     QMAKE_CFLAGS += -fvisibility=hidden -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wformat -Wformat-security \
          --param ssp-buffer-size=4 -fstack-protector -D_FORTIFY_SOURCE=2
-#    SOURCES += ../src/messages.c ../src/whisperer.c ../src/speech_mac.c
+#    SOURCES += ../src/clipboard_linux.cpp
 #    HEADERS += ../src/messages.h ../src/whisperer.h
     LIBS += -ldl -Wl,--version-script -Wl,../src/exports.txt
     LIBS += -static-libgcc -static-libstdc++ -fPIC
@@ -105,4 +105,6 @@ HEADERS += ../src/xbtn2cmd.h \
 SOURCES += ../src/Xbtn2cmd.cpp \
            ../src/gui_window.cpp \
            ../src/inireader.cpp \
-           ../src/readinifile.cpp
+           ../src/readinifile.cpp \
+           ../src/find_commands.cpp
+

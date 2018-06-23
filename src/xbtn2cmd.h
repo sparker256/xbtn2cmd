@@ -251,6 +251,23 @@ extern XPLMCommandRef Page8_Button11LabelCmd, Page8_Button11CommandOnceCmd, Page
 extern XPLMCommandRef Page8_Button12LabelCmd, Page8_Button12CommandOnceCmd, Page8_Button12CommandContinueCmd;
 
 
+extern XPLMCommandRef g430n1_cdi_cmd, g430n1_chapter_dn_cmd, g430n1_chapter_up_cmd, g430n1_clr_cmd;
+extern XPLMCommandRef g430n1_coarse_down_cmd, g430n1_coarse_up_cmd, g430n1_com_ff_cmd, g430n1_cursor_cmd;
+extern XPLMCommandRef g430n1_cvol_cmd, g430n1_direct_cmd, g430n1_ent_cmd, g430n1_fine_down_cmd;
+extern XPLMCommandRef g430n1_fine_up_cmd, g430n1_fpl_cmd, g430n1_menu_cmd, g430n1_msg_cmd;
+extern XPLMCommandRef g430n1_nav_com_tog_cmd, g430n1_nav_ff_cmd, g430n1_obs_cmd, g430n1_page_dn_cmd;
+extern XPLMCommandRef g430n1_page_up_cmd, g430n1_popout_cmd, g430n1_popup_cmd, g430n1_proc_cmd;
+extern XPLMCommandRef g430n1_vnav_cmd, g430n1_vvol_cmd, g430n1_zoom_in_cmd, g430n1_zoom_out_cmd;
+
+extern XPLMCommandRef g430n2_cdi_cmd, g430n2_chapter_dn_cmd, g430n2_chapter_up_cmd, g430n2_clr_cmd;
+extern XPLMCommandRef g430n2_coarse_down_cmd, g430n2_coarse_up_cmd, g430n2_com_ff_cmd, g430n2_cursor_cmd;
+extern XPLMCommandRef g430n2_cvol_cmd, g430n2_direct_cmd, g430n2_ent_cmd, g430n2_fine_down_cmd;
+extern XPLMCommandRef g430n2_fine_up_cmd, g430n2_fpl_cmd, g430n2_menu_cmd, g430n2_msg_cmd;
+extern XPLMCommandRef g430n2_nav_com_tog_cmd, g430n2_nav_ff_cmd, g430n2_obs_cmd, g430n2_page_dn_cmd;
+extern XPLMCommandRef g430n2_page_up_cmd, g430n2_popout_cmd, g430n2_popup_cmd, g430n2_proc_cmd;
+extern XPLMCommandRef g430n2_vnav_cmd, g430n2_vvol_cmd, g430n2_zoom_in_cmd, g430n2_zoom_out_cmd;
+
+
 extern int Page1_Button1ContinueMode, Page1_Button2ContinueMode, Page1_Button3ContinueMode;
 extern int Page1_Button4ContinueMode, Page1_Button5ContinueMode, Page1_Button6ContinueMode;
 extern int Page1_Button7ContinueMode, Page1_Button8ContinueMode, Page1_Button9ContinueMode;
@@ -330,6 +347,8 @@ extern int mouse_down_page9;
 extern int mouse_down_page10;
 extern int mouse_down_page11;
 extern int mouse_down_page12;
+extern int mouse_down_page13;
+extern int mouse_down_page14;
 
 extern int number0_mouse_down, number1_mouse_down, number2_mouse_down, number3_mouse_down;
 extern int number4_mouse_down, number5_mouse_down, number6_mouse_down, number7_mouse_down;
@@ -339,6 +358,21 @@ extern int com1s_mouse_down, com2s_mouse_down, nav1s_mouse_down, nav2s_mouse_dow
 
 extern int number_mouse_down_value;
 extern int number_position;
+
+extern int g_430n1_com_ff_mouse_down, g_430n1_nav_ff_mouse_down, g_430n1_fine_down_mouse_down, g_430n1_fine_up_mouse_down;
+extern int g_430n1_coarse_down_mouse_down, g_430n1_coarse_up_mouse_down, g_430n1_nav_com_tog_mouse_down, g_430n1_cdi_mouse_down;
+extern int g_430n1_obs_mouse_down, g_430n1_msg_mouse_down, g_430n1_fpl_mouse_down, g_430n1_vnav_mouse_down, g_430n1_proc_mouse_down;
+extern int g_430n1_zoom_in_mouse_down, g_430n1_zoom_out_mouse_down, g_430n1_direct_mouse_down, g_430n1_menu_mouse_down, g_430n1_clr_mouse_down;
+extern int g_430n1_ent_mouse_down, g_430n1_cursor_mouse_down;
+extern int g_430n1_page_dn_mouse_down, g_430n1_page_up_mouse_down, g_430n1_chapter_dn_mouse_down, g_430n1_chapter_up_mouse_down;
+
+
+extern int g_430n2_com_ff_mouse_down, g_430n2_nav_ff_mouse_down, g_430n2_fine_down_mouse_down, g_430n2_fine_up_mouse_down;
+extern int g_430n2_coarse_down_mouse_down, g_430n2_coarse_up_mouse_down, g_430n2_nav_com_tog_mouse_down, g_430n2_cdi_mouse_down;
+extern int g_430n2_obs_mouse_down, g_430n2_msg_mouse_down, g_430n2_fpl_mouse_down, g_430n2_vnav_mouse_down, g_430n2_proc_mouse_down;
+extern int g_430n2_zoom_in_mouse_down, g_430n2_zoom_out_mouse_down, g_430n2_direct_mouse_down, g_430n2_menu_mouse_down, g_430n2_clr_mouse_down;
+extern int g_430n2_ent_mouse_down, g_430n2_cursor_mouse_down;
+extern int g_430n2_page_dn_mouse_down, g_430n2_page_up_mouse_down, g_430n2_chapter_dn_mouse_down, g_430n2_chapter_up_mouse_down;
 
 
 extern int page_number;
