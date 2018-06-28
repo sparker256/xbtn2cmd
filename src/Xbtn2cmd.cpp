@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.16 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.17 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
@@ -342,13 +342,6 @@ XPLMCommandRef g430n2_fine_up_cmd = NULL, g430n2_fpl_cmd = NULL, g430n2_menu_cmd
 XPLMCommandRef g430n2_nav_com_tog_cmd = NULL, g430n2_nav_ff_cmd = NULL, g430n2_obs_cmd = NULL, g430n2_page_dn_cmd = NULL;
 XPLMCommandRef g430n2_page_up_cmd = NULL, g430n2_popout_cmd = NULL, g430n2_popup_cmd = NULL, g430n2_proc_cmd = NULL;
 XPLMCommandRef g430n2_vnav_cmd = NULL, g430n2_vvol_cmd = NULL, g430n2_zoom_in_cmd = NULL, g430n2_zoom_out_cmd = NULL;
-
-
-
-
-
-
-
 
 
 int Page1_Button1ContinueMode = 0, Page1_Button2ContinueMode = 0, Page1_Button3ContinueMode = 0;
@@ -721,7 +714,21 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
                 XPLMSetWindowIsVisible(xb2cvr_g_window,0);
                 first_time = 1;
             }
+            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_SCENERY_LOADED\n");
         }
+
+        #if XPLM301
+        if(inMsg == XPLM_MSG_ENTERED_VR) {
+            if (xb2cvr_g_window) {
+                xb2cvr_g_window = NULL;
+                XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_ENTERED_VR   if (xb2cvr_g_window)\n");
+            }
+            xb2cvr_create_gui_window();
+            process_read_ini_file();
+            XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+            XPLMDebugString("Xbtn2cmd: inMsg == XPLM_MSG_ENTERED_VR\n");
+        }
+        #endif
     }
 }
 
@@ -741,7 +748,7 @@ void xb2cvr_create_gui_window() {
         params.left = xb2cvr_global_desktop_bounds[0] + 50;
         params.bottom = xb2cvr_global_desktop_bounds[1] + 100;
         params.right = xb2cvr_global_desktop_bounds[0] + 600;
-        params.top = xb2cvr_global_desktop_bounds[1] + 250;
+        params.top = xb2cvr_global_desktop_bounds[1] + 450;
         params.visible = 1;
         params.drawWindowFunc = xb2cvr_draw;
         params.handleMouseClickFunc = xb2cvr_handle_mouse;
