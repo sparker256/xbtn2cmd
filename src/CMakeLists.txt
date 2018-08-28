@@ -1,0 +1,58 @@
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories("/opt/XSDK/CHeaders/XPLM")
+include_directories("/opt/XSDK/CHeaders/Wrappers")
+include_directories("/opt/XSDK/CHeaders/Widgets")
+include_directories("/opt/XSDK/CHeaders")
+
+include_directories("../src")
+
+
+if(WIN32)
+	link_directories("/opt/XSDK/Libraries/Win")
+	link_directories("/usr/x86_64-w64-mingw32/lib")
+elseif(APPLE)
+	link_directories("/opt/XSDK/Libraries/Mac")
+endif()
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1")
+
+
+if(WIN32)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=1 -DLIN=0 -DWIN64 -DNDEBUG -D_WINDOWS")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_MBCS -D_USRDLL -DCustomCommands_EXPORTS -DSIMDATA_EXPORTS")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSE_EXTERNAL_ALLOCATOR -std=c++11 -fexceptions -fpermissive")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wshadow -Wfloat-equal -pedantic -Wall -Wno-unused -Wno-terminate -Wno-missing-field-initializers")
+elseif(APPLE)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=1 -DIBM=0 -DLIN=0 -mmacosx-version-min=10.10")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused -Wno-missing-field-initializers -fPIC -O3 -DMACOSX")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isysroot /home/bill/X-Plane_OsxCrossBuild/osxcross/target/SDK/MacOSX10.11.sdk")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -std=c++11 -stdlib=libc++ -fexceptions -fpermissive -Wshadow -Wfloat-equal -pedantic")
+elseif(UNIX)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=0 -DLIN=1 -D_REENTRANT -std=gnu++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fpermissive -O3 -Wall -Wno-unused -Wno-terminate -Wno-missing-field-initializers -W -fPIC")
+endif()
+
+
+# X-Plane plugin
+if(WIN32)
+	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp)
+elseif(APPLE)
+	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp clipboard_mac.mm)
+elseif(UNIX)
+	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp)
+endif()
+
+if(WIN32)
+    target_link_libraries(xbtn2cmd -static -static-libgcc -static-libstdc++ XPLM_64 XPWidgets_64 opengl32)
+elseif(APPLE)
+	target_link_libraries(xbtn2cmd "-mmacosx-version-min=10.10 -isysroot /home/bill/X-Plane_OsxCrossBuild/osxcross/target/SDK/MacOSX10.11.sdk -flat_namespace -undefined suppress -shared -static -static-libgcc -static-libstdc++ -undefined dynamic_lookup -single_module -framework IOKit -framework CoreFoundation -framework GLUT -framework OpenGL -framework Cocoa -ldl")
+elseif(UNIX)
+target_link_libraries(xbtn2cmd -static-libgcc -static-libstdc++ -fPIC)
+endif()
+
+
+set_target_properties(xbtn2cmd PROPERTIES PREFIX "")
+set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "Xbtn2cmd")
+set_target_properties(xbtn2cmd PROPERTIES SUFFIX ".xpl")
