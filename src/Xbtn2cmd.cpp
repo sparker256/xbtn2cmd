@@ -11,13 +11,14 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.17 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.18 build " __DATE__ " " __TIME__
 
 #include "XPLMDisplay.h"    // for window creation and manipulation
 #include "XPLMGraphics.h"   // for window drawing
 #include "XPLMDataAccess.h" // for the VR dataref
 #include "XPLMPlugin.h"     // for XPLM_MSG_SCENERY_LOADED message
 #include "XPLMUtilities.h"
+#include "XPLMProcessing.h"
 #include "XPLMMenus.h"
 #include "XPWidgets.h"
 #include "XPStandardWidgets.h"
@@ -43,6 +44,7 @@ using namespace std;
 
 #if IBM
 	#include <windows.h>
+    #include <unistd.h>
 #endif
 #if LIN
 	#include <GL/gl.h>
@@ -55,6 +57,13 @@ using namespace std;
 #ifndef XPLM301
 	#error This is made to be compiled against the XPLM301 SDK
 #endif
+
+void send_delayed_ctrl_c();
+
+const int C = 0x43; //C key code
+const int V = 0x56; //V key code
+
+static float DelayedControlC_Callback(float inElapsed1, float inElapsed2, int cntr, void *ref);
 
 static XPLMWindowID	xb2cvr_g_window;
 
@@ -83,6 +92,7 @@ static int	coord_in_rect(float x, float y, float * bounds_lbrt)  { return ((x >=
 
 void xb2cvr_create_gui_window();
 void process_read_ini_file();
+void process_create_edit_window();
 
 enum {TOGGLE_WINDOW_COMMAND, RELOAD_CONFIG_COMMAND, RELOAD_WINDOW_COMMAND, RECREATE_WINDOW_COMMAND, OPEN_EDIT_WINDOW_COMMAND};
 
@@ -415,6 +425,8 @@ int mouse_down[12] = {};
 
 int mouse_down_hide = 0;
 int mouse_down_reload = 0;
+int mouse_down_edit = 0;
+int mouse_down_ctrl_c = 0;
 
 int mouse_down_page1 = 0;
 int mouse_down_page2 = 0;
@@ -437,6 +449,9 @@ int number4_mouse_down = 0, number5_mouse_down = 0, number6_mouse_down = 0, numb
 int number8_mouse_down = 0, number9_mouse_down = 0, clear_mouse_down = 0;
 int com1a_mouse_down = 0, com2a_mouse_down = 0, nav1a_mouse_down = 0, nav2a_mouse_down = 0;
 int com1s_mouse_down = 0, com2s_mouse_down = 0, nav1s_mouse_down = 0, nav2s_mouse_down = 0;
+
+int adf1a_mouse_down = 0, adf2a_mouse_down = 0;
+int adf1s_mouse_down = 0, adf2s_mouse_down = 0;
 
 int number_mouse_down_value = 0;
 int number_position = 0;
@@ -567,22 +582,41 @@ int radio_com1_actv_freq = 0;
 int radio_com2_actv_freq = 0;
 int radio_nav1_actv_freq = 0;
 int radio_nav2_actv_freq = 0;
+int radio_adf1_actv_freq = 0;
+int radio_adf2_actv_freq = 0;
 
 int radio_com1_stby_freq = 0;
 int radio_com2_stby_freq = 0;
 int radio_nav1_stby_freq = 0;
 int radio_nav2_stby_freq = 0;
+int radio_adf1_stby_freq = 0;
+int radio_adf2_stby_freq = 0;
 
 XPLMDataRef XPLM_radio_com1_actv_freq;
 XPLMDataRef XPLM_radio_com2_actv_freq;
 XPLMDataRef XPLM_radio_nav1_actv_freq;
 XPLMDataRef XPLM_radio_nav2_actv_freq;
+XPLMDataRef XPLM_radio_adf1_actv_freq;
+XPLMDataRef XPLM_radio_adf2_actv_freq;
 
 XPLMDataRef XPLM_radio_com1_stby_freq;
 XPLMDataRef XPLM_radio_com2_stby_freq;
 XPLMDataRef XPLM_radio_nav1_stby_freq;
 XPLMDataRef XPLM_radio_nav2_stby_freq;
+XPLMDataRef XPLM_radio_adf1_stby_freq;
+XPLMDataRef XPLM_radio_adf2_stby_freq;
 
+XPLMDataRef PageNumberDataRef = NULL;
+XPLMDataRef ButtonNumberDataRef = NULL;
+
+int PageNumberValue;
+int ButtonNumberValue;
+
+int     GetPageNumberDataRefCB(void* inRefcon);
+void    SetPageNumberDataRefCB(void* inRefcon, int outValue);
+
+int     GetButtonNumberDataRefCB(void* inRefcon);
+void    SetButtonNumberDataRefCB(void* inRefcon, int outValue);
 
 PLUGIN_API int XPluginStart(
 						char *		outName,
@@ -641,11 +675,15 @@ PLUGIN_API int XPluginStart(
     XPLM_radio_com2_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com2_frequency_hz");
     XPLM_radio_nav1_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav1_frequency_hz");
     XPLM_radio_nav2_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav2_frequency_hz");
+    XPLM_radio_adf1_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/adf1_frequency_hz");
+    XPLM_radio_adf2_actv_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/adf2_frequency_hz");
 
     XPLM_radio_com1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com1_standby_frequency_hz");
     XPLM_radio_com2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/com2_standby_frequency_hz");
     XPLM_radio_nav1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav1_standby_frequency_hz");
     XPLM_radio_nav2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/nav2_standby_frequency_hz");
+    XPLM_radio_adf1_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/adf1_standby_frequency_hz");
+    XPLM_radio_adf2_stby_freq = XPLMFindDataRef("sim/cockpit2/radios/actuators/adf2_standby_frequency_hz");
 
     process_find_xplane_radios_commands();
 
@@ -680,6 +718,35 @@ PLUGIN_API int XPluginStart(
                 true,
                 (void *)OPEN_EDIT_WINDOW_COMMAND);
 
+    //  Create our custom integer datarefs
+    PageNumberDataRef = XPLMRegisterDataAccessor("bgood/xbtn2cmd/page_number_value",
+                xplmType_Int,                                       // The types we support
+                1,                                                  // Writable
+                GetPageNumberDataRefCB, SetPageNumberDataRefCB,     // Integer accessors
+                NULL, NULL,                                         // Float accessors
+                NULL, NULL,                                         // Doubles accessors
+                NULL, NULL,                                         // Int array accessors
+                NULL, NULL,                                         // Float array accessors
+                NULL, NULL,                                         // Raw data accessors
+                NULL, NULL);                                        // Refcons not used
+
+    ButtonNumberDataRef = XPLMRegisterDataAccessor("bgood/xbtn2cmd/button_number_value",
+                xplmType_Int,                                       // The types we support
+                1,                                                  // Writable
+                GetButtonNumberDataRefCB, SetButtonNumberDataRefCB, // Integer accessors
+                NULL, NULL,                                         // Float accessors
+                NULL, NULL,                                         // Doubles accessors
+                NULL, NULL,                                         // Int array accessors
+                NULL, NULL,                                         // Float array accessors
+                NULL, NULL,                                         // Raw data accessors
+                NULL, NULL);
+
+    // Find and intialize our Page and Button dataref
+    PageNumberDataRef = XPLMFindDataRef ("bgood/xbtn2cmd/page_number_value");
+    XPLMSetDatai(PageNumberDataRef, 0);
+
+    ButtonNumberDataRef = XPLMFindDataRef ("bgood/xbtn2cmd/button_number_value");
+    XPLMSetDatai(ButtonNumberDataRef, 0);
 
 	return g_vr_dref != NULL;
 }
@@ -690,12 +757,13 @@ PLUGIN_API void	XPluginStop(void)
     XPLMDestroyWindow(xb2cvr_g_window);
     xb2cvr_g_window = NULL;
     xbtn2cmdiniVector.clear();
-
+    XPLMUnregisterDataAccessor(PageNumberDataRef);
+    XPLMUnregisterDataAccessor(ButtonNumberDataRef);
 }
 
 PLUGIN_API void XPluginDisable(void) { }
 PLUGIN_API int  XPluginEnable(void)  { return 1; }
-PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inParam)
+PLUGIN_API void XPluginReceiveMessage(XPLMPluginID /*inFrom*/, int inMsg, void * /*inParam*/)
 {
 	// We want to wait to create our window until *after* the first scenery load,
 	// so that VR will actually be available.
@@ -730,6 +798,45 @@ PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void * inP
         }
         #endif
     }
+}
+
+void send_delayed_ctrl_c() {\
+    XPLMSpeakString("Sending control C in 10 seconds");
+    XPLMRegisterFlightLoopCallback(DelayedControlC_Callback, 10, NULL);
+}
+
+float DelayedControlC_Callback(float /*inElapsed1*/, float /*inElapsed2*/, int /*cntr*/, void */*ref*/)
+{
+# if IBM
+    XPLMSpeakString("Sending control C now");
+    // Hold Control down and press C
+    keybd_event(VK_CONTROL, 0, KEYEVENTF_EXTENDEDKEY, 0);
+    keybd_event(C, 0, KEYEVENTF_EXTENDEDKEY, 0);
+    keybd_event(C, 0, KEYEVENTF_KEYUP, 0);
+    keybd_event(VK_CONTROL, 0, KEYEVENTF_KEYUP, 0);
+    return 0;
+#endif
+
+}
+
+int GetPageNumberDataRefCB(void* /*inRefcon*/)
+{
+    return PageNumberValue;
+}
+
+void SetPageNumberDataRefCB(void* /*inRefcon*/, int inValue)
+{
+    PageNumberValue = inValue;
+}
+
+int GetButtonNumberDataRefCB(void* /*inRefcon*/)
+{
+    return ButtonNumberValue;
+}
+
+void SetButtonNumberDataRefCB(void* /*inRefcon*/, int inValue)
+{
+    ButtonNumberValue = inValue;
 }
 
 
@@ -794,7 +901,8 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
         else {
             XPLMSetWindowIsVisible(xb2cvr_g_window,1);
         }
-        mouse_down_hide = 0, mouse_down_reload = 0;
+        mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+        mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -808,7 +916,8 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
     {
         process_read_ini_file();
         xb2cvr_create_gui_window();
-        mouse_down_hide = 0, mouse_down_reload = 0;
+        mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+        mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -819,7 +928,8 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
         process_read_ini_file();
         xb2cvr_g_window = NULL;
         xb2cvr_create_gui_window();
-        mouse_down_hide = 0, mouse_down_reload = 0;
+        mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+        mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -843,6 +953,17 @@ void Xbtn2cmdmenu_handler(void * in_menu_ref, void * in_item_ref)
 void Xbtn2hide_window()
 {
     XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+}
+
+void process_create_edit_window()
+{
+    if (Xbtn2cmdEditWidget == NULL){
+      CreateXbtn2cmdEditWidget(400, 550, 580, 250);	//left, top, right, bottom.
+    }else{
+      if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
+          XPShowWidget(Xbtn2cmdEditWidget);
+    }
+    edit_mode = 1;
 }
 
 void CreateXbtn2cmdEditWidget(int xx, int yy, int ww, int hh)
@@ -1472,7 +1593,8 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
             else {
                 XPLMSetWindowIsVisible(xb2cvr_g_window,1);
             }
-            mouse_down_hide = 0, mouse_down_reload = 0;
+            mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+            mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
             mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
             mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
             mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -1484,7 +1606,8 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
         case RELOAD_WINDOW_COMMAND:
             process_read_ini_file();
             xb2cvr_create_gui_window();
-            mouse_down_hide = 0, mouse_down_reload = 0;
+            mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+            mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
             mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
             mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
             mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -1494,20 +1617,15 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef       inCommand,
             process_read_ini_file();
             xb2cvr_g_window = NULL;
             xb2cvr_create_gui_window();
-            mouse_down_hide = 0, mouse_down_reload = 0;
+            mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+            mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
             mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
             mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
             mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
             mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
             break;
         case OPEN_EDIT_WINDOW_COMMAND:
-            if (Xbtn2cmdEditWidget == NULL){
-              CreateXbtn2cmdEditWidget(400, 550, 580, 250);	//left, top, right, bottom.
-            }else{
-              if(!XPIsWidgetVisible(Xbtn2cmdEditWidget))
-                  XPShowWidget(Xbtn2cmdEditWidget);
-            }
-            edit_mode = 1;
+            process_create_edit_window();
             break;
         }
     }

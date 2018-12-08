@@ -319,6 +319,8 @@ extern int Page8_Button10ContinueMode, Page8_Button11ContinueMode, Page8_Button1
 
 extern void Xbtn2hide_window();
 extern void process_read_ini_file();
+extern void process_create_edit_window();
+extern void send_delayed_ctrl_c();
 
 extern int mouse_down[];
 
@@ -334,6 +336,8 @@ extern int page8_mouse_down[];
 
 extern int mouse_down_hide;
 extern int mouse_down_reload;
+extern int mouse_down_edit;
+extern int mouse_down_ctrl_c;
 
 extern int mouse_down_page1;
 extern int mouse_down_page2;
@@ -355,6 +359,9 @@ extern int number4_mouse_down, number5_mouse_down, number6_mouse_down, number7_m
 extern int number8_mouse_down, number9_mouse_down, clear_mouse_down;
 extern int com1a_mouse_down, com2a_mouse_down, nav1a_mouse_down, nav2a_mouse_down;
 extern int com1s_mouse_down, com2s_mouse_down, nav1s_mouse_down, nav2s_mouse_down;
+
+extern int adf1a_mouse_down, adf2a_mouse_down;
+extern int adf1s_mouse_down, adf2s_mouse_down;
 
 extern int number_mouse_down_value;
 extern int number_position;
@@ -406,20 +413,31 @@ extern int radio_com1_actv_freq;
 extern int radio_com2_actv_freq;
 extern int radio_nav1_actv_freq;
 extern int radio_nav2_actv_freq;
+extern int radio_adf1_actv_freq;
+extern int radio_adf2_actv_freq;
 
 extern int radio_com1_stby_freq;
 extern int radio_com2_stby_freq;
 extern int radio_nav1_stby_freq;
 extern int radio_nav2_stby_freq;
+extern int radio_adf1_stby_freq;
+extern int radio_adf2_stby_freq;
 
 extern XPLMDataRef XPLM_radio_com1_actv_freq;
 extern XPLMDataRef XPLM_radio_com2_actv_freq;
 extern XPLMDataRef XPLM_radio_nav1_actv_freq;
 extern XPLMDataRef XPLM_radio_nav2_actv_freq;
+extern XPLMDataRef XPLM_radio_adf1_actv_freq;
+extern XPLMDataRef XPLM_radio_adf2_actv_freq;
 
 extern XPLMDataRef XPLM_radio_com1_stby_freq;
 extern XPLMDataRef XPLM_radio_com2_stby_freq;
 extern XPLMDataRef XPLM_radio_nav1_stby_freq;
 extern XPLMDataRef XPLM_radio_nav2_stby_freq;
+extern XPLMDataRef XPLM_radio_adf1_stby_freq;
+extern XPLMDataRef XPLM_radio_adf2_stby_freq;
+
+extern int PageNumberValue;
+extern int ButtonNumberValue;
 
 #endif

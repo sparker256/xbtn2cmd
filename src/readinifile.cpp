@@ -54,7 +54,6 @@ string convert_Mac_Path(string in_path) {
 void process_read_ini_file()
 
 {
-
     char *iniDefaultPluginPath;
     //const char *defaultConfigFileName;
 
@@ -62,11 +61,6 @@ void process_read_ini_file()
     //defaultConfigFileName = "xsaitekpanels.ini";
     int Index2;
     string version;
-
-
-
-
-
 
     //char *configPath;
 

@@ -34,6 +34,8 @@ static float g_check_item_button_lbrt[4]; // left, bottom, right, top
 static float g_hide_button_lbrt[4]; // left, bottom, right, top
 static float g_in_front_button_lbrt[4]; // left, bottom, right, top
 static float g_reload_button_lbrt[4]; // left, bottom, right, top
+static float g_edit_button_lbrt[4]; // left, bottom, right, top
+static float g_ctrl_c_button_lbrt[4]; // left, bottom, right, top
 
 static float g_page1_button_lbrt[4]; // left, bottom, right, top
 static float g_page2_button_lbrt[4]; // left, bottom, right, top
@@ -89,6 +91,11 @@ static float g_nav1a_button_lbrt[4]; // left, bottom, right, top
 static float g_nav1s_button_lbrt[4]; // left, bottom, right, top
 static float g_nav2a_button_lbrt[4]; // left, bottom, right, top
 static float g_nav2s_button_lbrt[4]; // left, bottom, right, top
+
+static float g_adf1a_button_lbrt[4]; // left, bottom, right, top
+static float g_adf1s_button_lbrt[4]; // left, bottom, right, top
+static float g_adf2a_button_lbrt[4]; // left, bottom, right, top
+static float g_adf2s_button_lbrt[4]; // left, bottom, right, top
 
 static float g_radio_freq_button_lbrt[4]; // left, bottom, right, top
 
@@ -213,6 +220,8 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
     int l, t, r, b;
     XPLMGetWindowGeometry(xb2cvr_in_window_id, &l, &t, &r, &b);
+
+    PageNumberValue = page_number;
 
 
         // Draw the main body of the button window.
@@ -771,6 +780,79 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
         */
 
 
+
+
+
+        // Draw the crtl c button
+        // line_number = line_number + 4;
+        const char * ctrl_c_btn_label = "Ctrl C";
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_ctrl_c_button_lbrt[0] = l + 310;
+        g_ctrl_c_button_lbrt[3] = t - (line_number * char_height);
+        g_ctrl_c_button_lbrt[2] = g_ctrl_c_button_lbrt[0] + 50; // *just* wide enough to fit the button text
+        g_ctrl_c_button_lbrt[1] = g_ctrl_c_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (mouse_down_ctrl_c) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_ctrl_c_button_lbrt[0], g_ctrl_c_button_lbrt[3]);
+            glVertex2i(g_ctrl_c_button_lbrt[2], g_ctrl_c_button_lbrt[3]);
+            glVertex2i(g_ctrl_c_button_lbrt[2], g_ctrl_c_button_lbrt[1]);
+            glVertex2i(g_ctrl_c_button_lbrt[0], g_ctrl_c_button_lbrt[1]);
+        }
+        glEnd();
+
+
+        // Draw the text on the Ctrl C button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_ctrl_c_button_lbrt[0] = g_ctrl_c_button_lbrt[0] + 10;
+        XPLMDrawString(col_black, g_ctrl_c_button_lbrt[0] - 4, g_ctrl_c_button_lbrt[1] + 8, (char *)ctrl_c_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+        // Draw the edit button
+        // line_number = line_number + 4;
+        const char * edit_btn_label = "Edit";
+
+        // 0 left, 1 bottom, 2 right, 3 top
+        // Position the button in the upper left of the window (sized to fit the button text)
+        g_edit_button_lbrt[0] = l + 385;
+        g_edit_button_lbrt[3] = t - (line_number * char_height);
+        g_edit_button_lbrt[2] = g_edit_button_lbrt[0] + 50; // *just* wide enough to fit the button text
+        g_edit_button_lbrt[1] = g_edit_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+        // Draw the box around our rudimentary button
+        if (mouse_down_edit) {
+            glColor4fv(light_green);
+        }
+        else {
+           glColor4fv(green);
+        }
+        glBegin(GL_POLYGON);
+        {
+            glVertex2i(g_edit_button_lbrt[0], g_edit_button_lbrt[3]);
+            glVertex2i(g_edit_button_lbrt[2], g_edit_button_lbrt[3]);
+            glVertex2i(g_edit_button_lbrt[2], g_edit_button_lbrt[1]);
+            glVertex2i(g_edit_button_lbrt[0], g_edit_button_lbrt[1]);
+        }
+        glEnd();
+
+
+        // Draw the text on the Edit button.
+        // 0 left, 1 bottom, 2 right, 3 top
+        g_edit_button_lbrt[0] = g_edit_button_lbrt[0] + 10;
+        XPLMDrawString(col_black, g_edit_button_lbrt[0] - 4, g_edit_button_lbrt[1] + 8, (char *)edit_btn_label, NULL, xplmFont_Proportional);
+
+
         // Draw the reload button
         // line_number = line_number + 4;
         const char * reload_btn_label = "Reload";
@@ -838,6 +920,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[0]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 1;
             }
             else {
                 glColor4fv(green);
@@ -888,6 +971,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[1]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 2;
             }
             else {
                 glColor4fv(green);
@@ -937,6 +1021,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[2]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 3;
             }
             else {
                 glColor4fv(green);
@@ -989,6 +1074,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[3]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 4;
             }
             else {
                 glColor4fv(green);
@@ -1039,6 +1125,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[4]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 5;
             }
             else {
                 glColor4fv(green);
@@ -1089,6 +1176,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[5]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 6;
             }
             else {
                 glColor4fv(green);
@@ -1141,6 +1229,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[6]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 7;
             }
             else {
                 glColor4fv(green);
@@ -1191,6 +1280,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[7]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 8;
             }
             else {
                 glColor4fv(green);
@@ -1241,6 +1331,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[8]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 9;
             }
             else {
                 glColor4fv(green);
@@ -1293,6 +1384,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[9]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 10;
             }
             else {
                 glColor4fv(green);
@@ -1343,6 +1435,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[10]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 11;
             }
             else {
                 glColor4fv(green);
@@ -1394,6 +1487,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // Draw the box around our rudimentary button
             if (mouse_down[11]) {
                 glColor4fv(light_green);
+                ButtonNumberValue = 12;
             }
             else {
                 glColor4fv(green);
@@ -1520,57 +1614,35 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             XPLMDrawString(col_black, g_number9_button_lbrt[0], g_number9_button_lbrt[1] + 8, (char *)number9_btn_label, NULL, xplmFont_Proportional);
 
 
-            // Draw the Radio Freq button
-            // line_number = line_number + 5;
-            const char * radio_freq_btn_label;
-            char radio_buffer[10] = {};
 
-            if (radio_Vector_size == 1) {
-                sprintf(radio_buffer, "%d\n", xbtn2cmd_radio_Vector[0]);
-            }
-            if (radio_Vector_size == 2) {
-                sprintf(radio_buffer, "%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1]);
-            }
-            if (radio_Vector_size == 3) {
-                sprintf(radio_buffer, "%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2]);
-            }
-            if (radio_Vector_size == 4) {
-                sprintf(radio_buffer, "%d%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2], xbtn2cmd_radio_Vector[3]);
-            }
-            if (radio_Vector_size == 5) {
-                sprintf(radio_buffer, "%d%d%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2], xbtn2cmd_radio_Vector[3], xbtn2cmd_radio_Vector[4]);
-            }
 
-            radio_freq_btn_label = radio_buffer;
 
-            // 0 left, 1 bottom, 2 right, 3 top
-            // Position the button in the upper left of the window (sized to fit the button text)
-            g_radio_freq_button_lbrt[0] = l + 240;
-            g_radio_freq_button_lbrt[3] = t - (line_number * char_height);
-            g_radio_freq_button_lbrt[2] = g_radio_freq_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
-            g_radio_freq_button_lbrt[1] = g_radio_freq_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
 
-            // Draw the box around our rudimentary button
-            if (number9_mouse_down) {
-                glColor4fv(light_green);
-            }
-            else {
-               glColor4fv(green);
-            }
-            glColor4fv(green);
-            glBegin(GL_POLYGON);
-            {
-                glVertex2i(g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[3]);
-                glVertex2i(g_radio_freq_button_lbrt[2], g_radio_freq_button_lbrt[3]);
-                glVertex2i(g_radio_freq_button_lbrt[2], g_radio_freq_button_lbrt[1]);
-                glVertex2i(g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[1]);
-            }
-            glEnd();
 
-            // Draw the text on the Radio Freq button.
-            // 0 left, 1 bottom, 2 right, 3 top
-            g_radio_freq_button_lbrt[0] = g_radio_freq_button_lbrt[0] + 5;
-            XPLMDrawString(col_black, g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[1] + 8, (char *)radio_freq_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // Draw the Com1 Active button
@@ -1580,7 +1652,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_com1a_button_lbrt[0] = l + 320;
+            g_com1a_button_lbrt[0] = l + 240;
             g_com1a_button_lbrt[3] = t - (line_number * char_height);
             g_com1a_button_lbrt[2] = g_com1a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_com1a_button_lbrt[1] = g_com1a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1614,7 +1686,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_com1s_button_lbrt[0] = l + 400;
+            g_com1s_button_lbrt[0] = l + 320;
             g_com1s_button_lbrt[3] = t - (line_number * char_height);
             g_com1s_button_lbrt[2] = g_com1s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_com1s_button_lbrt[1] = g_com1s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1639,6 +1711,87 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // 0 left, 1 bottom, 2 right, 3 top
             g_com1s_button_lbrt[0] = g_com1s_button_lbrt[0] + 5;
             XPLMDrawString(col_black, g_com1s_button_lbrt[0], g_com1s_button_lbrt[1] + 8, (char *)com1s_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+
+
+            // Draw the Adf1 Active button
+            // line_number = line_number + 5;
+            const char * adf1a_btn_label;
+            adf1a_btn_label = "Adf1 A";
+
+            // 0 left, 1 bottom, 2 right, 3 top
+            // Position the button in the upper left of the window (sized to fit the button text)
+            g_adf1a_button_lbrt[0] = l + 400;
+            g_adf1a_button_lbrt[3] = t - (line_number * char_height);
+            g_adf1a_button_lbrt[2] = g_adf1a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
+            g_adf1a_button_lbrt[1] = g_adf1a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+            // Draw the box around our rudimentary button
+            if (adf1a_mouse_down) {
+                glColor4fv(light_green);
+            }
+            else {
+               glColor4fv(green);
+            }
+            glBegin(GL_POLYGON);
+            {
+                glVertex2i(g_adf1a_button_lbrt[0], g_adf1a_button_lbrt[3]);
+                glVertex2i(g_adf1a_button_lbrt[2], g_adf1a_button_lbrt[3]);
+                glVertex2i(g_adf1a_button_lbrt[2], g_adf1a_button_lbrt[1]);
+                glVertex2i(g_adf1a_button_lbrt[0], g_adf1a_button_lbrt[1]);
+            }
+            glEnd();
+
+            // Draw the text on the Adf1 active button.
+            // 0 left, 1 bottom, 2 right, 3 top
+            g_adf1a_button_lbrt[0] = g_adf1a_button_lbrt[0] + 5;
+            XPLMDrawString(col_black, g_adf1a_button_lbrt[0], g_adf1a_button_lbrt[1] + 8, (char *)adf1a_btn_label, NULL, xplmFont_Proportional);
+
+
+            // Draw the Adf1 Standby button
+            // line_number = line_number + 5;
+            const char * adf1s_btn_label;
+            adf1s_btn_label = "Adf1 S";
+
+            // 0 left, 1 bottom, 2 right, 3 top
+            // Position the button in the upper left of the window (sized to fit the button text)
+            g_adf1s_button_lbrt[0] = l + 480;
+            g_adf1s_button_lbrt[3] = t - (line_number * char_height);
+            g_adf1s_button_lbrt[2] = g_adf1s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
+            g_adf1s_button_lbrt[1] = g_adf1s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+            // Draw the box around our rudimentary button
+            if (adf1s_mouse_down) {
+                glColor4fv(light_green);
+            }
+            else {
+               glColor4fv(green);
+            }
+            glBegin(GL_POLYGON);
+            {
+                glVertex2i(g_adf1s_button_lbrt[0], g_adf1s_button_lbrt[3]);
+                glVertex2i(g_adf1s_button_lbrt[2], g_adf1s_button_lbrt[3]);
+                glVertex2i(g_adf1s_button_lbrt[2], g_adf1s_button_lbrt[1]);
+                glVertex2i(g_adf1s_button_lbrt[0], g_adf1s_button_lbrt[1]);
+            }
+            glEnd();
+
+            // Draw the text on the Com1 standby button.
+            // 0 left, 1 bottom, 2 right, 3 top
+            g_adf1s_button_lbrt[0] = g_adf1s_button_lbrt[0] + 5;
+            XPLMDrawString(col_black, g_adf1s_button_lbrt[0], g_adf1s_button_lbrt[1] + 8, (char *)adf1s_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
 
 
             // Draw the Number4 button
@@ -1750,7 +1903,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_com2a_button_lbrt[0] = l + 320;
+            g_com2a_button_lbrt[0] = l + 240;
             g_com2a_button_lbrt[3] = t - (line_number * char_height);
             g_com2a_button_lbrt[2] = g_com2a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_com2a_button_lbrt[1] = g_com2a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1784,7 +1937,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_com2s_button_lbrt[0] = l + 400;
+            g_com2s_button_lbrt[0] = l + 320;
             g_com2s_button_lbrt[3] = t - (line_number * char_height);
             g_com2s_button_lbrt[2] = g_com2s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_com2s_button_lbrt[1] = g_com2s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1809,6 +1962,112 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // 0 left, 1 bottom, 2 right, 3 top
             g_com2s_button_lbrt[0] = g_com2s_button_lbrt[0] + 5;
             XPLMDrawString(col_black, g_com2s_button_lbrt[0], g_com2s_button_lbrt[1] + 8, (char *)com2s_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+
+
+
+
+            // Draw the Adf2 Active button
+            // line_number = line_number + 5;
+            const char * adf2a_btn_label;
+            adf2a_btn_label = "Adf2 A";
+
+            // 0 left, 1 bottom, 2 right, 3 top
+            // Position the button in the upper left of the window (sized to fit the button text)
+            g_adf2a_button_lbrt[0] = l + 400;
+            g_adf2a_button_lbrt[3] = t - (line_number * char_height);
+            g_adf2a_button_lbrt[2] = g_adf2a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
+            g_adf2a_button_lbrt[1] = g_adf2a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+            // Draw the box around our rudimentary button
+            if (adf2a_mouse_down) {
+                glColor4fv(light_green);
+            }
+            else {
+               glColor4fv(green);
+            }
+            glBegin(GL_POLYGON);
+            {
+                glVertex2i(g_adf2a_button_lbrt[0], g_adf2a_button_lbrt[3]);
+                glVertex2i(g_adf2a_button_lbrt[2], g_adf2a_button_lbrt[3]);
+                glVertex2i(g_adf2a_button_lbrt[2], g_adf2a_button_lbrt[1]);
+                glVertex2i(g_adf2a_button_lbrt[0], g_adf2a_button_lbrt[1]);
+            }
+            glEnd();
+
+            // Draw the text on the Afd2 button.
+            // 0 left, 1 bottom, 2 right, 3 top
+            g_adf2a_button_lbrt[0] = g_adf2a_button_lbrt[0] + 5;
+            XPLMDrawString(col_black, g_adf2a_button_lbrt[0], g_adf2a_button_lbrt[1] + 8, (char *)adf2a_btn_label, NULL, xplmFont_Proportional);
+
+
+            // Draw the Afd2 Standby button
+            // line_number = line_number + 5;
+            const char * adf2s_btn_label;
+            adf2s_btn_label = "Afd2 S";
+
+            // 0 left, 1 bottom, 2 right, 3 top
+            // Position the button in the upper left of the window (sized to fit the button text)
+            g_adf2s_button_lbrt[0] = l + 480;
+            g_adf2s_button_lbrt[3] = t - (line_number * char_height);
+            g_adf2s_button_lbrt[2] = g_adf2s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
+            g_adf2s_button_lbrt[1] = g_adf2s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+            // Draw the box around our rudimentary button
+            if (adf2s_mouse_down) {
+                glColor4fv(light_green);
+            }
+            else {
+               glColor4fv(green);
+            }
+            glBegin(GL_POLYGON);
+            {
+                glVertex2i(g_adf2s_button_lbrt[0], g_adf2s_button_lbrt[3]);
+                glVertex2i(g_adf2s_button_lbrt[2], g_adf2s_button_lbrt[3]);
+                glVertex2i(g_adf2s_button_lbrt[2], g_adf2s_button_lbrt[1]);
+                glVertex2i(g_adf2s_button_lbrt[0], g_adf2s_button_lbrt[1]);
+            }
+            glEnd();
+
+            // Draw the text on the Afd2 button.
+            // 0 left, 1 bottom, 2 right, 3 top
+            g_adf2s_button_lbrt[0] = g_adf2s_button_lbrt[0] + 5;
+            XPLMDrawString(col_black, g_adf2s_button_lbrt[0], g_adf2s_button_lbrt[1] + 8, (char *)adf2s_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // Draw the Number1 button
@@ -1920,7 +2179,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_nav1a_button_lbrt[0] = l + 320;
+            g_nav1a_button_lbrt[0] = l + 240;
             g_nav1a_button_lbrt[3] = t - (line_number * char_height);
             g_nav1a_button_lbrt[2] = g_nav1a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_nav1a_button_lbrt[1] = g_nav1a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1954,7 +2213,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_nav1s_button_lbrt[0] = l + 400;
+            g_nav1s_button_lbrt[0] = l + 320;
             g_nav1s_button_lbrt[3] = t - (line_number * char_height);
             g_nav1s_button_lbrt[2] = g_nav1s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_nav1s_button_lbrt[1] = g_nav1s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -1979,6 +2238,12 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // 0 left, 1 bottom, 2 right, 3 top
             g_nav1s_button_lbrt[0] = g_nav1s_button_lbrt[0] + 5;
             XPLMDrawString(col_black, g_nav1s_button_lbrt[0], g_nav1s_button_lbrt[1] + 8, (char *)nav1s_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
 
 
             // Draw the Number0 button
@@ -2013,6 +2278,80 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
             // 0 left, 1 bottom, 2 right, 3 top
             g_number0_button_lbrt[0] = g_number0_button_lbrt[0] + 5;
             XPLMDrawString(col_black, g_number0_button_lbrt[0], g_number0_button_lbrt[1] + 8, (char *)number0_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+            // Draw the Radio Freq button
+            // line_number = line_number + 5;
+            const char * radio_freq_btn_label;
+            char radio_buffer[10] = {};
+
+            if (radio_Vector_size == 1) {
+                sprintf(radio_buffer, "%d\n", xbtn2cmd_radio_Vector[0]);
+            }
+            if (radio_Vector_size == 2) {
+                sprintf(radio_buffer, "%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1]);
+            }
+            if (radio_Vector_size == 3) {
+                sprintf(radio_buffer, "%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2]);
+            }
+            if (radio_Vector_size == 4) {
+                sprintf(radio_buffer, "%d%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2], xbtn2cmd_radio_Vector[3]);
+            }
+            if (radio_Vector_size == 5) {
+                sprintf(radio_buffer, "%d%d%d%d%d\n", xbtn2cmd_radio_Vector[0], xbtn2cmd_radio_Vector[1], xbtn2cmd_radio_Vector[2], xbtn2cmd_radio_Vector[3], xbtn2cmd_radio_Vector[4]);
+            }
+
+            radio_freq_btn_label = radio_buffer;
+
+            // 0 left, 1 bottom, 2 right, 3 top
+            // Position the button in the upper left of the window (sized to fit the button text)
+            g_radio_freq_button_lbrt[0] = l + 80;
+            g_radio_freq_button_lbrt[3] = t - (line_number * char_height);
+            g_radio_freq_button_lbrt[2] = g_radio_freq_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
+            g_radio_freq_button_lbrt[1] = g_radio_freq_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
+
+            // Draw the box around our rudimentary button
+            if (number9_mouse_down) {
+                glColor4fv(light_green);
+            }
+            else {
+               glColor4fv(green);
+            }
+            glColor4fv(green);
+            glBegin(GL_POLYGON);
+            {
+                glVertex2i(g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[3]);
+                glVertex2i(g_radio_freq_button_lbrt[2], g_radio_freq_button_lbrt[3]);
+                glVertex2i(g_radio_freq_button_lbrt[2], g_radio_freq_button_lbrt[1]);
+                glVertex2i(g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[1]);
+            }
+            glEnd();
+
+            // Draw the text on the Radio Freq button.
+            // 0 left, 1 bottom, 2 right, 3 top
+            g_radio_freq_button_lbrt[0] = g_radio_freq_button_lbrt[0] + 5;
+            XPLMDrawString(col_black, g_radio_freq_button_lbrt[0], g_radio_freq_button_lbrt[1] + 8, (char *)radio_freq_btn_label, NULL, xplmFont_Proportional);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // Draw the clear button
@@ -2056,7 +2395,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_nav2a_button_lbrt[0] = l + 320;
+            g_nav2a_button_lbrt[0] = l + 240;
             g_nav2a_button_lbrt[3] = t - (line_number * char_height);
             g_nav2a_button_lbrt[2] = g_nav2a_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_nav2a_button_lbrt[1] = g_nav2a_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -2090,7 +2429,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 
             // 0 left, 1 bottom, 2 right, 3 top
             // Position the button in the upper left of the window (sized to fit the button text)
-            g_nav2s_button_lbrt[0] = l + 400;
+            g_nav2s_button_lbrt[0] = l + 320;
             g_nav2s_button_lbrt[3] = t - (line_number * char_height);
             g_nav2s_button_lbrt[2] = g_nav2s_button_lbrt[0] + small_button_width; // *just* wide enough to fit the button text
             g_nav2s_button_lbrt[1] = g_nav2s_button_lbrt[3] - (2.00f * char_height); // a bit taller than the button text
@@ -3777,7 +4116,7 @@ void	xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * in_refcon)
 }
 
 
-int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2cvr_y, XPLMMouseStatus xb2cvr_mouse_status, void * in_refcon)
+int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2cvr_y, XPLMMouseStatus xb2cvr_mouse_status, void * /*in_refcon*/)
 {
 
     if(xb2cvr_mouse_status == xplm_MouseDown)
@@ -3788,18 +4127,11 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         }
         else
         {
-            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_hide_button_lbrt)) {
-                XPLMDebugString("Xbtn2cmd: Hide button pushed");
-                mouse_down_hide = 1;
-                Xbtn2hide_window();
-            }
-
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page1_button_lbrt)) {
                 mouse_down_page1 = 1;
                 page_number = 1;
             }
-
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page2_button_lbrt)) {
                 mouse_down_page2 = 1;
@@ -3816,17 +4148,16 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                 page_number = 4;
             }
 
-            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_reload_button_lbrt)) {
-                XPLMDebugString("Xbtn2cmd: Reload button pushed");
-                mouse_down_reload = 1;
-                process_read_ini_file();
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_hide_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Hide button pushed");
+                mouse_down_hide = 1;
+                Xbtn2hide_window();
             }
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page5_button_lbrt)) {
                 mouse_down_page5 = 1;
                 page_number = 5;
             }
-
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_page6_button_lbrt)) {
                 mouse_down_page6 = 1;
@@ -3873,11 +4204,23 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                 page_number = 14;
             }
 
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_ctrl_c_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Ctrl C button pushed");
+                mouse_down_ctrl_c = 1;
+                send_delayed_ctrl_c();
+            }
 
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_edit_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Edit button pushed");
+                mouse_down_edit = 1;
+                process_create_edit_window();
+            }
 
-
-
-
+            if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_reload_button_lbrt)) {
+                XPLMDebugString("Xbtn2cmd: Reload button pushed");
+                mouse_down_reload = 1;
+                process_read_ini_file();
+            }
 
 
             if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_button1_lbrt)) {
@@ -5523,12 +5866,8 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMSetDatai(XPLM_radio_com1_actv_freq, radio_com1_actv_freq);
                         number_position = 0;
                         xbtn2cmd_radio_Vector.clear();
-
-
                     }
-
                 }
-
 
                 if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_com1s_button_lbrt)) {
                     com1s_mouse_down = 1;
@@ -5543,13 +5882,42 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMSetDatai(XPLM_radio_com1_stby_freq, radio_com1_stby_freq);
                         number_position = 0;
                         xbtn2cmd_radio_Vector.clear();
-
                     }
-
                 }
 
 
 
+                if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_adf1a_button_lbrt)) {
+                    adf1a_mouse_down = 1;
+                    if (radio_Vector_size == 4) {
+                        radio_freq1 = xbtn2cmd_radio_Vector[0] * 1000;
+                        radio_freq2 = xbtn2cmd_radio_Vector[1] * 100;
+                        radio_freq3 = xbtn2cmd_radio_Vector[2] * 10;
+                        radio_freq4 = xbtn2cmd_radio_Vector[3];
+                        // radio_freq5 = xbtn2cmd_radio_Vector[4];
+                        radio_freq = radio_freq1 + radio_freq2 + radio_freq3 + radio_freq4 + radio_freq5;
+                        radio_adf1_actv_freq = radio_freq;
+                        XPLMSetDatai(XPLM_radio_adf1_actv_freq, radio_adf1_actv_freq);
+                        number_position = 0;
+                        xbtn2cmd_radio_Vector.clear();
+                    }
+                }
+
+                if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_adf1s_button_lbrt)) {
+                    adf1s_mouse_down = 1;
+                    if (radio_Vector_size == 4) {
+                        radio_freq1 = xbtn2cmd_radio_Vector[0] * 1000;
+                        radio_freq2 = xbtn2cmd_radio_Vector[1] * 100;
+                        radio_freq3 = xbtn2cmd_radio_Vector[2] * 10;
+                        radio_freq4 = xbtn2cmd_radio_Vector[3];
+                        // radio_freq5 = xbtn2cmd_radio_Vector[4];
+                        radio_freq = radio_freq1 + radio_freq2 + radio_freq3 + radio_freq4 + radio_freq5;
+                        radio_adf1_stby_freq = radio_freq;
+                        XPLMSetDatai(XPLM_radio_adf1_stby_freq, radio_adf1_stby_freq);
+                        number_position = 0;
+                        xbtn2cmd_radio_Vector.clear();
+                    }
+                }
 
 
 
@@ -5566,11 +5934,8 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMSetDatai(XPLM_radio_com2_actv_freq, radio_com2_actv_freq);
                         number_position = 0;
                         xbtn2cmd_radio_Vector.clear();
-
                     }
                 }
-
-
 
                 if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_com2s_button_lbrt)) {
                     com2s_mouse_down = 1;
@@ -5585,10 +5950,43 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
                         XPLMSetDatai(XPLM_radio_com2_stby_freq, radio_com2_stby_freq);
                         number_position = 0;
                         xbtn2cmd_radio_Vector.clear();
-
                     }
                 }
 
+
+
+
+                if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_adf2a_button_lbrt)) {
+                    adf2a_mouse_down = 1;
+                    if (radio_Vector_size == 4) {
+                        radio_freq1 = xbtn2cmd_radio_Vector[0] * 1000;
+                        radio_freq2 = xbtn2cmd_radio_Vector[1] * 100;
+                        radio_freq3 = xbtn2cmd_radio_Vector[2] * 10;
+                        radio_freq4 = xbtn2cmd_radio_Vector[3];
+                        // radio_freq5 = xbtn2cmd_radio_Vector[4];
+                        radio_freq = radio_freq1 + radio_freq2 + radio_freq3 + radio_freq4 + radio_freq5;
+                        radio_adf2_actv_freq = radio_freq;
+                        XPLMSetDatai(XPLM_radio_adf2_actv_freq, radio_adf2_actv_freq);
+                        number_position = 0;
+                        xbtn2cmd_radio_Vector.clear();
+                    }
+                }
+
+                if (coord_in_rect(xb2cvr_x, xb2cvr_y, g_adf2s_button_lbrt)) {
+                    adf2s_mouse_down = 1;
+                    if (radio_Vector_size == 4) {
+                        radio_freq1 = xbtn2cmd_radio_Vector[0] * 1000;
+                        radio_freq2 = xbtn2cmd_radio_Vector[1] * 100;
+                        radio_freq3 = xbtn2cmd_radio_Vector[2] * 10;
+                        radio_freq4 = xbtn2cmd_radio_Vector[3];
+                        // radio_freq5 = xbtn2cmd_radio_Vector[4];
+                        radio_freq = radio_freq1 + radio_freq2 + radio_freq3 + radio_freq4 + radio_freq5;
+                        radio_adf2_stby_freq = radio_freq;
+                        XPLMSetDatai(XPLM_radio_adf2_stby_freq, radio_adf2_stby_freq);
+                        number_position = 0;
+                        xbtn2cmd_radio_Vector.clear();
+                    }
+                }
 
 
 
@@ -5930,7 +6328,8 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
 
     if(xb2cvr_mouse_status == xplm_MouseUp)
     {
-        mouse_down_hide = 0, mouse_down_reload = 0;
+        mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
+        mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
@@ -5941,6 +6340,8 @@ int	xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x, int xb2c
         number8_mouse_down = 0, number9_mouse_down = 0, clear_mouse_down = 0;
         com1a_mouse_down = 0, com2a_mouse_down = 0, nav1a_mouse_down = 0, nav2a_mouse_down = 0;
         com1s_mouse_down = 0, com2s_mouse_down = 0, nav1s_mouse_down = 0, nav2s_mouse_down = 0;
+        adf1a_mouse_down = 0, adf2a_mouse_down = 0;
+        adf1s_mouse_down = 0, adf2s_mouse_down = 0;
 
         g_430n1_com_ff_mouse_down = 0, g_430n1_nav_ff_mouse_down = 0, g_430n1_fine_down_mouse_down = 0;
         g_430n1_fine_up_mouse_down = 0, g_430n1_nav_com_tog_mouse_down = 0, g_430n1_coarse_down_mouse_down = 0;
