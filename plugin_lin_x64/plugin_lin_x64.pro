@@ -68,7 +68,7 @@ unix:!macx {
     TARGET = lin.xpl
     # WARNING! This requires the latest version of the X-SDK !!!!
     QMAKE_CXXFLAGS += -fvisibility=hidden -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wformat -Wformat-security \
-         --param ssp-buffer-size=4 -fstack-protector -D_FORTIFY_SOURCE=2
+         --param ssp-buffer-size=4 -fstack-protector -D_FORTIFY_SOURCE=2 -std=c++11
     QMAKE_CFLAGS += -fvisibility=hidden -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wformat -Wformat-security \
          --param ssp-buffer-size=4 -fstack-protector -D_FORTIFY_SOURCE=2
 #    SOURCES += ../src/clipboard_linux.cpp

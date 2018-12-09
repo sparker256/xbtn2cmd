@@ -5,143 +5,126 @@
  * Created on August 26, 2010, 2:49 PM
  */
 
-#include <functional>
+#include "inireader.h"
 #include <cctype>
+#include <functional>
 #include <map>
 #include <stdexcept>
-
-#include "inireader.h"
+#include <utility>
 
 using namespace std;
 
 std::map<std::string, std::string> configMap;
 
-void parseIniFile(char *fileName)
-{
-        std::string optionValue;
-        std::ifstream infile;
-        infile.open(fileName);
+void parseIniFile(char *fileName) {
+  std::string optionValue;
+  std::ifstream infile;
+  infile.open(fileName);
 
-        //Does the file exist?
-        if (infile.is_open() != true)
-        {
-                return;
-        }
+  // Does the file exist?
+  if (!infile.is_open()) {
+    return;
+  }
 
-    std::string key;
+  std::string key;
 
-        while (!infile.eof()) // To get you all the lines.
-        {
-                getline(infile, optionValue); // Saves the line in STRING.
+  while (!infile.eof()) // To get you all the lines.
+  {
+    getline(infile, optionValue); // Saves the line in STRING.
 
-                //Is the option a comment
-                if (optionValue.substr(0, 1) == "#")
-                {
-                        continue;
-                }
-
-                key = parseOptionName(optionValue);
-
-                if (key.length() > 0)
-                {
-                        configMap[key] = parseOptionValue(optionValue);
-                }
-        }
-
-        infile.close();
-}
-
-void cleanupIniReader()
-{
-        configMap.clear();
-}
-
-std::string getOptionToString(std::string key)
-{
-    try {
-        return configMap.at(key);
+    // Is the option a comment
+    if (optionValue.substr(0, 1) == "#") {
+      continue;
     }
-    catch (const std::out_of_range& oor) {
-        return "";
+
+    key = parseOptionName(optionValue);
+
+    if (key.length() > 0) {
+      configMap[key] = parseOptionValue(optionValue);
     }
+  }
+
+  infile.close();
 }
 
-const char *getOptionToChar(std::string key)
-{
-    try {
-        return configMap.at(key).c_str();
-    }
-    catch (const std::out_of_range& oor) {
-        return "";
-    }
+void cleanupIniReader() { configMap.clear(); }
+
+std::string getOptionToString(std::string key) {
+  try {
+    return configMap.at(key);
+  } catch (const std::out_of_range &oor) {
+    return "";
+  }
 }
 
-int getOptionToInt(std::string key)
-{
-    try {
-        return atoi(configMap.at(key).c_str());
-    }
-    catch (const std::out_of_range& oor) {
-        return 0;
-    }
+const char *getOptionToChar(std::string key) {
+  try {
+    return configMap.at(key).c_str();
+  } catch (const std::out_of_range &oor) {
+    return "";
+  }
 }
 
-void readOptionAsInt(std::string key, int * value)
-{
-    try {
-        *value = atoi(configMap.at(key).c_str());
-    }
-    catch (const std::out_of_range& oor) {
-    }
+int getOptionToInt(std::string key) {
+  try {
+    return atoi(configMap.at(key).c_str());
+  } catch (const std::out_of_range &oor) {
+    return 0;
+  }
 }
 
-std::string parseOptionName(std::string value)
-{
-        size_t found;
-
-        found = value.find('=');
-
-        if (found > 100)
-        {
-                return "";
-        }
-
-        std::string key = value.substr(0, (found-1));
-        key = trim(key);
-
-        return key;
+void readOptionAsInt(std::string key, int *value) {
+  try {
+    *value = atoi(configMap.at(key).c_str());
+  } catch (const std::out_of_range &oor) {
+  }
 }
 
-std::string parseOptionValue(std::string value)
-{
-        size_t found;
+std::string parseOptionName(std::string value) {
+  size_t found;
 
-        found = value.find('=');
+  found = value.find('=');
 
-        if (found > 100)
-        {
-                return "";
-        }
+  if (found > 100) {
+    return "";
+  }
 
-        std::string keyValue = value.substr((found+1));
-        keyValue = trim(keyValue);
+  std::string key = value.substr(0, (found - 1));
+  key = trim(key);
 
-        return keyValue;
+  return key;
 }
 
-std::string trim(std::string s)
-{
-        return ltrim(rtrim(s));
+std::string parseOptionValue(std::string value) {
+  size_t found;
+
+  found = value.find('=');
+
+  if (found > 100) {
+    return "";
+  }
+
+  std::string keyValue = value.substr((found + 1));
+  keyValue = trim(keyValue);
+
+  return keyValue;
 }
+
+std::string trim(std::string s) { return ltrim(rtrim(std::move(s))); }
 
 // trim from start
 std::string ltrim(std::string s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-        return s;
+  s.erase(s.begin(),
+          std::find_if(s.begin(), s.end(),
+                       std::not1(std::ptr_fun<int, int>(std::isspace))));
+  return s;
 }
 
 // trim from end
 std::string rtrim(std::string s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-        return s;
+  s.erase(std::find_if(s.rbegin(), s.rend(),
+                       std::not1(std::ptr_fun<int, int>(std::isspace)))
+              .base(),
+          s.end());
+  return s;
 }
