@@ -145,6 +145,47 @@ To edit in VR I have added a delayed Control C to allow copying of items in anot
 
 One program that I use constantly with Xbtn2cmd is DataRefTool and thanks to Lee Baker for creating this. Now that it has support fo VR I do not have to take off my headset and can fully configure Xbtn2cmd while in VR.
 
-A second program is FlyWithLua created by Carsten Lynker that can be used to expand what is possible with Xbtn2cmd just like I used it with my Xsaitekpanels. I will be providing a scripts to allow using one button to do more than one command. 
+A second program is FlyWithLua created by Carsten Lynker that can be used to expand what is possible with Xbtn2cmd just like I used it with my Xsaitekpanels. I will be providing a scripts to allow using one button to do more than one command.
+
+\newpage
+\section{Datarefs and Commands}
+
+The following commands will help in using this program.
+
+{\bf bgood/xbtn2cmd/toggle\_window}
+
+The first command is the one I use the most and in VR have it mapped to my left grip button of my Vive touch controller. When I start VR I want a clean cockpit with now windows shown. So after I am in VR I click the left grip button and Xbtn2cmd is there allowing me to open any plugin I need.
+
+
+{\bf bgood/xbtn2cmd/reload\_config}
+
+The next command allows you to reload the current configuration file after you have made any changes to it and will be reflected in updated button labels and commands.
+
+
+{\bf bgood/xbtn2cmd/open\_edit\_window}
+
+This command will open the edit window and is the same thing as the "Edit" button on the main window.
+
+
+{\bf bgood/xbtn2cmd/reload\_window}
+
+This command reloads the main window in case it does not look correctly. I used it a lot in development but not very much ever since.
+
+
+{\bf bgood/xbtn2cmd/recreate\_window}
+
+This command recreates the main window in case it does not look correctly. Like the command above I used it a lot in development but not very much ever since. \newline \newline 
+
+
+There are two datarefs are for page number value and button number value.
+
+{\bf bgood/xbtn2cmd/page\_number\_value}
+
+This is the page number value that is selected and highlighted. You can write a script in FlyWithLua and use this information to expand what Xbtn2cmd will do natively. 
+
+
+{\bf bgood/xbtn2cmd/button\_number\_value}
+
+This is the button number value when it is pressed and highlighted. You can write a script in FlyWithLua and use this information to expand what Xbtn2cmd will do natively.
 
 \end{document}

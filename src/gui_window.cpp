@@ -1721,6 +1721,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number7_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 1;
     } else {
       glColor4fv(green);
     }
@@ -1763,6 +1764,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number8_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 2;
     } else {
       glColor4fv(green);
     }
@@ -1805,6 +1807,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number9_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 3;
     } else {
       glColor4fv(green);
     }
@@ -1847,6 +1850,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (com1a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 4;
     } else {
       glColor4fv(green);
     }
@@ -1889,6 +1893,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (com1s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 5;
     } else {
       glColor4fv(green);
     }
@@ -1931,6 +1936,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (adf1a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 6;
     } else {
       glColor4fv(green);
     }
@@ -1973,6 +1979,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (adf1s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 7;
     } else {
       glColor4fv(green);
     }
@@ -2016,6 +2023,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number4_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 8;
     } else {
       glColor4fv(green);
     }
@@ -2058,6 +2066,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number5_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 9;
     } else {
       glColor4fv(green);
     }
@@ -2100,6 +2109,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number6_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 10;
     } else {
       glColor4fv(green);
     }
@@ -2142,6 +2152,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (com2a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 11;
     } else {
       glColor4fv(green);
     }
@@ -2184,6 +2195,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (com2s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 12;
     } else {
       glColor4fv(green);
     }
@@ -2226,6 +2238,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (adf2a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 13;
     } else {
       glColor4fv(green);
     }
@@ -2268,6 +2281,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (adf2s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 14;
     } else {
       glColor4fv(green);
     }
@@ -2311,6 +2325,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number1_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 15;
     } else {
       glColor4fv(green);
     }
@@ -2353,6 +2368,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number2_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 16;
     } else {
       glColor4fv(green);
     }
@@ -2395,6 +2411,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number3_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 17;
     } else {
       glColor4fv(green);
     }
@@ -2437,6 +2454,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (nav1a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 18;
     } else {
       glColor4fv(green);
     }
@@ -2479,6 +2497,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (nav1s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 19;
     } else {
       glColor4fv(green);
     }
@@ -2522,6 +2541,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (number0_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 20;
     } else {
       glColor4fv(green);
     }
@@ -2632,6 +2652,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (clear_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 21;
     } else {
       glColor4fv(green);
     }
@@ -2674,6 +2695,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (nav2a_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 22;
     } else {
       glColor4fv(green);
     }
@@ -2716,6 +2738,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (nav2s_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 22;
     } else {
       glColor4fv(green);
     }
@@ -2763,6 +2786,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_com_ff_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 1;
     } else {
       glColor4fv(green);
     }
@@ -2806,6 +2830,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_nav_ff_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 2;
     } else {
       glColor4fv(green);
     }
@@ -2849,6 +2874,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_zoom_in_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 3;
     } else {
       glColor4fv(green);
     }
@@ -2892,6 +2918,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_zoom_out_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 4;
     } else {
       glColor4fv(green);
     }
@@ -2935,6 +2962,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_direct_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 5;
     } else {
       glColor4fv(green);
     }
@@ -2979,6 +3007,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_fine_down_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 6;
     } else {
       glColor4fv(green);
     }
@@ -3022,6 +3051,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_fine_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 7;
     } else {
       glColor4fv(green);
     }
@@ -3065,6 +3095,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_nav_com_tog_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 8;
     } else {
       glColor4fv(green);
     }
@@ -3108,6 +3139,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_menu_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 9;
     } else {
       glColor4fv(green);
     }
@@ -3151,6 +3183,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_clr_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 10;
     } else {
       glColor4fv(green);
     }
@@ -3194,6 +3227,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_ent_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 11;
     } else {
       glColor4fv(green);
     }
@@ -3238,6 +3272,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_coarse_down_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 12;
     } else {
       glColor4fv(green);
     }
@@ -3281,6 +3316,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_coarse_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 13;
     } else {
       glColor4fv(green);
     }
@@ -3324,6 +3360,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_cursor_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 14;
     } else {
       glColor4fv(green);
     }
@@ -3367,6 +3404,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_page_dn_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 15;
     } else {
       glColor4fv(green);
     }
@@ -3410,6 +3448,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_page_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 16;
     } else {
       glColor4fv(green);
     }
@@ -3454,6 +3493,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_cdi_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 17;
     } else {
       glColor4fv(green);
     }
@@ -3497,6 +3537,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_obs_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 18;
     } else {
       glColor4fv(green);
     }
@@ -3540,6 +3581,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_msg_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 19;
     } else {
       glColor4fv(green);
     }
@@ -3583,6 +3625,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_fpl_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 20;
     } else {
       glColor4fv(green);
     }
@@ -3626,6 +3669,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_vnav_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 21;
     } else {
       glColor4fv(green);
     }
@@ -3669,6 +3713,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_proc_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 22;
     } else {
       glColor4fv(green);
     }
@@ -3712,6 +3757,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_chapter_dn_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 23;
     } else {
       glColor4fv(green);
     }
@@ -3755,6 +3801,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n1_chapter_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 24;
     } else {
       glColor4fv(green);
     }
@@ -3803,6 +3850,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_com_ff_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 1;
     } else {
       glColor4fv(green);
     }
@@ -3846,6 +3894,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_nav_ff_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 2;
     } else {
       glColor4fv(green);
     }
@@ -3889,6 +3938,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_zoom_in_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 3;
     } else {
       glColor4fv(green);
     }
@@ -3932,6 +3982,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_zoom_out_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 4;
     } else {
       glColor4fv(green);
     }
@@ -3975,6 +4026,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_direct_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 5;
     } else {
       glColor4fv(green);
     }
@@ -4019,6 +4071,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_fine_down_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 6;
     } else {
       glColor4fv(green);
     }
@@ -4062,6 +4115,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_fine_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 7;
     } else {
       glColor4fv(green);
     }
@@ -4105,6 +4159,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_nav_com_tog_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 8;
     } else {
       glColor4fv(green);
     }
@@ -4148,6 +4203,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_menu_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 9;
     } else {
       glColor4fv(green);
     }
@@ -4191,6 +4247,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_clr_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 10;
     } else {
       glColor4fv(green);
     }
@@ -4234,6 +4291,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_ent_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 11;
     } else {
       glColor4fv(green);
     }
@@ -4278,6 +4336,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_coarse_down_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 12;
     } else {
       glColor4fv(green);
     }
@@ -4321,6 +4380,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_coarse_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 13;
     } else {
       glColor4fv(green);
     }
@@ -4364,6 +4424,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_cursor_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 14;
     } else {
       glColor4fv(green);
     }
@@ -4407,6 +4468,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_page_dn_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 15;
     } else {
       glColor4fv(green);
     }
@@ -4450,6 +4512,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_page_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 16;
     } else {
       glColor4fv(green);
     }
@@ -4494,6 +4557,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_cdi_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 17;
     } else {
       glColor4fv(green);
     }
@@ -4537,6 +4601,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_obs_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 18;
     } else {
       glColor4fv(green);
     }
@@ -4580,6 +4645,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_msg_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 19;
     } else {
       glColor4fv(green);
     }
@@ -4623,6 +4689,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_fpl_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 20;
     } else {
       glColor4fv(green);
     }
@@ -4666,6 +4733,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_vnav_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 21;
     } else {
       glColor4fv(green);
     }
@@ -4709,6 +4777,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_proc_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 22;
     } else {
       glColor4fv(green);
     }
@@ -4752,6 +4821,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_chapter_dn_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 23;
     } else {
       glColor4fv(green);
     }
@@ -4795,6 +4865,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
     // Draw the box around our rudimentary button
     if (g_430n2_chapter_up_mouse_down) {
       glColor4fv(light_green);
+      ButtonNumberValue = 24;
     } else {
       glColor4fv(green);
     }
