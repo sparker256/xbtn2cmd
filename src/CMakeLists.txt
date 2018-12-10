@@ -1,58 +1,144 @@
+# Xbtn2cmd build script.
+#
+# Useful command line flags:
+#   * -DCMAKE_BUILD_TYPE=XXX, where XXX is one of Debug, Release,
+#     RelWithDebInfo and MinSizeRel. Default is Release.
+#   * -DCREATECOMPLETEEDITION=XXX, where XXX is true or false. Default is true.
+
+cmake_minimum_required(VERSION 3.9)
+project(Xbtn2cmd VERSION 1.1.9 DESCRIPTION "Xbtn2cmd X-Plane plugin")
+
+# By default, use optimized release configuration.
+if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif ()
+
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories("/opt/XSDK/CHeaders/XPLM")
-include_directories("/opt/XSDK/CHeaders/Wrappers")
-include_directories("/opt/XSDK/CHeaders/Widgets")
-include_directories("/opt/XSDK/CHeaders")
-
-include_directories("../src")
+# Set include directories used by our code and dependencies.
+include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/Widgets")
+include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/Wrappers")
+include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/XPLM")
 
 
-if(WIN32)
-	link_directories("/opt/XSDK/Libraries/Win")
-	link_directories("/usr/x86_64-w64-mingw32/lib")
-elseif(APPLE)
-	link_directories("/opt/XSDK/Libraries/Mac")
-endif()
+# Specify library search locations.
+if (WIN32)
+    list(APPEND CMAKE_LIBRARY_PATH "${CMAKE_SOURCE_DIR}/XPSDK301/Libraries/Win")
+elseif (APPLE)
+    list(APPEND CMAKE_FRAMEWORK_PATH "${CMAKE_SOURCE_DIR}/XPSDK301/Libraries/Mac")
+elseif (UNIX)
+
+endif ()
 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1")
+# Enable all X-Plane SDK APIs up to the newest version.
+add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1)
+# Define platform macros.
+add_definitions(-DAPL=$<BOOL:${APPLE}> -DIBM=$<BOOL:${WIN32}> -DLIN=$<AND:$<BOOL:${UNIX}>,$<NOT:$<BOOL:${APPLE}>>>)
 
 
-if(WIN32)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=1 -DLIN=0 -DWIN64 -DNDEBUG -D_WINDOWS")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_MBCS -D_USRDLL -DCustomCommands_EXPORTS -DSIMDATA_EXPORTS")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSE_EXTERNAL_ALLOCATOR -std=c++11 -fexceptions -fpermissive")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wshadow -Wfloat-equal -pedantic -Wall -Wno-unused -Wno-terminate -Wno-missing-field-initializers")
-elseif(APPLE)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=1 -DIBM=0 -DLIN=0 -mmacosx-version-min=10.10")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused -Wno-missing-field-initializers -fPIC -O3 -DMACOSX")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isysroot /home/bill/X-Plane_OsxCrossBuild/osxcross/target/SDK/MacOSX10.11.sdk")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -std=c++11 -stdlib=libc++ -fexceptions -fpermissive -Wshadow -Wfloat-equal -pedantic")
-elseif(UNIX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DAPL=0 -DIBM=0 -DLIN=1 -D_REENTRANT -std=gnu++11")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fpermissive -O3 -Wall -Wno-unused -Wno-terminate -Wno-missing-field-initializers -W -fPIC")
-endif()
 
+# Force-enable exception support. This is most likely redundant, although for C
+# code the default is the opposite. Since we are mixing C++ and C libraries,
+# safer to set it on?
+add_compile_options(-fexceptions)
+# On UNIX systems this makes symbols non-exported by default. On Windows this
+# option is simply ignored, since symbol visibility works differently there.
+add_compile_options(-fvisibility=hidden)
+
+# Enable stricter warnings and then disable some we are not interested in.
+add_compile_options(-Wall -Wpedantic -Wshadow -Wfloat-equal -Wextra)
+add_compile_options(-Wno-unused)
+
+# Always use position-independent code and highest optimization level (FPS!).
+add_compile_options(-O3 -fPIC)
 
 # X-Plane plugin
-if(WIN32)
-	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp)
-elseif(APPLE)
-	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp clipboard_mac.mm)
-elseif(UNIX)
-	add_library(xbtn2cmd SHARED Xbtn2cmd.cpp gui_window.cpp inireader.cpp readinifile.cpp find_commands.cpp)
-endif()
+# FIXME: Split this into individual targets.
+list(APPEND XBTN2CMD_SRCS Xbtn2cmd.cpp find_commands.cpp gui_window.cpp inireader.cpp readinifile.cpp)
 
-if(WIN32)
-    target_link_libraries(xbtn2cmd -static -static-libgcc -static-libstdc++ XPLM_64 XPWidgets_64 opengl32)
-elseif(APPLE)
-	target_link_libraries(xbtn2cmd "-mmacosx-version-min=10.10 -isysroot /home/bill/X-Plane_OsxCrossBuild/osxcross/target/SDK/MacOSX10.11.sdk -flat_namespace -undefined suppress -shared -static -static-libgcc -static-libstdc++ -undefined dynamic_lookup -single_module -framework IOKit -framework CoreFoundation -framework GLUT -framework OpenGL -framework Cocoa -ldl")
-elseif(UNIX)
-target_link_libraries(xbtn2cmd -static-libgcc -static-libstdc++ -fPIC)
-endif()
+if (WIN32)
+
+elseif (APPLE)
+    list(APPEND XBTN2CMD_SRCS clipboard_mac.mm)
+elseif (UNIX)
+
+endif ()
+
+add_library(xbtn2cmd SHARED ${XBTN2CMD_SRCS})
+
+target_compile_features(xbtn2cmd PUBLIC cxx_std_11)
+
+if (APPLE)
+    # X-Plane supports OS X 10.10+, so this should ensure FlyWithLua can run on
+    # all supported versions.
+    target_compile_options(xbtn2cmd PUBLIC -mmacosx-version-min=10.10)
+    target_link_libraries(xbtn2cmd -mmacosx-version-min=10.10)
+endif ()
+
+# Link OpenGL and OpenAL related libraries.
+find_package(OpenGL REQUIRED)  # apt install freeglut3-dev
+find_library(OPENAL_LIBRARY NAMES openal OpenAL OpenAL32)  # apt install libopenal-dev
+find_library(GLUT_LIBRARY NAMES glut GLUT glut64)  # apt install freeglut3-dev
+# target_link_libraries(xbtn2cmd ${OPENGL_LIBRARIES} ${OPENAL_LIBRARY} ${GLUT_LIBRARY})
+
+
+# Link X-Plane plugin system libraries. They are only provided for OS X and Windows.
+if (WIN32 OR APPLE)
+    find_library(XPLM_LIBRARY NAMES XPLM XPLM_64.lib)
+    find_library(XPWIDGETS_LIBRARY NAMES XPWidgets XPWidgets_64.lib)
+    target_link_libraries(xbtn2cmd ${XPLM_LIBRARY} ${XPWIDGETS_LIBRARY})
+endif ()
+
+
+# Link library for dynamic loading of shared objects on UNIX systems.
+if (UNIX)
+    find_library(DL_LIBRARY dl)
+    target_link_libraries(xbtn2cmd ${DL_LIBRARY})
+endif ()
+
+# Link OS X core system libraries.
+if (APPLE)
+    find_library(CORE_FOUNDATION_LIBRARY CoreFoundation)
+    find_library(IOKIT_LIBRARY IOKit)
+    target_link_libraries(xbtn2cmd ${IOKIT_LIBRARY} ${CORE_FOUNDATION_LIBRARY})
+endif ()
+
+if (WIN32)
+    # Unlike OS X and Linux we build standard libraries statically since X-Plane does not provide them.
+    target_link_libraries(xbtn2cmd -static-libgcc -static-libstdc++)
+    # MSYS2 for some reason always links against winpthread, so we have to work around it by statically linking the
+    # entire plugin. This allows building the plugin nativaly on Windows.
+    target_link_libraries(xbtn2cmd -static)
+elseif (APPLE)
+    # Restrict set of symbols exported from the plugin. This reduces changes of
+    # conflict with other plugins, in particular ones with Lua interpreter
+    # embedded.
+#    target_link_libraries(Xbtn2cmd "-exported_symbols_list ${CMAKE_SOURCE_DIR}/flywithlua.sym_mac")
+elseif (UNIX)
+    # Specify additional runtime search laths for dynamically-linked libraries.
+    # Restrict set of symbols exported from the plugin. This reduces changes of
+    # conflict with other plugins, in particular ones with Lua interpreter
+    # embedded.
+#    target_link_libraries(FlyWithLua -Wl,--version-script -Wl,${CMAKE_SOURCE_DIR}/flywithlua.sym)
+endif ()
+
+
+# set_target_properties(Xbtn2cmd PROPERTIES PREFIX "")
+# if (WIN32)
+#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "win")
+# elseif (APPLE)
+#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "mac")
+# elseif (UNIX)
+#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "lin")
+# endif ()
+# set_target_properties(Xbtn2cmd PROPERTIES SUFFIX ".xpl")
 
 
 set_target_properties(xbtn2cmd PROPERTIES PREFIX "")
 set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "Xbtn2cmd")
 set_target_properties(xbtn2cmd PROPERTIES SUFFIX ".xpl")
+
+
+
+

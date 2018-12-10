@@ -11,6 +11,6 @@ bash: .image
 	docker run -it --rm -v "$(realpath ../src):/src" --entrypoint bash $(container):latest
 
 $(platforms): .image
-	docker run -i --rm -v "$(realpath ../src):/src" $(container):latest --complete $(COMPLETE_EDITION) $@
+	docker run -i --rm -v "$(realpath ../src):/src" $(container):latest $@
 
 .PHONY: $(platforms) bash
