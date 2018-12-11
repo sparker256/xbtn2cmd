@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# How to run
+# ./xp11_xbtn2cmd_plugin_builder/xbtn2cmd/buildXbtn2cmd_lin_win_mac_OnLinux WithDocker
+
+cd ~/xp11_xbtn2cmd_plugin_builder/xbtn2cmd
+
+ 
+rm -r src/build-mac/*
+rm -r src/build-lin/*
+rm -r src/build-win/*
+
+rm -r Xbtn2cmd/mac_x64/*
+rm -r Xbtn2cmd/lin_x64/*
+rm -r Xbtn2cmd/win_x64/*
+
+(cd docker; make)
+
+cp src/build-lin/Xbtn2cmd.xpl Xbtn2cmd/lin_x64/Xbtn2cmd.xpl
+cp src/build-win/Xbtn2cmd.xpl Xbtn2cmd/win_x64/Xbtn2cmd.xpl
+cp src/build-mac/Xbtn2cmd.xpl Xbtn2cmd/mac_x64/Xbtn2cmd.xpl
+
+cp docs/Xbtn2cmd.pdf Xbtn2cmd/Documentation/Xbtn2cmd.pdf
+
+exec $SHELL
+#
+

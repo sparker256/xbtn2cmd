@@ -22,15 +22,11 @@ Let's assume we're in a root directory of Git repository:
 
     $ cd $Xbtn2cmd_REPO
 
-Build Complete Edition binaries for all platforms:
+Build Xbtn2cmd binaries for all platforms:
 
     $ (cd docker; make)
     $ ls src/build-*/*.xpl
     src/build-lin/lin.xpl src/build-mac/mac.xpl src/build-win/win.xpl 
-
-Build Core Edition for all platforms:
-
-    $ (cd docker; make COMPLETE_EDITION=0)
 
 Build for a specific platform (`lin`, `mac` or `win`):
 
