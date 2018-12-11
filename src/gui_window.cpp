@@ -12,9 +12,11 @@
 #endif
 #if LIN
 #include <GL/gl.h>
-#elif __GNUC__
-#include <GL/gl.h>
-#else
+#endif
+#if __GNUC__ && APL
+#include <OpenGL/gl.h>
+#endif
+#if __GNUC__ && IBM
 #include <GL/gl.h>
 #endif
 

@@ -6,7 +6,7 @@
 #   * -DCREATECOMPLETEEDITION=XXX, where XXX is true or false. Default is true.
 
 cmake_minimum_required(VERSION 3.9)
-project(Xbtn2cmd VERSION 1.1.9 DESCRIPTION "Xbtn2cmd X-Plane plugin")
+project(xbtn2cmd VERSION 1.1.9 DESCRIPTION "xbtn2cmd X-Plane plugin")
 
 # By default, use optimized release configuration.
 if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
@@ -30,6 +30,7 @@ elseif (UNIX)
 
 endif ()
 
+# message (STATUS "CMAKE_LIBRARY_PATH" = ${CMAKE_LIBRARY_PATH})
 
 # Enable all X-Plane SDK APIs up to the newest version.
 add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1)
@@ -85,8 +86,9 @@ find_library(GLUT_LIBRARY NAMES glut GLUT glut64)  # apt install freeglut3-dev
 
 # Link X-Plane plugin system libraries. They are only provided for OS X and Windows.
 if (WIN32 OR APPLE)
+# if (WIN32)
     find_library(XPLM_LIBRARY NAMES XPLM XPLM_64.lib)
-    find_library(XPWIDGETS_LIBRARY NAMES XPWidgets XPWidgets_64.lib)
+	find_library(XPWIDGETS_LIBRARY NAMES XPWidgets XPWidgets_64.lib)
     target_link_libraries(xbtn2cmd ${XPLM_LIBRARY} ${XPWIDGETS_LIBRARY})
 endif ()
 
@@ -99,14 +101,19 @@ endif ()
 
 # Link OS X core system libraries.
 if (APPLE)
-    find_library(CORE_FOUNDATION_LIBRARY CoreFoundation)
     find_library(IOKIT_LIBRARY IOKit)
-    target_link_libraries(xbtn2cmd ${IOKIT_LIBRARY} ${CORE_FOUNDATION_LIBRARY})
+    find_library(CORE_FOUNDATION_LIBRARY CoreFoundation)
+    find_library(GLUT_LIBRARY GLUT)
+    find_library(OpenGL_LIBRARY OpenGL)
+    find_library(Cocoa_LIBRARY Cocoa)
+
+    target_link_libraries(xbtn2cmd ${IOKIT_LIBRARY} ${CORE_FOUNDATION_LIBRARY} ${GLUT_LIBRARY})
+    target_link_libraries(xbtn2cmd ${OpenGL_LIBRARY} ${Cocoa_LIBRARY})
 endif ()
 
 if (WIN32)
     # Unlike OS X and Linux we build standard libraries statically since X-Plane does not provide them.
-    target_link_libraries(xbtn2cmd -static-libgcc -static-libstdc++)
+    target_link_libraries(xbtn2cmd -static-libgcc -static-libstdc++ opengl32)
     # MSYS2 for some reason always links against winpthread, so we have to work around it by statically linking the
     # entire plugin. This allows building the plugin nativaly on Windows.
     target_link_libraries(xbtn2cmd -static)
@@ -114,13 +121,14 @@ elseif (APPLE)
     # Restrict set of symbols exported from the plugin. This reduces changes of
     # conflict with other plugins, in particular ones with Lua interpreter
     # embedded.
-#    target_link_libraries(Xbtn2cmd "-exported_symbols_list ${CMAKE_SOURCE_DIR}/flywithlua.sym_mac")
+    target_link_libraries(xbtn2cmd "-exported_symbols_list ${CMAKE_SOURCE_DIR}/xbtn2cmd.sym_mac")
+	target_link_libraries(xbtn2cmd "-framework XPLM -framework XPWidgets -ldl")
 elseif (UNIX)
     # Specify additional runtime search laths for dynamically-linked libraries.
     # Restrict set of symbols exported from the plugin. This reduces changes of
     # conflict with other plugins, in particular ones with Lua interpreter
     # embedded.
-#    target_link_libraries(FlyWithLua -Wl,--version-script -Wl,${CMAKE_SOURCE_DIR}/flywithlua.sym)
+    target_link_libraries(xbtn2cmd -Wl,--version-script -Wl,${CMAKE_SOURCE_DIR}/xbtn2cmd.sym)
 endif ()
 
 

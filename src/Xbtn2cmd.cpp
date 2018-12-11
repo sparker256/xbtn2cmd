@@ -48,10 +48,12 @@ using namespace std;
 #endif
 #if LIN
 #include <GL/gl.h>
-#elif __GNUC__
+#endif
+#if __GNUC__ && APL
+#include <OpenGL/gl.h>
+#endif
+#if __GNUC__ && IBM
 #include <GL/gl.h>
-#else
-#include <gl.h>
 #endif
 
 #ifndef XPLM301

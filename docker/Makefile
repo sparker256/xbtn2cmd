@@ -1,7 +1,8 @@
 platforms=win mac lin
 container=xb2c-cross-compile-env
 
-all: mac win lin
+# all: mac lin win
+all: mac lin win 
 
 .image: Dockerfile build.sh
 	docker build . -t $(container)
