@@ -56,7 +56,7 @@ add_compile_options(-O3 -fPIC)
 
 # X-Plane plugin
 # FIXME: Split this into individual targets.
-list(APPEND XBTN2CMD_SRCS Xbtn2cmd.cpp find_commands.cpp gui_window.cpp inireader.cpp readinifile.cpp)
+list(APPEND XBTN2CMD_SRCS Xbtn2cmd.cpp xbtn2cmd.h find_commands.cpp gui_window.cpp inireader.cpp inireader.h readinifile.cpp)
 
 if (WIN32)
 

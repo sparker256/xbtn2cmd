@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.19 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.20 build " __DATE__ " " __TIME__
 
 #include "XPLMDataAccess.h"  // for the VR dataref
 #include "XPLMDisplay.h"     // for window creation and manipulation
@@ -131,6 +131,8 @@ string page1_button_label, page2_button_label, page3_button_label,
     page4_button_label;
 string page5_button_label, page6_button_label, page7_button_label,
     page8_button_label;
+string page9_button_label, page10_button_label, page11_button_label,
+    page12_button_label;
 
 string page1_button1_label, page1_button1_command_once,
     page1_button1_command_continue;
@@ -331,6 +333,208 @@ string page8_button11_label, page8_button11_command_once,
     page8_button11_command_continue;
 string page8_button12_label, page8_button12_command_once,
     page8_button12_command_continue;
+
+
+string page9_button1_label, page9_button1_command_once,
+    page9_button1_command_continue;
+string page9_button2_label, page9_button2_command_once,
+    page9_button2_command_continue;
+string page9_button3_label, page9_button3_command_once,
+    page9_button3_command_continue;
+string page9_button4_label, page9_button4_command_once,
+    page9_button4_command_continue;
+string page9_button5_label, page9_button5_command_once,
+    page9_button5_command_continue;
+string page9_button6_label, page9_button6_command_once,
+    page9_button6_command_continue;
+string page9_button7_label, page9_button7_command_once,
+    page9_button7_command_continue;
+string page9_button8_label, page9_button8_command_once,
+    page9_button8_command_continue;
+string page9_button9_label, page9_button9_command_once,
+    page9_button9_command_continue;
+string page9_button10_label, page9_button10_command_once,
+    page9_button10_command_continue;
+string page9_button11_label, page9_button11_command_once,
+    page9_button11_command_continue;
+string page9_button12_label, page9_button12_command_once,
+    page9_button12_command_continue;
+string page9_button13_label, page9_button13_command_once,
+    page9_button13_command_continue;
+string page9_button14_label, page9_button14_command_once,
+    page9_button14_command_continue;
+string page9_button15_label, page9_button15_command_once,
+    page9_button15_command_continue;
+string page9_button16_label, page9_button16_command_once,
+    page9_button16_command_continue;
+string page9_button17_label, page9_button17_command_once,
+    page9_button17_command_continue;
+string page9_button18_label, page9_button18_command_once,
+    page9_button18_command_continue;
+string page9_button19_label, page9_button19_command_once,
+    page9_button19_command_continue;
+string page9_button20_label, page9_button20_command_once,
+    page9_button20_command_continue;
+string page9_button21_label, page9_button21_command_once,
+    page9_button21_command_continue;
+string page9_button22_label, page9_button22_command_once,
+    page9_button22_command_continue;
+string page9_button23_label, page9_button23_command_once,
+    page9_button23_command_continue;
+string page9_button24_label, page9_button24_command_once,
+    page9_button24_command_continue;
+
+
+string page10_button1_label, page10_button1_command_once,
+    page10_button1_command_continue;
+string page10_button2_label, page10_button2_command_once,
+    page10_button2_command_continue;
+string page10_button3_label, page10_button3_command_once,
+    page10_button3_command_continue;
+string page10_button4_label, page10_button4_command_once,
+    page10_button4_command_continue;
+string page10_button5_label, page10_button5_command_once,
+    page10_button5_command_continue;
+string page10_button6_label, page10_button6_command_once,
+    page10_button6_command_continue;
+string page10_button7_label, page10_button7_command_once,
+    page10_button7_command_continue;
+string page10_button8_label, page10_button8_command_once,
+    page10_button8_command_continue;
+string page10_button9_label, page10_button9_command_once,
+    page10_button9_command_continue;
+string page10_button10_label, page10_button10_command_once,
+    page10_button10_command_continue;
+string page10_button11_label, page10_button11_command_once,
+    page10_button11_command_continue;
+string page10_button12_label, page10_button12_command_once,
+    page10_button12_command_continue;
+string page10_button13_label, page10_button13_command_once,
+    page10_button13_command_continue;
+string page10_button14_label, page10_button14_command_once,
+    page10_button14_command_continue;
+string page10_button15_label, page10_button15_command_once,
+    page10_button15_command_continue;
+string page10_button16_label, page10_button16_command_once,
+    page10_button16_command_continue;
+string page10_button17_label, page10_button17_command_once,
+    page10_button17_command_continue;
+string page10_button18_label, page10_button18_command_once,
+    page10_button18_command_continue;
+string page10_button19_label, page10_button19_command_once,
+    page10_button19_command_continue;
+string page10_button20_label, page10_button20_command_once,
+    page10_button20_command_continue;
+string page10_button21_label, page10_button21_command_once,
+    page10_button21_command_continue;
+string page10_button22_label, page10_button22_command_once,
+    page10_button22_command_continue;
+string page10_button23_label, page10_button23_command_once,
+    page10_button23_command_continue;
+string page10_button24_label, page10_button24_command_once,
+    page10_button24_command_continue;
+
+
+
+string page11_button1_label, page11_button1_command_once,
+    page11_button1_command_continue;
+string page11_button2_label, page11_button2_command_once,
+    page11_button2_command_continue;
+string page11_button3_label, page11_button3_command_once,
+    page11_button3_command_continue;
+string page11_button4_label, page11_button4_command_once,
+    page11_button4_command_continue;
+string page11_button5_label, page11_button5_command_once,
+    page11_button5_command_continue;
+string page11_button6_label, page11_button6_command_once,
+    page11_button6_command_continue;
+string page11_button7_label, page11_button7_command_once,
+    page11_button7_command_continue;
+string page11_button8_label, page11_button8_command_once,
+    page11_button8_command_continue;
+string page11_button9_label, page11_button9_command_once,
+    page11_button9_command_continue;
+string page11_button10_label, page11_button10_command_once,
+    page11_button10_command_continue;
+string page11_button11_label, page11_button11_command_once,
+    page11_button11_command_continue;
+string page11_button12_label, page11_button12_command_once,
+    page11_button12_command_continue;
+string page11_button13_label, page11_button13_command_once,
+    page11_button13_command_continue;
+string page11_button14_label, page11_button14_command_once,
+    page11_button14_command_continue;
+string page11_button15_label, page11_button15_command_once,
+    page11_button15_command_continue;
+string page11_button16_label, page11_button16_command_once,
+    page11_button16_command_continue;
+string page11_button17_label, page11_button17_command_once,
+    page11_button17_command_continue;
+string page11_button18_label, page11_button18_command_once,
+    page11_button18_command_continue;
+string page11_button19_label, page11_button19_command_once,
+    page11_button19_command_continue;
+string page11_button20_label, page11_button20_command_once,
+    page11_button20_command_continue;
+string page11_button21_label, page11_button21_command_once,
+    page11_button21_command_continue;
+string page11_button22_label, page11_button22_command_once,
+    page11_button22_command_continue;
+string page11_button23_label, page11_button23_command_once,
+    page11_button23_command_continue;
+string page11_button24_label, page11_button24_command_once,
+    page11_button24_command_continue;
+
+
+string page12_button1_label, page12_button1_command_once,
+    page12_button1_command_continue;
+string page12_button2_label, page12_button2_command_once,
+    page12_button2_command_continue;
+string page12_button3_label, page12_button3_command_once,
+    page12_button3_command_continue;
+string page12_button4_label, page12_button4_command_once,
+    page12_button4_command_continue;
+string page12_button5_label, page12_button5_command_once,
+    page12_button5_command_continue;
+string page12_button6_label, page12_button6_command_once,
+    page12_button6_command_continue;
+string page12_button7_label, page12_button7_command_once,
+    page12_button7_command_continue;
+string page12_button8_label, page12_button8_command_once,
+    page12_button8_command_continue;
+string page12_button9_label, page12_button9_command_once,
+    page12_button9_command_continue;
+string page12_button10_label, page12_button10_command_once,
+    page12_button10_command_continue;
+string page12_button11_label, page12_button11_command_once,
+    page12_button11_command_continue;
+string page12_button12_label, page12_button12_command_once,
+    page12_button12_command_continue;
+string page12_button13_label, page12_button13_command_once,
+    page12_button13_command_continue;
+string page12_button14_label, page12_button14_command_once,
+    page12_button14_command_continue;
+string page12_button15_label, page12_button15_command_once,
+    page12_button15_command_continue;
+string page12_button16_label, page12_button16_command_once,
+    page12_button16_command_continue;
+string page12_button17_label, page12_button17_command_once,
+    page12_button17_command_continue;
+string page12_button18_label, page12_button18_command_once,
+    page12_button18_command_continue;
+string page12_button19_label, page12_button19_command_once,
+    page12_button19_command_continue;
+string page12_button20_label, page12_button20_command_once,
+    page12_button20_command_continue;
+string page12_button21_label, page12_button21_command_once,
+    page12_button21_command_continue;
+string page12_button22_label, page12_button22_command_once,
+    page12_button22_command_continue;
+string page12_button23_label, page12_button23_command_once,
+    page12_button23_command_continue;
+string page12_button24_label, page12_button24_command_once,
+    page12_button24_command_continue;
+
 
 XPLMCommandRef Page1_Button1LabelCmd = nullptr,
                Page1_Button1CommandOnceCmd = nullptr,
@@ -628,6 +832,303 @@ XPLMCommandRef Page8_Button12LabelCmd = nullptr,
                Page8_Button12CommandOnceCmd = nullptr,
                Page8_Button12CommandContinueCmd = nullptr;
 
+
+XPLMCommandRef Page9_Button1LabelCmd = nullptr,
+               Page9_Button1CommandOnceCmd = nullptr,
+               Page9_Button1CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button2LabelCmd = nullptr,
+               Page9_Button2CommandOnceCmd = nullptr,
+               Page9_Button2CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button3LabelCmd = nullptr,
+               Page9_Button3CommandOnceCmd = nullptr,
+               Page9_Button3CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button4LabelCmd = nullptr,
+               Page9_Button4CommandOnceCmd = nullptr,
+               Page9_Button4CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button5LabelCmd = nullptr,
+               Page9_Button5CommandOnceCmd = nullptr,
+               Page9_Button5CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button6LabelCmd = nullptr,
+               Page9_Button6CommandOnceCmd = nullptr,
+               Page9_Button6CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button7LabelCmd = nullptr,
+               Page9_Button7CommandOnceCmd = nullptr,
+               Page9_Button7CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button8LabelCmd = nullptr,
+               Page9_Button8CommandOnceCmd = nullptr,
+               Page9_Button8CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button9LabelCmd = nullptr,
+               Page9_Button9CommandOnceCmd = nullptr,
+               Page9_Button9CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button10LabelCmd = nullptr,
+               Page9_Button10CommandOnceCmd = nullptr,
+               Page9_Button10CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button11LabelCmd = nullptr,
+               Page9_Button11CommandOnceCmd = nullptr,
+               Page9_Button11CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button12LabelCmd = nullptr,
+               Page9_Button12CommandOnceCmd = nullptr,
+               Page9_Button12CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button13LabelCmd = nullptr,
+               Page9_Button13CommandOnceCmd = nullptr,
+               Page9_Button13CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button14LabelCmd = nullptr,
+               Page9_Button14CommandOnceCmd = nullptr,
+               Page9_Button14CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button15LabelCmd = nullptr,
+               Page9_Button15CommandOnceCmd = nullptr,
+               Page9_Button15CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button16LabelCmd = nullptr,
+               Page9_Button16CommandOnceCmd = nullptr,
+               Page9_Button16CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button17LabelCmd = nullptr,
+               Page9_Button17CommandOnceCmd = nullptr,
+               Page9_Button17CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button18LabelCmd = nullptr,
+               Page9_Button18CommandOnceCmd = nullptr,
+               Page9_Button18CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button19LabelCmd = nullptr,
+               Page9_Button19CommandOnceCmd = nullptr,
+               Page9_Button19CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button20LabelCmd = nullptr,
+               Page9_Button20CommandOnceCmd = nullptr,
+               Page9_Button20CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button21LabelCmd = nullptr,
+               Page9_Button21CommandOnceCmd = nullptr,
+               Page9_Button21CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button22LabelCmd = nullptr,
+               Page9_Button22CommandOnceCmd = nullptr,
+               Page9_Button22CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button23LabelCmd = nullptr,
+               Page9_Button23CommandOnceCmd = nullptr,
+               Page9_Button23CommandContinueCmd = nullptr;
+XPLMCommandRef Page9_Button24LabelCmd = nullptr,
+               Page9_Button24CommandOnceCmd = nullptr,
+               Page9_Button24CommandContinueCmd = nullptr;
+
+
+XPLMCommandRef Page10_Button1LabelCmd = nullptr,
+               Page10_Button1CommandOnceCmd = nullptr,
+               Page10_Button1CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button2LabelCmd = nullptr,
+               Page10_Button2CommandOnceCmd = nullptr,
+               Page10_Button2CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button3LabelCmd = nullptr,
+               Page10_Button3CommandOnceCmd = nullptr,
+               Page10_Button3CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button4LabelCmd = nullptr,
+               Page10_Button4CommandOnceCmd = nullptr,
+               Page10_Button4CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button5LabelCmd = nullptr,
+               Page10_Button5CommandOnceCmd = nullptr,
+               Page10_Button5CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button6LabelCmd = nullptr,
+               Page10_Button6CommandOnceCmd = nullptr,
+               Page10_Button6CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button7LabelCmd = nullptr,
+               Page10_Button7CommandOnceCmd = nullptr,
+               Page10_Button7CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button8LabelCmd = nullptr,
+               Page10_Button8CommandOnceCmd = nullptr,
+               Page10_Button8CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button9LabelCmd = nullptr,
+               Page10_Button9CommandOnceCmd = nullptr,
+               Page10_Button9CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button10LabelCmd = nullptr,
+               Page10_Button10CommandOnceCmd = nullptr,
+               Page10_Button10CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button11LabelCmd = nullptr,
+               Page10_Button11CommandOnceCmd = nullptr,
+               Page10_Button11CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button12LabelCmd = nullptr,
+               Page10_Button12CommandOnceCmd = nullptr,
+               Page10_Button12CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button13LabelCmd = nullptr,
+               Page10_Button13CommandOnceCmd = nullptr,
+               Page10_Button13CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button14LabelCmd = nullptr,
+               Page10_Button14CommandOnceCmd = nullptr,
+               Page10_Button14CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button15LabelCmd = nullptr,
+               Page10_Button15CommandOnceCmd = nullptr,
+               Page10_Button15CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button16LabelCmd = nullptr,
+               Page10_Button16CommandOnceCmd = nullptr,
+               Page10_Button16CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button17LabelCmd = nullptr,
+               Page10_Button17CommandOnceCmd = nullptr,
+               Page10_Button17CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button18LabelCmd = nullptr,
+               Page10_Button18CommandOnceCmd = nullptr,
+               Page10_Button18CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button19LabelCmd = nullptr,
+               Page10_Button19CommandOnceCmd = nullptr,
+               Page10_Button19CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button20LabelCmd = nullptr,
+               Page10_Button20CommandOnceCmd = nullptr,
+               Page10_Button20CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button21LabelCmd = nullptr,
+               Page10_Button21CommandOnceCmd = nullptr,
+               Page10_Button21CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button22LabelCmd = nullptr,
+               Page10_Button22CommandOnceCmd = nullptr,
+               Page10_Button22CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button23LabelCmd = nullptr,
+               Page10_Button23CommandOnceCmd = nullptr,
+               Page10_Button23CommandContinueCmd = nullptr;
+XPLMCommandRef Page10_Button24LabelCmd = nullptr,
+               Page10_Button24CommandOnceCmd = nullptr,
+               Page10_Button24CommandContinueCmd = nullptr;
+
+
+XPLMCommandRef Page11_Button1LabelCmd = nullptr,
+               Page11_Button1CommandOnceCmd = nullptr,
+               Page11_Button1CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button2LabelCmd = nullptr,
+               Page11_Button2CommandOnceCmd = nullptr,
+               Page11_Button2CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button3LabelCmd = nullptr,
+               Page11_Button3CommandOnceCmd = nullptr,
+               Page11_Button3CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button4LabelCmd = nullptr,
+               Page11_Button4CommandOnceCmd = nullptr,
+               Page11_Button4CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button5LabelCmd = nullptr,
+               Page11_Button5CommandOnceCmd = nullptr,
+               Page11_Button5CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button6LabelCmd = nullptr,
+               Page11_Button6CommandOnceCmd = nullptr,
+               Page11_Button6CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button7LabelCmd = nullptr,
+               Page11_Button7CommandOnceCmd = nullptr,
+               Page11_Button7CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button8LabelCmd = nullptr,
+               Page11_Button8CommandOnceCmd = nullptr,
+               Page11_Button8CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button9LabelCmd = nullptr,
+               Page11_Button9CommandOnceCmd = nullptr,
+               Page11_Button9CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button10LabelCmd = nullptr,
+               Page11_Button10CommandOnceCmd = nullptr,
+               Page11_Button10CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button11LabelCmd = nullptr,
+               Page11_Button11CommandOnceCmd = nullptr,
+               Page11_Button11CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button12LabelCmd = nullptr,
+               Page11_Button12CommandOnceCmd = nullptr,
+               Page11_Button12CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button13LabelCmd = nullptr,
+               Page11_Button13CommandOnceCmd = nullptr,
+               Page11_Button13CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button14LabelCmd = nullptr,
+               Page11_Button14CommandOnceCmd = nullptr,
+               Page11_Button14CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button15LabelCmd = nullptr,
+               Page11_Button15CommandOnceCmd = nullptr,
+               Page11_Button15CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button16LabelCmd = nullptr,
+               Page11_Button16CommandOnceCmd = nullptr,
+               Page11_Button16CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button17LabelCmd = nullptr,
+               Page11_Button17CommandOnceCmd = nullptr,
+               Page11_Button17CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button18LabelCmd = nullptr,
+               Page11_Button18CommandOnceCmd = nullptr,
+               Page11_Button18CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button19LabelCmd = nullptr,
+               Page11_Button19CommandOnceCmd = nullptr,
+               Page11_Button19CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button20LabelCmd = nullptr,
+               Page11_Button20CommandOnceCmd = nullptr,
+               Page11_Button20CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button21LabelCmd = nullptr,
+               Page11_Button21CommandOnceCmd = nullptr,
+               Page11_Button21CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button22LabelCmd = nullptr,
+               Page11_Button22CommandOnceCmd = nullptr,
+               Page11_Button22CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button23LabelCmd = nullptr,
+               Page11_Button23CommandOnceCmd = nullptr,
+               Page11_Button23CommandContinueCmd = nullptr;
+XPLMCommandRef Page11_Button24LabelCmd = nullptr,
+               Page11_Button24CommandOnceCmd = nullptr,
+               Page11_Button24CommandContinueCmd = nullptr;
+
+
+XPLMCommandRef Page12_Button1LabelCmd = nullptr,
+               Page12_Button1CommandOnceCmd = nullptr,
+               Page12_Button1CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button2LabelCmd = nullptr,
+               Page12_Button2CommandOnceCmd = nullptr,
+               Page12_Button2CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button3LabelCmd = nullptr,
+               Page12_Button3CommandOnceCmd = nullptr,
+               Page12_Button3CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button4LabelCmd = nullptr,
+               Page12_Button4CommandOnceCmd = nullptr,
+               Page12_Button4CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button5LabelCmd = nullptr,
+               Page12_Button5CommandOnceCmd = nullptr,
+               Page12_Button5CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button6LabelCmd = nullptr,
+               Page12_Button6CommandOnceCmd = nullptr,
+               Page12_Button6CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button7LabelCmd = nullptr,
+               Page12_Button7CommandOnceCmd = nullptr,
+               Page12_Button7CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button8LabelCmd = nullptr,
+               Page12_Button8CommandOnceCmd = nullptr,
+               Page12_Button8CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button9LabelCmd = nullptr,
+               Page12_Button9CommandOnceCmd = nullptr,
+               Page12_Button9CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button10LabelCmd = nullptr,
+               Page12_Button10CommandOnceCmd = nullptr,
+               Page12_Button10CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button11LabelCmd = nullptr,
+               Page12_Button11CommandOnceCmd = nullptr,
+               Page12_Button11CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button12LabelCmd = nullptr,
+               Page12_Button12CommandOnceCmd = nullptr,
+               Page12_Button12CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button13LabelCmd = nullptr,
+               Page12_Button13CommandOnceCmd = nullptr,
+               Page12_Button13CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button14LabelCmd = nullptr,
+               Page12_Button14CommandOnceCmd = nullptr,
+               Page12_Button14CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button15LabelCmd = nullptr,
+               Page12_Button15CommandOnceCmd = nullptr,
+               Page12_Button15CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button16LabelCmd = nullptr,
+               Page12_Button16CommandOnceCmd = nullptr,
+               Page12_Button16CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button17LabelCmd = nullptr,
+               Page12_Button17CommandOnceCmd = nullptr,
+               Page12_Button17CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button18LabelCmd = nullptr,
+               Page12_Button18CommandOnceCmd = nullptr,
+               Page12_Button18CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button19LabelCmd = nullptr,
+               Page12_Button19CommandOnceCmd = nullptr,
+               Page12_Button19CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button20LabelCmd = nullptr,
+               Page12_Button20CommandOnceCmd = nullptr,
+               Page12_Button20CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button21LabelCmd = nullptr,
+               Page12_Button21CommandOnceCmd = nullptr,
+               Page12_Button21CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button22LabelCmd = nullptr,
+               Page12_Button22CommandOnceCmd = nullptr,
+               Page12_Button22CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button23LabelCmd = nullptr,
+               Page12_Button23CommandOnceCmd = nullptr,
+               Page12_Button23CommandContinueCmd = nullptr;
+XPLMCommandRef Page12_Button24LabelCmd = nullptr,
+               Page12_Button24CommandOnceCmd = nullptr,
+               Page12_Button24CommandContinueCmd = nullptr;
+
+
 XPLMCommandRef g430n1_cdi_cmd = nullptr, g430n1_chapter_dn_cmd = nullptr,
                g430n1_chapter_up_cmd = nullptr, g430n1_clr_cmd = nullptr;
 XPLMCommandRef g430n1_coarse_down_cmd = nullptr, g430n1_coarse_up_cmd = nullptr,
@@ -730,6 +1231,63 @@ int Page8_Button7ContinueMode = 0, Page8_Button8ContinueMode = 0,
 int Page8_Button10ContinueMode = 0, Page8_Button11ContinueMode = 0,
     Page8_Button12ContinueMode = 0;
 
+
+int Page9_Button1ContinueMode = 0, Page9_Button2ContinueMode = 0;
+int Page9_Button3ContinueMode = 0, Page9_Button4ContinueMode = 0;
+int Page9_Button5ContinueMode = 0, Page9_Button6ContinueMode = 0;
+int Page9_Button7ContinueMode = 0, Page9_Button8ContinueMode = 0;
+int Page9_Button9ContinueMode = 0, Page9_Button10ContinueMode = 0;
+int Page9_Button11ContinueMode = 0, Page9_Button12ContinueMode = 0;
+int Page9_Button13ContinueMode = 0, Page9_Button14ContinueMode = 0;
+int Page9_Button15ContinueMode = 0, Page9_Button16ContinueMode = 0;
+int Page9_Button17ContinueMode = 0, Page9_Button18ContinueMode = 0;
+int Page9_Button19ContinueMode = 0, Page9_Button20ContinueMode = 0;
+int Page9_Button21ContinueMode = 0, Page9_Button22ContinueMode = 0;
+int Page9_Button23ContinueMode = 0, Page9_Button24ContinueMode = 0;
+
+
+int Page10_Button1ContinueMode = 0, Page10_Button2ContinueMode = 0;
+int Page10_Button3ContinueMode = 0, Page10_Button4ContinueMode = 0;
+int Page10_Button5ContinueMode = 0, Page10_Button6ContinueMode = 0;
+int Page10_Button7ContinueMode = 0, Page10_Button8ContinueMode = 0;
+int Page10_Button9ContinueMode = 0, Page10_Button10ContinueMode = 0;
+int Page10_Button11ContinueMode = 0, Page10_Button12ContinueMode = 0;
+int Page10_Button13ContinueMode = 0, Page10_Button14ContinueMode = 0;
+int Page10_Button15ContinueMode = 0, Page10_Button16ContinueMode = 0;
+int Page10_Button17ContinueMode = 0, Page10_Button18ContinueMode = 0;
+int Page10_Button19ContinueMode = 0, Page10_Button20ContinueMode = 0;
+int Page10_Button21ContinueMode = 0, Page10_Button22ContinueMode = 0;
+int Page10_Button23ContinueMode = 0, Page10_Button24ContinueMode = 0;
+
+
+int Page11_Button1ContinueMode = 0, Page11_Button2ContinueMode = 0;
+int Page11_Button3ContinueMode = 0, Page11_Button4ContinueMode = 0;
+int Page11_Button5ContinueMode = 0, Page11_Button6ContinueMode = 0;
+int Page11_Button7ContinueMode = 0, Page11_Button8ContinueMode = 0;
+int Page11_Button9ContinueMode = 0, Page11_Button10ContinueMode = 0;
+int Page11_Button11ContinueMode = 0, Page11_Button12ContinueMode = 0;
+int Page11_Button13ContinueMode = 0, Page11_Button14ContinueMode = 0;
+int Page11_Button15ContinueMode = 0, Page11_Button16ContinueMode = 0;
+int Page11_Button17ContinueMode = 0, Page11_Button18ContinueMode = 0;
+int Page11_Button19ContinueMode = 0, Page11_Button20ContinueMode = 0;
+int Page11_Button21ContinueMode = 0, Page11_Button22ContinueMode = 0;
+int Page11_Button23ContinueMode = 0, Page11_Button24ContinueMode = 0;
+
+
+int Page12_Button1ContinueMode = 0, Page12_Button2ContinueMode = 0;
+int Page12_Button3ContinueMode = 0, Page12_Button4ContinueMode = 0;
+int Page12_Button5ContinueMode = 0, Page12_Button6ContinueMode = 0;
+int Page12_Button7ContinueMode = 0, Page12_Button8ContinueMode = 0;
+int Page12_Button9ContinueMode = 0, Page12_Button10ContinueMode = 0;
+int Page12_Button11ContinueMode = 0, Page12_Button12ContinueMode = 0;
+int Page12_Button13ContinueMode = 0, Page12_Button14ContinueMode = 0;
+int Page12_Button15ContinueMode = 0, Page12_Button16ContinueMode = 0;
+int Page12_Button17ContinueMode = 0, Page12_Button18ContinueMode = 0;
+int Page12_Button19ContinueMode = 0, Page12_Button20ContinueMode = 0;
+int Page12_Button21ContinueMode = 0, Page12_Button22ContinueMode = 0;
+int Page12_Button23ContinueMode = 0, Page12_Button24ContinueMode = 0;
+
+
 int Xbtn2cmd_menu_container_idx;  // The index of our menu item in the Plugins
                                   // menu
 XPLMMenuID
@@ -746,8 +1304,12 @@ int page5_mouse_down[12] = {};
 int page6_mouse_down[12] = {};
 int page7_mouse_down[12] = {};
 int page8_mouse_down[12] = {};
+int page9_mouse_down[12] = {};
+int page10_mouse_down[12] = {};
+int page11_mouse_down[12] = {};
+int page12_mouse_down[12] = {};
 
-int mouse_down[12] = {};
+int mouse_down[24] = {};
 
 int mouse_down_hide = 0;
 int mouse_down_reload = 0;
@@ -768,6 +1330,11 @@ int mouse_down_page11 = 0;
 int mouse_down_page12 = 0;
 int mouse_down_page13 = 0;
 int mouse_down_page14 = 0;
+
+int mouse_down_radios = 0;
+int mouse_down_g430n1 = 0;
+int mouse_down_g430n2 = 0;
+
 
 int number0_mouse_down = 0, number1_mouse_down = 0, number2_mouse_down = 0,
     number3_mouse_down = 0;
@@ -953,6 +1520,13 @@ void SetPageNumberDataRefCB(void *inRefcon, int inValue);
 
 int GetButtonNumberDataRefCB(void *inRefcon);
 void SetButtonNumberDataRefCB(void *inRefcon, int inValue);
+
+static bool toggle_gui();
+int is_popped_out = 0;
+int was_popped_out = 0;
+int command_pressed = 0;
+
+int left1 = 0, top1 = 0, right1 = 0, bottom1 = 0;
 
 PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc) {
   XPLMDebugString("Xbtn2cmd: ver " VERSION_NUMBER "\n");
@@ -1163,6 +1737,36 @@ void SetButtonNumberDataRefCB(void * /*inRefcon*/, int inValue) {
   ButtonNumberValue = inValue;
 }
 
+
+bool toggle_gui()
+{
+    if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
+        if (is_popped_out) {
+            was_popped_out = is_popped_out;
+            XPLMGetWindowGeometryOS(xb2cvr_g_window, &left1, &top1, &right1, &bottom1);
+        } else {
+            XPLMGetWindowGeometry(xb2cvr_g_window, &left1, &top1, &right1, &bottom1);
+        }
+        XPLMSetWindowIsVisible(xb2cvr_g_window,0);
+    } else {
+        if (was_popped_out) {
+            XPLMSetWindowPositioningMode(xb2cvr_g_window, xplm_WindowPopOut, 0);
+            #if LIN
+            XPLMSetWindowGeometryOS(xb2cvr_g_window, left1 + ((right1 - left1) / 2), top1 - ((top1 - bottom1) /2) + 14, right1 + ((right1 - left1) / 2), bottom1 - ((top1 - bottom1) /2) + 14);
+            #else
+            XPLMSetWindowGeometryOS(xb2cvr_g_window, left1, top1, right1, bottom1);
+            #endif
+            XPLMSetWindowIsVisible(xb2cvr_g_window,1);
+            was_popped_out = 0;
+        }
+        if (!is_popped_out) {
+            XPLMSetWindowGeometryOS(xb2cvr_g_window, left1, top1, right1, bottom1);
+            XPLMSetWindowIsVisible(xb2cvr_g_window,1);
+        }
+    }
+    return true;
+}
+
 void xb2cvr_create_gui_window() {
   vr_is_enabled = XPLMGetDatai(g_vr_dref);
 
@@ -1179,7 +1783,7 @@ void xb2cvr_create_gui_window() {
     params.left = xb2cvr_global_desktop_bounds[0] + 50;
     params.bottom = xb2cvr_global_desktop_bounds[1] + 100;
     params.right = xb2cvr_global_desktop_bounds[0] + 600;
-    params.top = xb2cvr_global_desktop_bounds[1] + 450;
+    params.top = xb2cvr_global_desktop_bounds[1] + 420;
     params.visible = 1;
     params.drawWindowFunc = xb2cvr_draw;
     params.handleMouseClickFunc = xb2cvr_handle_mouse;
@@ -1201,8 +1805,8 @@ void xb2cvr_create_gui_window() {
         vr_is_enabled ? xplm_WindowVR : xplm_WindowPositionFree, -1);
     g_in_vr = static_cast<bool>(vr_is_enabled);
 
-    XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 340, 700,
-                                900);  // Limit resizing our window: maintain a
+    XPLMSetWindowResizingLimits(xb2cvr_g_window, 550, 320, 600,
+                                370);  // Limit resizing our window: maintain a
                                        // minimum width/height of 200 boxels and
                                        // a max width/height of 500
 
@@ -1221,17 +1825,44 @@ void xb2cvr_create_gui_window() {
 void Xbtn2cmdmenu_handler(void * /*in_menu_ref*/, void *in_item_ref) {
   if (!strcmp((const char *)in_item_ref, "Menu Item 1")) {
     process_read_ini_file();
+
     if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
       XPLMSetWindowIsVisible(xb2cvr_g_window, 0);
     } else {
       XPLMSetWindowIsVisible(xb2cvr_g_window, 1);
     }
+
+
+    /*
+    #if IBM
+    if (is_popped_out) {
+        command_pressed = command_pressed + 1;
+        if (command_pressed == 1) {
+            toggle_gui();
+        }
+        sprintf(scratch_buffer, "\nXbtn2cmd: command_pressed = %d\n", command_pressed);
+        XPLMDebugString(scratch_buffer);
+        if (command_pressed == 2) {
+            command_pressed = 0;
+        }
+    } else {
+        toggle_gui();
+    }
+    #else
+    toggle_gui();
+    #endif
+    */
     mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
     mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
     mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
     mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
     mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
     mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+    mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+    mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+    mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+    mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
+
   } else if (!strcmp((const char *)in_item_ref, "Menu Item 2")) {
     process_read_ini_file();
   } else if (!strcmp((const char *)in_item_ref, "Menu Item 3")) {
@@ -1243,6 +1874,10 @@ void Xbtn2cmdmenu_handler(void * /*in_menu_ref*/, void *in_item_ref) {
     mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
     mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
     mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+    mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+    mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+    mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+    mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
   } else if (!strcmp((const char *)in_item_ref, "Menu Item 4")) {
     process_read_ini_file();
     xb2cvr_g_window = nullptr;
@@ -1253,6 +1888,10 @@ void Xbtn2cmdmenu_handler(void * /*in_menu_ref*/, void *in_item_ref) {
     mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
     mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
     mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+    mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+    mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+    mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+    mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
   }
 
   else if (!strcmp((const char *)in_item_ref, "Menu Item 5")) {
@@ -1937,17 +2576,40 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef inCommand, XPLMCommandPhase inPhase,
   if (inPhase == xplm_CommandBegin) {
     switch ((intptr_t)inRefcon) {
       case TOGGLE_WINDOW_COMMAND:
+        /*
         if (XPLMGetWindowIsVisible(xb2cvr_g_window)) {
           XPLMSetWindowIsVisible(xb2cvr_g_window, 0);
         } else {
           XPLMSetWindowIsVisible(xb2cvr_g_window, 1);
         }
+        */
+        #if IBM
+        if (is_popped_out) {
+            command_pressed = command_pressed + 1;
+            if (command_pressed == 1) {
+                toggle_gui();
+            }
+            sprintf(scratch_buffer, "\nXbtn2cmd: command_pressed = %d\n", command_pressed);
+            XPLMDebugString(scratch_buffer);
+            if (command_pressed == 2) {
+                command_pressed = 0;
+            }
+        } else {
+            toggle_gui();
+        }
+        #else
+        toggle_gui();
+        #endif
         mouse_down_hide = 0, mouse_down_reload = 0, mouse_down_edit = 0;
         mouse_down_ctrl_c = 0, ButtonNumberValue = 0;
         mouse_down[0] = 0, mouse_down[1] = 0, mouse_down[2] = 0;
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
         mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+        mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+        mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+        mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+        mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
         break;
       case RELOAD_CONFIG_COMMAND:
         process_read_ini_file();
@@ -1961,6 +2623,10 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef inCommand, XPLMCommandPhase inPhase,
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
         mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+        mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+        mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+        mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+        mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
         break;
       case RECREATE_WINDOW_COMMAND:
         process_read_ini_file();
@@ -1972,6 +2638,10 @@ int Xbtn2cmdCommandCallback(XPLMCommandRef inCommand, XPLMCommandPhase inPhase,
         mouse_down[3] = 0, mouse_down[4] = 0, mouse_down[5] = 0;
         mouse_down[6] = 0, mouse_down[7] = 0, mouse_down[8] = 0;
         mouse_down[9] = 0, mouse_down[10] = 0, mouse_down[11] = 0;
+        mouse_down[12] = 0, mouse_down[13] = 0, mouse_down[14] = 0;
+        mouse_down[15] = 0, mouse_down[16] = 0, mouse_down[17] = 0;
+        mouse_down[18] = 0, mouse_down[19] = 0, mouse_down[20] = 0;
+        mouse_down[21] = 0, mouse_down[22] = 0, mouse_down[23] = 0;
         break;
       case OPEN_EDIT_WINDOW_COMMAND:
         process_create_edit_window();

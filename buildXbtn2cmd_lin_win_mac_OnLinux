@@ -9,6 +9,7 @@ mkdir -p release/Xbtn2cmd/win_x64 &&
 mkdir -p release/Xbtn2cmd/mac_x64 &&
 
 cd src
+mkdir -p build
 rm -r build/*
 cd build
 cmake ..
@@ -37,6 +38,10 @@ cp release/Xbtn2cmd/win_x64/Xbtn2cmd.xpl Xbtn2cmd/win_x64/Xbtn2cmd.xpl
 cp release/Xbtn2cmd/mac_x64/Xbtn2cmd.xpl Xbtn2cmd/mac_x64/Xbtn2cmd.xpl
 
 cp docs/Xbtn2cmd.pdf Xbtn2cmd/Documentation/Xbtn2cmd.pdf
+
+cd src
+rm -r build/*
+cd /home/bill/xp11_xbtn2cmd_plugin_builder/xbtn2cmd
 
 exec $SHELL
 #
