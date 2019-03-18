@@ -3152,7 +3152,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
   if (page_number == 13) {
 
     // Draw the Number7 button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *number7_btn_label;
     number7_btn_label = "7";
 
@@ -3454,7 +3454,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    (char *)adf1s_btn_label, nullptr, xplmFont_Proportional);
 
     // Draw the Number4 button
-    line_number = line_number + 6;
+    line_number = line_number + 4;
     const char *number4_btn_label;
     number4_btn_label = "4";
 
@@ -3756,7 +3756,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    (char *)adf2s_btn_label, nullptr, xplmFont_Proportional);
 
     // Draw the Number1 button
-    line_number = line_number + 6;
+    line_number = line_number + 4;
     const char *number1_btn_label;
     number1_btn_label = "1";
 
@@ -3972,7 +3972,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    (char *)nav1s_btn_label, nullptr, xplmFont_Proportional);
 
     // Draw the Number0 button
-    line_number = line_number + 6;
+    line_number = line_number + 4;
     const char *number0_btn_label;
     number0_btn_label = "0";
 
@@ -4217,7 +4217,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
   if (page_number == 14) {
 
     // Draw the Com FF button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n1_com_ff_btn_label;
     g_430n1_com_ff_btn_label = "Com FF";
 
@@ -4438,7 +4438,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the Fine Dn button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n1_fine_down_btn_label;
     g_430n1_fine_down_btn_label = "Fine Dn";
 
@@ -4703,7 +4703,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the Coarse Dn button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n1_coarse_down_btn_label;
     g_430n1_coarse_down_btn_label = "Crs Dn";
 
@@ -4924,7 +4924,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the CDI button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n1_cdi_btn_label;
     g_430n1_cdi_btn_label = "CDI";
 
@@ -5281,7 +5281,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
   if (page_number == 15) {
 
     // Draw the Com FF button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n2_com_ff_btn_label;
     g_430n2_com_ff_btn_label = "Com FF";
 
@@ -5502,7 +5502,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the Fine Dn button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n2_fine_down_btn_label;
     g_430n2_fine_down_btn_label = "Fine Dn";
 
@@ -5767,7 +5767,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the Coarse Dn button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n2_coarse_down_btn_label;
     g_430n2_coarse_down_btn_label = "Crs Dn";
 
@@ -5988,7 +5988,7 @@ void xb2cvr_draw(XPLMWindowID xb2cvr_in_window_id, void * /*in_refcon*/) {
                    xplmFont_Proportional);
 
     // Draw the CDI button
-    line_number = line_number + 5;
+    line_number = line_number + 4;
     const char *g_430n2_cdi_btn_label;
     g_430n2_cdi_btn_label = "CDI";
 

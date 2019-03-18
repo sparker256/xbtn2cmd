@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.5.1, 2018-12-10T07:25:35. -->
+<!-- Written by QtCreator 3.5.1, 2019-03-17T22:48:33. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -99,7 +99,7 @@
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.2">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
-      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">liblin.xpl.so /home/bill/X-Plane_11.30b7_light/Resources/plugins/Xbtn2cmd/lin_x64/Xbtn2cmd.xpl</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">liblin.xpl.so /home/bill/X-Plane_11.32r2_light/Resources/plugins/Xbtn2cmd/lin_x64/Xbtn2cmd.xpl</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">/bin/mv</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/home/bill/xp11_xbtn2cmd_plugin_builder/xbtn2cmd/plugin_lin_x64</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
