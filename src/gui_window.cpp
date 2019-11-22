@@ -7549,7 +7549,7 @@ int xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x,
             }
           } else {
             search_current_page_label = "page6_button_label =";
-            search_current_page_button_label = "page6_button6_label -";
+            search_current_page_button_label = "page6_button6_label =";
             search_current_page_button_command_once =
                 "page6_button6_command_once =";
             search_current_page_button_command_continue =
@@ -7613,7 +7613,7 @@ int xb2cvr_handle_mouse(XPLMWindowID xb2cvr_in_window_id, int xb2cvr_x,
             }
           } else {
             search_current_page_label = "page10_button_label =";
-            search_current_page_button_label = "page10_button6_label -";
+            search_current_page_button_label = "page10_button6_label =";
             search_current_page_button_command_once =
                 "page10_button6_command_once =";
             search_current_page_button_command_continue =
