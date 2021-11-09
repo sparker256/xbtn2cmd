@@ -14,8 +14,9 @@ INCLUDEPATH += ..
 VPATH = ..
 
 # Defined to use X-Plane SDK 3.0.0 capabilities - no backward compatibility before 11.10
-DEFINES += XPLM301 \
-	   XPLM300 \	
+DEFINES += XPLM303 \
+	   XPLM301 \
+   	   XPLM300 \	
            XPLM210 \
 	   XPLM200
 

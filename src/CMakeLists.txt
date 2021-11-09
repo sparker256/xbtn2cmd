@@ -71,7 +71,7 @@ add_library(xbtn2cmd SHARED ${XBTN2CMD_SRCS})
 target_compile_features(xbtn2cmd PUBLIC cxx_std_11)
 
 if (APPLE)
-    # X-Plane supports OS X 10.10+, so this should ensure FlyWithLua can run on
+    # X-Plane 12 supports OS X 11.3+, so this should ensure FlyWithLua can run on
     # all supported versions.
     target_compile_options(xbtn2cmd PUBLIC -mmacosx-version-min=11.3)
     target_link_libraries(xbtn2cmd -mmacosx-version-min=11.3)

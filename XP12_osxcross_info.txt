@@ -1,0 +1,39 @@
+Build Machine Ubuntu 20.04 LTS
+
+Most of the info here I have found on https://github.com/tpoechtrager/osxcross
+
+
+Install Osxcross by making a folder for it to reside in.
+
+mkdir XP12_OsxCross_Build
+
+cd XP12_OsxCross_Build
+
+git clone https://github.com/tpoechtrager/osxcross.git
+
+cd osxcross
+
+Download Xcode_12.5_beta_3.xip as it is the lastest version known to work.
+
+Put the zip file in the XP12_OsxCross_Build/osxcross folder
+
+Now We Need to create a tarball from the Xcode_12.5_beta_3.xip file using the following command. You need to make sure you have the needed dependicies mentioned in the "Packing the SDK on Linux - Method 1 (Xcode > 8.0):" section of the osxcross github site. This will take some time to build because it has to extract it and then create the SDK tarball from the parts it needs. On my machine using hard drives it took about 12 minutes to build. It was called MacOSX11.3.sdk.tar.xz.
+
+./tools/gen_sdk_package_pbzx.sh Xcode_12.5_beta_3.xip
+
+When it is done building the tarball copy it into the XP12_OsxCross_Build/osxcross/tarballs folder
+
+Now we need to build OSXCross.
+
+While still at the XP12_OsxCross_Build/osxcross folder we need to build osxcross using the command.
+
+./build.sh
+
+You will need to press enter to start building. It took less than 5 minutes to build.
+
+I then added this to the bottom of my .bashrc file in my home to add the correct paths.
+
+# New OsxCross 11.3 SDK build for X-Plane 12
+export PATH=$PATH:/home/bill/XP12_OsxCross_Build/osxcross/target/bin
+export PATH=$PATH:/home/bill/XP12_OsxCross_Build/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/Frameworks
+export PATH=$PATH:/home/bill/XP12_OsxCross_Build/osxcross/target/SDK/MacOSX11.3.sdk/System/Library/PrivateFrameworks
