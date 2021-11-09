@@ -16,16 +16,16 @@ endif ()
 set(CMAKE_CXX_STANDARD 14)
 
 # Set include directories used by our code and dependencies.
-include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/Widgets")
-include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/Wrappers")
-include_directories("${CMAKE_SOURCE_DIR}/XPSDK301/CHeaders/XPLM")
+include_directories("${CMAKE_SOURCE_DIR}/SDK/CHeaders/Widgets")
+include_directories("${CMAKE_SOURCE_DIR}/SDK/CHeaders/Wrappers")
+include_directories("${CMAKE_SOURCE_DIR}/SDK/CHeaders/XPLM")
 
 
 # Specify library search locations.
 if (WIN32)
-    list(APPEND CMAKE_LIBRARY_PATH "${CMAKE_SOURCE_DIR}/XPSDK301/Libraries/Win")
+    list(APPEND CMAKE_LIBRARY_PATH "${CMAKE_SOURCE_DIR}/SDK/Libraries/Win")
 elseif (APPLE)
-    list(APPEND CMAKE_FRAMEWORK_PATH "${CMAKE_SOURCE_DIR}/XPSDK301/Libraries/Mac")
+    list(APPEND CMAKE_FRAMEWORK_PATH "${CMAKE_SOURCE_DIR}/SDK/Libraries/Mac")
 elseif (UNIX)
 
 endif ()
@@ -33,7 +33,7 @@ endif ()
 # message (STATUS "CMAKE_LIBRARY_PATH" = ${CMAKE_LIBRARY_PATH})
 
 # Enable all X-Plane SDK APIs up to the newest version.
-add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1)
+add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1 -DXPLM303=1)
 # Define platform macros.
 add_definitions(-DAPL=$<BOOL:${APPLE}> -DIBM=$<BOOL:${WIN32}> -DLIN=$<AND:$<BOOL:${UNIX}>,$<NOT:$<BOOL:${APPLE}>>>)
 
@@ -73,8 +73,8 @@ target_compile_features(xbtn2cmd PUBLIC cxx_std_11)
 if (APPLE)
     # X-Plane supports OS X 10.10+, so this should ensure FlyWithLua can run on
     # all supported versions.
-    target_compile_options(xbtn2cmd PUBLIC -mmacosx-version-min=10.10)
-    target_link_libraries(xbtn2cmd -mmacosx-version-min=10.10)
+    target_compile_options(xbtn2cmd PUBLIC -mmacosx-version-min=11.3)
+    target_link_libraries(xbtn2cmd -mmacosx-version-min=11.3)
 endif ()
 
 # Link OpenGL and OpenAL related libraries.

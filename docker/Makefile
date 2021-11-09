@@ -1,12 +1,12 @@
-platforms=win mac lin
+platforms=win
 container=xb2c-cross-compile-env
 
 # all: mac lin win
 # all: mac lin win
-all: lin win mac 
+all: win
 
 .image: Dockerfile build.sh
-	docker build . -t $(container)
+	docker build . -t $(container) --no-cache
 	docker inspect -f "{{ .ID}}" $(container):latest > .image
 
 bash: .image
