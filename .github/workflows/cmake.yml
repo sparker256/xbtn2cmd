@@ -68,24 +68,24 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: binaries
-          path: xbtn2cmd/64
+          path: Xbtn2cmd/64
 
       - uses: actions/upload-artifact@v2
         with:
-          name: xbtn2cmd_plugin
+          name: Xbtn2cmd_plugin
           path: |
-            ${{github.workspace}}/xbtn2cmd*
+            ${{github.workspace}}/Xbtn2cmd*
           if-no-files-found: error
 
       - name: Create plugin archive
         if: github.event_name == 'release'
-        run: zip -r xbtn2cmd.zip xbtn2cmd/
+        run: zip -r Xbtn2cmd.zip Xbtn2cmd/
 
       - name: Upload binaries to release
         if: github.event_name == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: xbtn2cmd.zip
+          file: Xbtn2cmd.zip
           tag: ${{ github.ref }}
           overwrite: true
