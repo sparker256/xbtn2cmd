@@ -20,7 +20,8 @@ jobs:
         os:
           - ubuntu-latest
           - windows-latest
-          - macos-latest
+          - macos-latest          
+#          - macos-11
 
     runs-on: ${{matrix.os}}
 

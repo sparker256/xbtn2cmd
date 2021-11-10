@@ -13,7 +13,7 @@ RUN apt-get install -y --no-install-recommends mingw-w64 g++-mingw-w64 && apt-ge
 
 
 # Install dependency libraries under Linux.
-RUN apt-get install -y --no-install-recommends freeglut3-dev libudev-dev libopenal-dev && apt-get clean
+# RUN apt-get install -y --no-install-recommends freeglut3-dev libudev-dev libopenal-dev && apt-get clean
 
 RUN echo "" | adduser --uid 1000 --disabled-password  --gecos "" sparker && adduser sparker sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
