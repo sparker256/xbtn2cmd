@@ -132,20 +132,20 @@ elseif (UNIX)
 endif ()
 
 
-# set_target_properties(Xbtn2cmd PROPERTIES PREFIX "")
-# if (WIN32)
-#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "win")
-# elseif (APPLE)
-#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "mac")
-# elseif (UNIX)
-#    set_target_properties(Xbtn2cmd PROPERTIES OUTPUT_NAME "lin")
-# endif ()
-# set_target_properties(Xbtn2cmd PROPERTIES SUFFIX ".xpl")
-
-
 set_target_properties(xbtn2cmd PROPERTIES PREFIX "")
-set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "Xbtn2cmd")
+if (WIN32)
+    set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "win")
+elseif (APPLE)
+    set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "mac")
+elseif (UNIX)
+    set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "lin")
+endif ()
 set_target_properties(xbtn2cmd PROPERTIES SUFFIX ".xpl")
+
+
+# set_target_properties(xbtn2cmd PROPERTIES PREFIX "")
+# set_target_properties(xbtn2cmd PROPERTIES OUTPUT_NAME "Xbtn2cmd")
+# set_target_properties(xbtn2cmd PROPERTIES SUFFIX ".xpl")
 
 
 
