@@ -75,6 +75,6 @@ X-Plane 11 Window API to map buttons to commands in VR
 
    ```
    cmake --build ./build
-   cp ./build/mac.xpl ./Xbtn2cmd/64
+   cp ./build/mac.xpl ./Xbtn2cmd/64/
    ```
 
