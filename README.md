@@ -5,7 +5,7 @@ Xbtn2cmd for X-Plane 11
 
 ![Alt text](pics/Xbtn2cmd_Page1.jpg?raw=true "Xbtn2cmd")
 
-X-Plane 11 Window API to map buttons to commands in VR
+X-Plane 12 Window API to map buttons to commands in VR
 
 ## Building Xbtn2cmd from source
 
