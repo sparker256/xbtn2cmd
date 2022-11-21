@@ -8,12 +8,11 @@
 cmake_minimum_required(VERSION 3.9)
 project(plugin VERSION 1.1.9 DESCRIPTION "xbtn2cmd X-Plane plugin")
 # We will enable this when we have a SDK supporting arm
-# X-Plane supports OS X 10.10+, so this should ensure FlyWithLua can run on
+# X-Plane supports OS X 11.0+, so this should ensure Xbtn2cmd can run on
 # all supported versions.
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.10" CACHE STRING "Minimum macOS version" FORCE)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "Minimum macOS version" FORCE)
+set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "Build architectures for mac OS X" FORCE)
 
-# set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "Build architectures for mac OS X" FORCE)
-set(CMAKE_OSX_ARCHITECTURES "x86_64" CACHE STRING "Build architectures for mac OS X" FORCE)
 
 # By default, use optimized release configuration.
 if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
@@ -40,7 +39,7 @@ endif ()
 # message (STATUS "CMAKE_LIBRARY_PATH" = ${CMAKE_LIBRARY_PATH})
 
 # Enable all X-Plane SDK APIs up to the newest version.
-add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1 -DXPLM302=1 -DXPLM303=1)
+add_definitions(-DXPLM200=1 -DXPLM210=1 -DXPLM300=1 -DXPLM301=1 -DXPLM302=1 -DXPLM303=1 -DXPLM400=1)
 # Define platform macros.
 add_definitions(-DAPL=$<BOOL:${APPLE}> -DIBM=$<BOOL:${WIN32}> -DLIN=$<AND:$<BOOL:${UNIX}>,$<NOT:$<BOOL:${APPLE}>>>)
 
@@ -80,8 +79,8 @@ target_compile_features(plugin PUBLIC cxx_std_11)
 if (APPLE)
     # X-Plane 12 supports OS X 11.3+, so this should ensure FlyWithLua can run on
     # all supported versions.
-    target_compile_options(plugin PUBLIC -mmacosx-version-min=11.3)
-    target_link_libraries(plugin -mmacosx-version-min=11.3)
+    target_compile_options(plugin PUBLIC -mmacosx-version-min=11.0)
+    target_link_libraries(plugin -mmacosx-version-min=11.0)
 endif ()
 
 # Link OpenGL and OpenAL related libraries.

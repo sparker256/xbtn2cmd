@@ -7,11 +7,11 @@
 //     A plugin to create a window of buttons in VR
 //     that can be mapped to commands.
 //
-//     Supporting  X-Plane 11.21r2+
+//     Supporting  X-Plane 12.0+
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.22 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.50 build " __DATE__ " " __TIME__
 
 #include "XPLMDataAccess.h"  // for the VR dataref
 #include "XPLMDisplay.h"     // for window creation and manipulation
