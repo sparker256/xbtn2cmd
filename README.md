@@ -1,4 +1,4 @@
-Xbtn2cmd for X-Plane 11
+Xbtn2cmd for X-Plane 12
 =========================
 
 [![CMake](https://github.com/sparker256/xbtn2cmd/actions/workflows/cmake.yml/badge.svg)](https://github.com/sparker256/xbtn2cmd/actions/workflows/cmake.yml)
