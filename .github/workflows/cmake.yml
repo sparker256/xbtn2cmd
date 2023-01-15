@@ -64,8 +64,19 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: binaries
-          path: Xbtn2cmd/64
-
+          path: Xbtn2cmd/lin_x64
+      - name: Test artifact download     
+        run: ls -R -l  
+      - name: Rename lin.xpl to Xbtn2cmd.xpl
+        run: mv Xbtn2cmd/lin_x64/lin.xpl Xbtn2cmd/lin_x64/Xbtn2cmd.xpl
+      - name: List folder     
+        run: ls -R -l  
+      - name: Rename win.xpl to Xbtn2cmd/win_x64/Xbtn2cmd.xpl
+        run: mv Xbtn2cmd/lin_x64/win.xpl Xbtn2cmd/win_x64/Xbtn2cmd.xpl
+      - name: Rename mac.xpl to Xbtn2cmd/mac_x64/Xbtn2cmd.xpl
+        run: mv Xbtn2cmd/lin_x64/mac.xpl Xbtn2cmd/mac_x64/Xbtn2cmd.xpl
+      - name: List Final Folder     
+        run: ls -R -l    
       - uses: actions/upload-artifact@v3
         with:
           name: Xbtn2cmd_v${{env.XB2C_VERSION}}
