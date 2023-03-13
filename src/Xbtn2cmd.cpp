@@ -11,7 +11,7 @@
 //
 // *********************************************************
 
-#define VERSION_NUMBER "1.50 build " __DATE__ " " __TIME__
+#define VERSION_NUMBER "1.51 build " __DATE__ " " __TIME__
 
 #include "XPLMDataAccess.h"  // for the VR dataref
 #include "XPLMDisplay.h"     // for window creation and manipulation
